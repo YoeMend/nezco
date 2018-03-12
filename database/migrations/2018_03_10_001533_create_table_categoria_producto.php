@@ -17,6 +17,7 @@ class CreateTableCategoriaProducto extends Migration
             $table->increments('id');
             $table->string('descripcion',200);
             $table->enum('estatus',['Activo','Desactivado']);
+            $table->integer('usuario_id');
             $table->timestamps();
         });
     }

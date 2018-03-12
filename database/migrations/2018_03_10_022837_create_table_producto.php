@@ -20,6 +20,7 @@ class CreateTableProducto extends Migration
             $table->text('descripcion');
             $table->integer('categoria_producto_id')->index('categoria_producto_id_fk');
             $table->enum('publico',['Si','No']);
+            $table->integer('usuario_id');
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ class CategoriaImagen extends Model
      *
      * @var array
      */
-    protected $fillable = ['id','descripcion','estatus','usuario_id','id_ejercicio'];
+    protected $fillable = ['id','descripcion','estatus','usuario_id'];
     protected $guarded  = ['id'];
 
     public function user(){

@@ -19,6 +19,7 @@ class CreateTableVideo extends Migration
             $table->string('url',200);
             $table->integer('categoria_video_id')->index('categoria_video_id_fk');
             $table->enum('publico',['Si','No']);
+            $table->integer('usuario_id');
             $table->timestamps();
         });   
     }

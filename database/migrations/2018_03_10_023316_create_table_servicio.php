@@ -20,6 +20,7 @@ class CreateTableServicio extends Migration
             $table->text('descripcion');
             $table->integer('categoria_servicio_id')->index('categoria_servicio_id_fk');
             $table->enum('publico',['Si','No']);
+            $table->integer('usuario_id');
             $table->timestamps();
         });    }
 

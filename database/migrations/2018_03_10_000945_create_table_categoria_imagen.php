@@ -17,6 +17,7 @@ class CreateTableCategoriaImagen extends Migration
             $table->increments('id');
             $table->string('descripcion',50);
             $table->enum('estatus',['Activo','Desactivado']);
+            $table->integer('usuario_id');
             $table->timestamps();
         });
     }

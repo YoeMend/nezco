@@ -17,6 +17,7 @@ class CreateTableGaleria extends Migration
             $table->increments('id');
             $table->string('nombre',200);
             $table->enum('publico',['Si','No']);
+            $table->integer('usuario_id');
             $table->timestamps();
         });    
     }

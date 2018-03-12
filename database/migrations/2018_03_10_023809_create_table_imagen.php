@@ -20,6 +20,7 @@ class CreateTableImagen extends Migration
             $table->integer('categoria_imagen_id')->index('categoria_imagen_id_fk');
             $table->integer('tipo_id');
             $table->enum('publico',['Si','No']);
+            $table->integer('usuario_id');
             $table->timestamps();
         });    
     }

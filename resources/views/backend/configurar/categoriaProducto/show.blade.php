@@ -17,7 +17,7 @@
             <i class="fa fa-bars"></i>
         </a>
         <ol class="breadcrumb pull-left">
-            <li><a class="ajax-link" href="{{ route('categoriaimagen.index') }}">Atrás</a></li>
+            <li><a class="ajax-link" href="{{ route('categoriaproducto.index') }}">Atrás</a></li>
         </ol>
     </div>
 
@@ -28,7 +28,7 @@
             <div class="box-header">
                 <div class="box-name">
                     <i class="fa fa-table"></i>
-                    <span>Ficha Categoría de Imagenes</span>
+                    <span>Ficha Categoría de Productos</span>
                 </div>
                 <div class="box-icons">
                     <a class="collapse-link">
@@ -46,7 +46,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Descripción</label>
                         <div class="col-sm-6">
-                            <input type="text" id="descripcion" name="descripcion" value="{{ $categoriaimagen->descripcion }}" class="form-control" placeholder="Descripción" data-toggle="tooltip" data-placement="bottom" title="Descripción de la Categoría" required="">
+                            <input type="text" id="descripcion" name="descripcion" value="{{ $categoriaproducto->descripcion }}" class="form-control" placeholder="Descripción" data-toggle="tooltip" data-placement="bottom" title="Descripción de la Categoría" readonly="">
                         </div>
                     </div>
                     <div class="form-group has-warning has-feedback">
@@ -54,14 +54,14 @@
                         <div class="col-sm-4">
                             <select id="estatus" class="form-control" readonly>  
                                 <option value="">Seleccione Estatus</option>
-                    <option value="Activo"@if(old('estatus', $categoriaimagen->estatus)=='Activo') selected @endif>Activo</option>
-                    <option value="Desactivado"@if(old('estatus', $categoriaimagen->estatus)=='Desactivado') selected @endif>Desactivado</option>
+                    <option value="Activo"@if(old('estatus', $categoriaproducto->estatus)=='Activo') selected @endif>Activo</option>
+                    <option value="Desactivado"@if(old('estatus', $categoriaproducto->estatus)=='Desactivado') selected @endif>Desactivado</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-3">
-                            <a href="{{ route('categoriaimagen.index') }}" class="btn btn-default btn-label-left">
+                            <a href="{{ route('categoriaproducto.index') }}" class="btn btn-default btn-label-left">
                            
                             <span><i class="fa fa-clock-o txt-danger"></i></span>
                                 Cancelar

@@ -17,7 +17,7 @@
 			<i class="fa fa-bars"></i>
 		</a>
 		<ol class="breadcrumb pull-left">
-			<li><a class="ajax-link" href="{{ route('categoriaimagen.create') }}">Crear</a></li>
+			<li><a href="{{ route('categoriavideo.create') }}">Crear</a></li>
 		</ol>
 	</div>
 
@@ -28,7 +28,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-table"></i>
-					<span>Categoría de Imagenes</span>
+					<span>Categoría de Video</span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -52,14 +52,12 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($categoriaimagen as $cate)
-						
-						
+						@foreach ($categoriavideo as $cate)
 						<tr>
 							<td>
-<a href="{{ route('categoriaimagen.show',$cate->id) }}" title="Ver ficha de Registro" class="uk-icon-link" uk-icon="icon: file" contextmenu="Ver Registro"><i class="fa fa-search "></i }></a> 
- <a href="{{ route('categoriaimagen.edit',$cate->id) }}" title="Editar" class="uk-icon-link" uk-icon="icon: pencil" contextmenu="Editar Registro"><i class="fa fa-edit "></i }></a> 
- <a href="{{ route('categoriaimagen.destroy',$cate->id) }}" title="Eliminar Registro" class="uk-icon-link" uk-icon="icon: trash"><i class="fa fa-trash " onclick="return confirm('¿Seguro desea eliminar este registro?')"></i }></a>
+<a href="{{ route('categoriaproducto.show',$cate->id) }}" title="Ver ficha de Registro" class="uk-icon-link" uk-icon="icon: file" contextmenu="Ver Registro"><i class="fa fa-search "></i }></a> 
+ <a href="{{ route('categoriaproducto.edit',$cate->id) }}" title="Editar" class="uk-icon-link" uk-icon="icon: pencil" contextmenu="Editar Registro"><i class="fa fa-edit "></i }></a> 
+ <a href="{{ route('categoriaproducto.destroy',$cate->id) }}" title="Eliminar Registro" class="uk-icon-link" uk-icon="icon: trash"><i class="fa fa-trash " onclick="return confirm('¿Seguro desea eliminar este registro?')"></i }></a>
 								{{ $cate->id }}</td>
 							<td>{{ $cate->descripcion }}</td>
 							<td>{{ $cate->estatus }}</td>
@@ -68,7 +66,7 @@
 						@endforeach
 					</tbody>
 				</table>
-				<?php echo $categoriaimagen->render(); ?>
+				<?php echo $categoriavideo->render(); ?>
 			</div>
 		</div>
 	</div>
