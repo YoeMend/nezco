@@ -46,7 +46,13 @@
                  	<div class="form-group">
 						<label class="col-sm-2 control-label">Código</label>
 						<div class="col-sm-6">
-							<input type="text" id="codigo" name="codigo" class="form-control" placeholder="Código" data-toggle="tooltip" data-placement="bottom" title="Código del Producto" required="" maxlength="10">
+							<input type="text" maxlength="10" id="codigo" name="codigo" class="form-control" placeholder="Código" data-toggle="tooltip" data-placement="bottom" title="Código del Producto" required="" maxlength="10">
+						</div>
+					</div>
+                 	<div class="form-group">
+						<label class="col-sm-2 control-label">Nombre</label>
+						<div class="col-sm-6">
+							<input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" data-toggle="tooltip" data-placement="bottom" title="Código del Producto" required="" maxlength="10">
 						</div>
 					</div>
 
@@ -57,12 +63,35 @@
 						</div>
 					</div>
 					<div class="form-group has-warning has-feedback">
-						<label class="col-sm-2 control-label">Estatus</label>
+						<label class="col-sm-4 control-label">Categoría</label>
+						<div class="col-sm-6">
+							<select id="categoria_producto_id" id="name" class="form-control">	
+                                <option value="">Seleccione Categoría</option>
+								@foreach($categoriaproducto as $categ)
+								<option value="{{ $categ->id}}">{{ $categ->descripcion}}</option>
+								@endforeach
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group has-warning has-feedback">
+						<label class="col-sm-4 control-label">Multi-imagen</label>
 						<div class="col-sm-4">
-							<select id="estatus" class="form-control">	
-                                <option value="">Seleccione Estatus</option>
-								<option value="Activo">Activo</option>
-								<option value="Desactivado">Desactivado</option>
+							<select id="multiimagen" name="multiimagen" class="form-control">	
+                                <option value="">Seleccione</option>
+								<option value="Si">Si</option>
+								<option value="No">No</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group has-warning has-feedback">
+						<label class="col-sm-4 control-label">Público</label>
+						<div class="col-sm-4">
+							<select id="publico" name="publico" class="form-control">	
+                                <option value="">Seleccione</option>
+								<option value="Si">Si</option>
+								<option value="No">No</option>
 							</select>
 						</div>
 					</div>
