@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-03-2018 a las 02:32:58
--- Versión del servidor: 10.1.28-MariaDB
--- Versión de PHP: 7.0.25
+-- Tiempo de generación: 14-03-2018 a las 02:44:13
+-- Versión del servidor: 10.1.30-MariaDB
+-- Versión de PHP: 7.0.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -200,6 +200,7 @@ CREATE TABLE `producto` (
   `nombre` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   `descripcion` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `categoria_producto_id` int(11) NOT NULL,
+  `multiimagen` enum('Si','No') COLLATE utf8mb4_unicode_ci NOT NULL,
   `publico` enum('Si','No') COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `usuario_id` int(11) NOT NULL,

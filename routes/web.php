@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/administrar', 'HomeController@index')->name('home');
@@ -43,3 +44,8 @@ Route::group(['middleware' => 'auth'], function () {
 	]);
 
 });
+
+Route::get('/', [
+      'as'=>'frontend.index',
+      'uses'=>'FrontendController@index' 
+      ]);
