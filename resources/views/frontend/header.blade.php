@@ -20,68 +20,16 @@
 
 </head>
 <body>
-	<!--Start Header-->
+	
 	<header class="navbar">
 		<div class="container-fluid expanded-panel">
 			<div class="row">
-				<div id="logo" class="col-xs-12 col-sm-2">
-					<a href="{{ route('frontend.index') }}">Nezco</a>
-				</div>
-				<div id="top-panel" class="col-xs-12 col-sm-10">
-					<div class="row">
-						<div class="col-xs-8 col-sm-4">
-							<div id="search">
-							</div>
-						</div>
-						<div class="col-xs-4 col-sm-8 top-panel-right">
-
-								<li class="dropdown">
-									<a href="#" class="dropdown-toggle account" data-toggle="dropdown">
-										<div class="avatar">
-											<img src="{{ asset('img/avatar.jpg') }}" class="img-circle" alt="avatar" />
-										</div>
-										<i class="fa fa-angle-down pull-right"></i>
-										<div class="user-mini pull-right">
-											<span class="welcome">Hola</span>
-											<span></span>
-										</div>
-									</a>
-									<ul class="dropdown-menu">
-										<li>
-											<a href="#">
-												<i class="fa fa-cog"></i>
-												<span>Configurar</span>
-											</a>
-										</li>
-										<li>
-											<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-												<i class="fa fa-power-off"></i>
-												<span>Cerrar sesión</span>
-											</a>
-											<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-												{{ csrf_field() }}
-											</form>											
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+				vs
 			</div>
 		</div>
 	</header>
-	<!--End Header-->
-	<!--Start Container-->
-	<div id="main" class="container-fluid">
-			<!--Start Content-->
-			<div id="content" class="col-xs-12 col-sm-10">
-				@yield('content')
 
-			</div>
-			<!--End Content-->
-		</div>
-	</div>
+
 	
 @yield('javascript')
 	<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
