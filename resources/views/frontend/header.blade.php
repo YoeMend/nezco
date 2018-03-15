@@ -17,6 +17,7 @@
 	<link href="{{ asset('plugins/justified-gallery/justifiedGallery.css')}}" rel="stylesheet">
 	<link href="{{ asset('css/style_v2.css') }}" rel="stylesheet">
 	<link href="{{ asset('plugins/chartist/chartist.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -24,7 +25,9 @@
 	<header class="navbar">
 		<div class="container-fluid expanded-panel">
 			<div class="row">
-				vs
+				<div class="col-sm-4">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, tempora tempore quos asperiores quae, natus mollitia quis eius esse, non, porro? Deleniti delectus nihil nostrum soluta. Vel iusto aliquid beatae!
+				</div>
 			</div>
 		</div>
 	</header>
