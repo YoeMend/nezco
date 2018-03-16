@@ -37,11 +37,48 @@ Route::group(['middleware' => 'auth'], function () {
 		'uses' => 'configurar\Categoria_videoController@destroy',
 		'as'   => 'categoriavideo.destroy'
 	]);
+    Route::resource('categoriadocumento', 'configurar\Categoria_DocumentoController');
+    Route::get('categoriadocumento/{id}/destroy', [
+		'uses' => 'configurar\Categoria_DocumentoController@destroy',
+		'as'   => 'categoriadocumento.destroy'
+	]);
+
+    Route::resource('tipoproducto', 'configurar\Tipo_ProductoController');
+    Route::get('tipoproducto/{id}/destroy', [
+		'uses' => 'configurar\Tipo_ProductoController@destroy',
+		'as'   => 'tipoproducto.destroy'
+	]);
+
+    Route::resource('documento', 'registrar\DocumentoController');
+    Route::get('documento/{id}/destroy', [
+		'uses' => 'registrar\DocumentoController@destroy',
+		'as'   => 'documento.destroy'
+	]);
+
     Route::resource('producto', 'registrar\ProductoController');
     Route::get('producto/{id}/destroy', [
 		'uses' => 'registrar\ProductoController@destroy',
 		'as'   => 'producto.destroy'
 	]);
+
+    Route::resource('servicio', 'registrar\ServicioController');
+    Route::get('servicio/{id}/destroy', [
+		'uses' => 'registrar\ServicioController@destroy',
+		'as'   => 'servicio.destroy'
+	]);
+
+    Route::resource('video', 'registrar\VideoController');
+    Route::get('video/{id}/destroy', [
+		'uses' => 'registrar\VideoController@destroy',
+		'as'   => 'video.destroy'
+	]);
+
+    Route::resource('galeria', 'GaleriaController');
+    Route::get('galeria/{id}/destroy', [
+		'uses' => 'GaleriaController@destroy',
+		'as'   => 'galeria.destroy'
+	]);
+
 
 });
 
