@@ -60,7 +60,10 @@ Route::group(['middleware' => 'auth'], function () {
 		'uses' => 'registrar\ProductoController@destroy',
 		'as'   => 'producto.destroy'
 	]);
-
+    Route::get('producto/{id}/galeria', [
+		'uses' => 'registrar\ProductoController@galeria',
+		'as'   => 'producto.galeria'
+	]);
     Route::resource('servicio', 'registrar\ServicioController');
     Route::get('servicio/{id}/destroy', [
 		'uses' => 'registrar\ServicioController@destroy',
@@ -78,7 +81,15 @@ Route::group(['middleware' => 'auth'], function () {
 		'uses' => 'GaleriaController@destroy',
 		'as'   => 'galeria.destroy'
 	]);
+   Route::get('cargatipoproductos','registrar\ProductoController@cargatipoproductos');
+   
+   Route::resource('imagenes','ImagenesController');
 
+   Route::get('imagenes/{categoria}/index', [
+		'uses' => 'ImagenesController@index',
+		'as'   => 'imagenes.index'
+	]);
+   
 
 });
 

@@ -13,7 +13,7 @@
 
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-dashboard"></i> Editar Categoría de Producto</h1>
+        <h1><i class="fa fa-dashboard"></i> Ficha Categoría de Producto</h1>
 
     </div>
     <ul class="app-breadcrumb breadcrumb side">

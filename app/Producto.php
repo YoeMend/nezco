@@ -13,7 +13,7 @@ class Producto extends Model
      *
      * @var array
      */
-    protected $fillable = ['id','codigo','titulo','descripcion','categoria_producto_id','tipo_producto_id','publico','inicio','posicion','usuario_id'];
+    protected $fillable = ['id','codigo','titulo','descripcion','categoria_producto_id','tipo_producto_id','publico','inicio','posicion','usuario_id','imagen'];
     protected $guarded  = ['id'];
 
     public function user(){

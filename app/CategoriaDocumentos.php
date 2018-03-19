@@ -13,7 +13,7 @@ class CategoriaDocumentos extends Model
      *
      * @var array
      */
-    protected $fillable = ['id','nombre','estatus','usuario_id'];
+    protected $fillable = ['id','descripcion','estatus','usuario_id'];
     protected $guarded  = ['id'];
 
     public function user(){

@@ -23,6 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/imagen.css') }}">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
@@ -105,20 +106,21 @@
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Configurar</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="{{ route('categoriaproducto.index') }}"><i class="icon fa fa-circle-o"></i>Productos</a></li>
-            <li><a class="treeview-item" href="{{ route('categoriaservicio.index') }}" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i>Servicios</a></li>
+            <li><a class="treeview-item" href="{{ route('categoriaservicio.index') }}"><i class="icon fa fa-circle-o"></i>Servicios</a></li>
             <li><a class="treeview-item" href="{{ route('tipoproducto.index') }}"><i class="icon fa fa-circle-o"></i>Tipo Productos</a></li>
             <li><a class="treeview-item" href="{{ route('categoriadocumento.index') }}"><i class="icon fa fa-circle-o"></i>Documentos</a></li>
           </ul>
         </li>
-        <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Charts</span></a></li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Forms</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Registro</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
-            <li><a class="treeview-item" href="form-components.html"><i class="icon fa fa-circle-o"></i> Form Components</a></li>
-            <li><a class="treeview-item" href="form-custom.html"><i class="icon fa fa-circle-o"></i> Custom Components</a></li>
-            <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-circle-o"></i> Form Samples</a></li>
-            <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-circle-o"></i> Form Notifications</a></li>
+            <li><a class="treeview-item" href="{{ route('producto.index') }}"><i class="icon fa fa-circle-o"></i> Productos</a></li>
+            <li><a class="treeview-item" href="form-custom.html"><i class="icon fa fa-circle-o"></i>Servicios</a></li>
+            <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-circle-o"></i>Documentos</a></li>
+            <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-circle-o"></i>Empresas</a></li>
           </ul>
         </li>
+        <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Charts</span></a></li>
+
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Tables</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="table-basic.html"><i class="icon fa fa-circle-o"></i> Basic Tables</a></li>
@@ -146,7 +148,7 @@
     </main>
     <!-- Essential javascripts for application to work-->
 
-@yield('javascript')
+
 
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
@@ -154,6 +156,8 @@
     <script src="{{ asset('js/main.js') }}"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="{{ asset('js/plugins/pace.min.js') }}"></script>
+    <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
+
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="{{ asset('js/plugins/chart.js') }}"></script>
     <script type="text/javascript">
@@ -214,5 +218,7 @@
       	ga('send', 'pageview');
       }
     </script>
+@stack('scripts')
+
   </body>
 </html>

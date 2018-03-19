@@ -27,6 +27,7 @@
         <div class="tile-body">
             <form class="form-horizontal" role="form" action="{{ route('categoriaproducto.update', ($categoriaproducto->id)) }}" method="POST">
                {{ csrf_field() }}
+               {{ method_field('PUT') }}
                <div class="form-group">
                 <label class="control-label">Descripción</label>
                 <input type="text" id="descripcion" name="descripcion" value="{{ $categoriaproducto->descripcion }}" class="form-control" placeholder="Descripción" data-toggle="tooltip" data-placement="bottom" title="Descripción de la Categoría">
