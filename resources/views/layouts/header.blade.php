@@ -1,163 +1,218 @@
+<?php   
+   $_SESSION["user"]=Auth::user()->id;
+?>
+
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
-<head>
-	<meta charset="utf-8">
-	<title>Nezco-Sistema de Administración de Contenidos</title>
-	<meta name="description" content="description">
-	<meta name="author" content="Nezco">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="{{ asset('plugins/bootstrap/bootstrap.css')}}" rel="stylesheet">
-	<link href="{{ asset('plugins/jquery-ui/jquery-ui.min.css')}}" rel="stylesheet">
-	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Righteous)}}' rel='stylesheet' type='text/css'>
-	<link href="{{ asset('plugins/fancybox/jquery.fancybox.css')}}" rel="stylesheet">
-	<link href="{{ asset('plugins/fullcalendar/fullcalendar.css')}}" rel="stylesheet">
-	<link href="{{ asset('plugins/xcharts/xcharts.min.css')}}" rel="stylesheet">
-	<link href="{{ asset('plugins/select2/select2.css')}}" rel="stylesheet">
-	<link href="{{ asset('plugins/justified-gallery/justifiedGallery.css')}}" rel="stylesheet">
-	<link href="{{ asset('css/style_v2.css') }}" rel="stylesheet">
-	<link href="{{ asset('plugins/chartist/chartist.min.css') }}" rel="stylesheet">
-
-</head>
-<body>
-	<?php 
-        
-        $_SESSION["user"]=Auth::user()->id;
-	?>
-	<!--Start Header-->
-	<header class="navbar">
-		<div class="container-fluid expanded-panel">
-			<div class="row">
-				<div id="logo" class="col-xs-12 col-sm-2">
-					<a href="{{ route('home') }}">Nezco - SAC</a>
-				</div>
-				<div id="top-panel" class="col-xs-12 col-sm-10">
-					<div class="row">
-						<div class="col-xs-8 col-sm-4">
-							<div id="search">
-							</div>
-						</div>
-						<div class="col-xs-4 col-sm-8 top-panel-right">
-
-							<ul class="nav navbar-nav pull-right panel-menu">
-								<li class="dropdown">
-									<a href="#" class="dropdown-toggle account" data-toggle="dropdown">
-										<div class="avatar">
-											<img src="{{ asset('img/avatar.jpg') }}" class="img-circle" alt="avatar" />
-										</div>
-										<i class="fa fa-angle-down pull-right"></i>
-										<div class="user-mini pull-right">
-											<span class="welcome">Hola</span>
-											<span>{{ Auth::user()->name }}</span>
-										</div>
-									</a>
-									<ul class="dropdown-menu">
-										<li>
-											<a href="#">
-												<i class="fa fa-cog"></i>
-												<span>Configurar</span>
-											</a>
-										</li>
-										<li>
-											<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-												<i class="fa fa-power-off"></i>
-												<span>Cerrar sesión</span>
-											</a>
-											<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+  <head>
+    <meta name="description" content="Nezco">
+    <!-- Twitter meta-->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@pratikborsadiya">
+    <meta property="twitter:creator" content="@pratikborsadiya">
+    <!-- Open Graph Meta-->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Vali Admin">
+    <meta property="og:title" content="Nezco">
+    <meta property="og:url" content="http://localhost/nezco">
+    <meta property="og:image" content="http://localhost/nezco/hero-social.png">
+    <meta property="og:description" content="Nezco">
+    <title>Nezco - SAC</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <header class="app-header"><a class="app-header__logo" href="{{ route('home') }}">Nezco - SAC</a>
+      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+      <!-- Navbar Right Menu-->
+      <ul class="app-nav">
+        <li class="app-search">
+          <input class="app-search__input" type="search" placeholder="Search">
+          <button class="app-search__button"><i class="fa fa-search"></i></button>
+        </li>
+        <!--Notification Menu-->
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
+          <ul class="app-notification dropdown-menu dropdown-menu-right">
+            <li class="app-notification__title">You have 4 new notifications.</li>
+            <div class="app-notification__content">
+              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
+                  <div>
+                    <p class="app-notification__message">Lisa sent you a mail</p>
+                    <p class="app-notification__meta">2 min ago</p>
+                  </div></a></li>
+              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
+                  <div>
+                    <p class="app-notification__message">Mail server not working</p>
+                    <p class="app-notification__meta">5 min ago</p>
+                  </div></a></li>
+              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
+                  <div>
+                    <p class="app-notification__message">Transaction complete</p>
+                    <p class="app-notification__meta">2 days ago</p>
+                  </div></a></li>
+              <div class="app-notification__content">
+                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
+                    <div>
+                      <p class="app-notification__message">Lisa sent you a mail</p>
+                      <p class="app-notification__meta">2 min ago</p>
+                    </div></a></li>
+                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
+                    <div>
+                      <p class="app-notification__message">Mail server not working</p>
+                      <p class="app-notification__meta">5 min ago</p>
+                    </div></a></li>
+                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
+                    <div>
+                      <p class="app-notification__message">Transaction complete</p>
+                      <p class="app-notification__meta">2 days ago</p>
+                    </div></a></li>
+              </div>
+            </div>
+            <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
+          </ul>
+        </li>
+        <!-- User Menu-->
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
+          <ul class="dropdown-menu settings-menu dropdown-menu-right">
+            <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
+            <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a></li>
+            <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out fa-lg"></i> Logout</a>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 												{{ csrf_field() }}
-											</form>											
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-	<!--End Header-->
-	<!--Start Container-->
-	<div id="main" class="container-fluid">
-		<div class="row">
-			<div id="sidebar-left" class="col-xs-2 col-sm-2">
-				<ul class="nav main-menu">
-					<li>
-						<a href="{{ route('home') }}" class="ajax-link">
-							<i class="fa fa-dashboard"></i>
-							<span class="hidden-xs">Inicio</span>
-						</a>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle">
-							<i class="fa fa-table"></i>
-							<span class="hidden-xs">Configurar</span>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href="{{ route('categoriaimagen.index') }}">Imágenes</a></li>
-							<li><a href="{{ route('categoriaproducto.index') }}">Productos</a></li>
-							<li><a href="{{ route('categoriaservicio.index') }}">Servicios</a></li>
-							<li><a href="{{ route('categoriavideo.index') }}">Videos</a></li>
-							<li><a class="ajax-link" href="ajax/tables_beauty.html">Tipo Productos</a></li>
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle">
-							<i class="fa fa-pencil-square-o"></i>
-							<span class="hidden-xs">Registrar</span>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href="{{ route('producto.index') }}">Productos</a></li>
-							<li><a class="ajax-link" href="ajax/forms_layouts.html">Servicios</a></li>
-							<li><a class="ajax-link" href="ajax/forms_file_uploader.html">Empresas</a></li>
-							<li><a class="ajax-link" href="ajax/forms_file_uploader.html">Entrevistas</a></li>
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle">
-							<i class="fa fa-picture-o"></i>
-							<span class="hidden-xs">Galeria</span>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a class="ajax-link" href="ajax/gallery_simple.html">Simple Gallery</a></li>
-							<li><a class="ajax-link" href="ajax/gallery_flickr.html">Flickr Gallery</a></li>
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle">
-							<i class="fa fa-desktop"></i>
-							<span class="hidden-xs">Administrar</span>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a class="ajax-link" href="ajax/ui_grid.html">Usuarios</a></li>
-							<li><a class="ajax-link" href="ajax/ui_buttons.html">Buttons</a></li>
-							<li><a class="ajax-link" href="ajax/ui_progressbars.html">Progress Bars</a></li>
-							<li><a class="ajax-link" href="ajax/ui_jquery-ui.html">Jquery UI</a></li>
-							<li><a class="ajax-link" href="ajax/ui_icons.html">Icons</a></li>
-						</ul>
-					</li>
+</form> 
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
+        <div>
+          <p class="app-sidebar__user-name">{{ Auth::user()->name }}</p>
+          
+        </div>
+      </div>
+      <ul class="app-menu">
+        <li><a class="app-menu__item active" href="{{ route('home') }}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Inicio</span></a></li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Configurar</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="{{ route('categoriaproducto.index') }}"><i class="icon fa fa-circle-o"></i>Productos</a></li>
+            <li><a class="treeview-item" href="{{ route('categoriaservicio.index') }}" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i>Servicios</a></li>
+            <li><a class="treeview-item" href="{{ route('tipoproducto.index') }}"><i class="icon fa fa-circle-o"></i>Tipo Productos</a></li>
+            <li><a class="treeview-item" href="{{ route('categoriadocumento.index') }}"><i class="icon fa fa-circle-o"></i>Documentos</a></li>
+          </ul>
+        </li>
+        <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Charts</span></a></li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Forms</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="form-components.html"><i class="icon fa fa-circle-o"></i> Form Components</a></li>
+            <li><a class="treeview-item" href="form-custom.html"><i class="icon fa fa-circle-o"></i> Custom Components</a></li>
+            <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-circle-o"></i> Form Samples</a></li>
+            <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-circle-o"></i> Form Notifications</a></li>
+          </ul>
+        </li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Tables</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="table-basic.html"><i class="icon fa fa-circle-o"></i> Basic Tables</a></li>
+            <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> Data Tables</a></li>
+          </ul>
+        </li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Pages</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="blank-page.html"><i class="icon fa fa-circle-o"></i> Blank Page</a></li>
+            <li><a class="treeview-item" href="page-login.html"><i class="icon fa fa-circle-o"></i> Login Page</a></li>
+            <li><a class="treeview-item" href="page-lockscreen.html"><i class="icon fa fa-circle-o"></i> Lockscreen Page</a></li>
+            <li><a class="treeview-item" href="page-user.html"><i class="icon fa fa-circle-o"></i> User Page</a></li>
+            <li><a class="treeview-item" href="page-invoice.html"><i class="icon fa fa-circle-o"></i> Invoice Page</a></li>
+            <li><a class="treeview-item" href="page-calendar.html"><i class="icon fa fa-circle-o"></i> Calendar Page</a></li>
+            <li><a class="treeview-item" href="page-mailbox.html"><i class="icon fa fa-circle-o"></i> Mailbox</a></li>
+            <li><a class="treeview-item" href="page-error.html"><i class="icon fa fa-circle-o"></i> Error Page</a></li>
+          </ul>
+        </li>
+      </ul>
+    </aside>
+    <main class="app-content">
+      @yield('content')
+      <div class="row">
+      </div>
+    </main>
+    <!-- Essential javascripts for application to work-->
 
-				</ul>
-			</div>
-
-			<!--Start Content-->
-			<div id="content" class="col-xs-12 col-sm-10">
-				@yield('content')
-
-			</div>
-			<!--End Content-->
-		</div>
-	</div>
-	
 @yield('javascript')
-	<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-	<script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 
-	<script src="{{ asset('plugins/bootstrap/bootstrap.min.js') }}"></script>
-	<script src="{{ asset('plugins/justified-gallery/jquery.justifiedGallery.min.js') }}"></script>
-	<script src="{{ asset('plugins/tinymce/tinymce.min.js') }}"></script>
-	<script src="{{ asset('plugins/tinymce/jquery.tinymce.min.js') }}"></script>
-
-	<script src="{{ asset('js/devoops.js') }}"></script>
-</body>
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="{{ asset('js/plugins/pace.min.js') }}"></script>
+    <!-- Page specific javascripts-->
+    <script type="text/javascript" src="{{ asset('js/plugins/chart.js') }}"></script>
+    <script type="text/javascript">
+      var data = {
+      	labels: ["Enero", "Febrero", "Marzo", "Abril", "May"],
+      	datasets: [
+      		{
+      			label: "My First dataset",
+      			fillColor: "rgba(220,220,220,0.2)",
+      			strokeColor: "rgba(220,220,220,1)",
+      			pointColor: "rgba(220,220,220,1)",
+      			pointStrokeColor: "#fff",
+      			pointHighlightFill: "#fff",
+      			pointHighlightStroke: "rgba(220,220,220,1)",
+      			data: [65, 59, 80, 81, 56]
+      		},
+      		{
+      			label: "My Second dataset",
+      			fillColor: "rgba(151,187,205,0.2)",
+      			strokeColor: "rgba(151,187,205,1)",
+      			pointColor: "rgba(151,187,205,1)",
+      			pointStrokeColor: "#fff",
+      			pointHighlightFill: "#fff",
+      			pointHighlightStroke: "rgba(151,187,205,1)",
+      			data: [28, 48, 40, 19, 86]
+      		}
+      	]
+      };
+      var pdata = [
+      	{
+      		value: 300,
+      		color: "#46BFBD",
+      		highlight: "#5AD3D1",
+      		label: "Complete"
+      	},
+      	{
+      		value: 50,
+      		color:"#F7464A",
+      		highlight: "#FF5A5E",
+      		label: "In-Progress"
+      	}
+      ]
+      
+      var ctxl = $("#lineChartDemo").get(0).getContext("2d");
+      var lineChart = new Chart(ctxl).Line(data);
+      
+      var ctxp = $("#pieChartDemo").get(0).getContext("2d");
+      var pieChart = new Chart(ctxp).Pie(pdata);
+    </script>
+    <!-- Google analytics script-->
+    <script type="text/javascript">
+      if(document.location.hostname == 'pratikborsadiya.in') {
+      	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      	ga('create', 'UA-72504830-1', 'auto');
+      	ga('send', 'pageview');
+      }
+    </script>
+  </body>
 </html>

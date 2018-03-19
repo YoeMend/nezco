@@ -2,57 +2,71 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title>Nezco-Administración</title>
-	<meta name="description" content="description">
-	<meta name="author" content="Evgeniya">
-	<meta name="keyword" content="keywords">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="{{ asset('plugins/bootstrap/bootstrap.css')}}" rel="stylesheet">
-	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet">
-	<link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
-	<link href="{{ asset('css/style_v2.css')}}" rel="stylesheet">
+	<!-- Main CSS-->
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+	<!-- Font-icon css-->
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>Login - Nezco SAC</title>
 </head>
 <body>
-	<div class="container-fluid">
-		<div id="page-login" class="row">
-			<div class="col-xs-12 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-				<div class="box">
-					<div class="box-content">
-						<div class="text-center">
-							<h3 class="page-header">Nezco<br>Sistema de Administración de Contenidos</h3>
-						</div>
-						<form class="form-group" method="POST" action="{{ route('login') }}">
-							{{ csrf_field() }}
-							<div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-								<label class="control-label">Usuario(E-mail)</label>
-								<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-								@if ($errors->has('email'))
-								<span class="help-block">
-									<strong>{{ $errors->first('email') }}</strong>
-								</span>
-								@endif
-
-							</div>
-							<div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-								<label class="control-label">Contraseña</label>
-								<input type="password" class="form-control" name="password" required="">
-								@if ($errors->has('password'))
-								<span class="help-block">
-									<strong>{{ $errors->first('password') }}</strong>
-								</span>
-								@endif								
-							</div>
-							<div class="text-center">
-
-								<button type="submit" class="btn btn-primary">
-									Entrar
-								</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
+	<section class="material-half-bg">
+		<div class="cover"></div>
+	</section>
+	<section class="login-content">
+		<div class="logo">
+			<h1>Nezco-SAC</h1>
 		</div>
-	</div>
+		<div class="login-box">
+			<form class="login-form" method="POST" action="{{ route('login') }}">
+				{{ csrf_field() }}
+				<div class="form-group" {{ $errors->has('email') ? ' has-error' : '' }}>
+					<label class="control-label">Usuario(E-mail)</label>
+					<input class="form-control" type="email" id="email" name="email" value="{{ old('email') }}" required autofocus placeholder="E-mail">
+					@if ($errors->has('email'))
+					<span class="help-block">
+						<strong>{{ $errors->first('email') }}</strong>
+					</span>
+					@endif
+				</div>
+				<div class="form-group" {{ $errors->has('password') ? ' has-error' : '' }}>
+					<label class="control-label">Contraseña</label>
+					<input class="form-control" name="password" id="password"type="password" placeholder="Contraseña">
+					@if ($errors->has('password'))
+					<span class="help-block">
+						<strong>{{ $errors->first('password') }}</strong>
+					</span>
+					@endif								
+
+				</div>
+				<div class="form-group btn-container">
+					<button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>Ingresar</button>
+				</div>
+
+			</form>
+		</div>
+	</section>
+	<!-- Essential javascripts for application to work-->
+	<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+	<script src="{{ asset('js/popper.min.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/main.js') }}"></script>
+	<!-- The javascript plugin to display page loading on top-->
+	<script src="{{ asset('js/plugins/pace.min.js') }}"></script>
+	<script type="text/javascript">
+      // Login Page Flipbox control
+      //$('.login-content [data-toggle="flip"]').click(function() {
+      	//$('.login-box').toggleClass('flipped');
+      	//return false;
+     // });
+  </script>
 </body>
 </html>
+
+
+
+
+
+
+

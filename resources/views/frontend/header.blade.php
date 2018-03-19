@@ -25,9 +25,39 @@
 	<header class="navbar">
 		<div class="container-fluid expanded-panel">
 			<div class="row">
-				<div class="col-sm-4">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, tempora tempore quos asperiores quae, natus mollitia quis eius esse, non, porro? Deleniti delectus nihil nostrum soluta. Vel iusto aliquid beatae!
+				
+				<div class="item-menu">
+					<a href="">
+						Inicio
+					</a>
+			
+			
+					<a href="">
+						Nosotros
+					</a>
+			
+				
+					<a href="">
+						Capacitación
+					</a>
+			
+					<a href="">
+						Suministros
+					</a>
+			
+					<a href="">
+						Leyes
+					</a>
+				
+					<a href="">
+						Galería
+					</a>
+
+					<a href="">
+						Contacto
+					</a>
 				</div>
+				
 			</div>
 		</div>
 	</header>
