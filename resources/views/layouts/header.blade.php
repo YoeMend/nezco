@@ -109,16 +109,15 @@
             <li><a class="treeview-item" href="{{ route('categoriaservicio.index') }}"><i class="icon fa fa-circle-o"></i>Servicios</a></li>
             <li><a class="treeview-item" href="{{ route('tipoproducto.index') }}"><i class="icon fa fa-circle-o"></i>Tipo Productos</a></li>
             <li><a class="treeview-item" href="{{ route('categoriadocumento.index') }}"><i class="icon fa fa-circle-o"></i>Documentos</a></li>
-            <li><a class="treeview-item" href="{{ route('empresa.index') }}"><i class="icon fa fa-circle-o"></i>Empresas</a></li>
 
           </ul>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Registro</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="{{ route('producto.index') }}"><i class="icon fa fa-circle-o"></i> Productos</a></li>
-            <li><a class="treeview-item" href="form-custom.html"><i class="icon fa fa-circle-o"></i>Servicios</a></li>
+            <li><a class="treeview-item" href="{{ route('servicio.index') }}"><i class="icon fa fa-circle-o"></i>Servicios</a></li>
             <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-circle-o"></i>Documentos</a></li>
-            <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-circle-o"></i>Empresas</a></li>
+            <li><a class="treeview-item" href="{{ route('empresa.index') }}"><i class="icon fa fa-circle-o"></i>Empresas</a></li>
           </ul>
         </li>
         <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Charts</span></a></li>
