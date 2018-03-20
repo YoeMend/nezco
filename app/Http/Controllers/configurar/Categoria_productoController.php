@@ -62,28 +62,12 @@ class Categoria_productoController extends Controller
 
     public function update(Request $request, $id)
     {
-        $rules = [
-            'descripcion' => 'required',
-            ];
+        $categoriaproducto = CategoriaProducto::find($id);
+        $categoriaproducto->fill($request->all());
+        $categoriaproducto->save();
+        
 
-        try {
-            $validator = \Validator::make($request->all(), $rules);
-            if ($validator->fails()){
-                return back()->withErrors($validator)->withInput();
-            }
-            //$id=decodifica($id);
-
-            $data=[
-                'descripcion' => $request->descripcion,
-                'estatus' => $request->estatus,
-            ];
-            CategoriaProducto::find($id)->update($data);
-            return redirect()->route('CategoriaProducto.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
-
-        } catch (Exception $e) {
-            \Log::info('Error creating item: '.$e);
-            return \Response::json(['created' => false], 500);
-        }
+      return redirect()->route('categoriaproducto.index')->with("notificacion","Se ha guardado correctamente su información");
     }
 
     public function destroy($id)

@@ -60,26 +60,13 @@ class Categoria_servicioController extends Controller
 
     public function update(Request $request, $id)
     {
-        $rules = [
-            'descripcion' => 'required',
-            ];
 
-        try {
-            $validator = \Validator::make($request->all(), $rules);
-            if ($validator->fails()){
-                return back()->withErrors($validator)->withInput();
-            }
-            $data=[
-                'descripcion' => $request->descripcion,
-                'estatus' => $request->estatus,
-            ];
-            CategoriaServicio::find($id)->update($data);
-            return redirect()->route('categoriaservicio.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
+        $categoriaservicio = CategoriaServicio::find($id);
+        $categoriaservicio->fill($request->all());
+        $categoriaservicio->save();
+        
 
-        } catch (Exception $e) {
-            \Log::info('Error creating item: '.$e);
-            return \Response::json(['created' => false], 500);
-        }
+      return redirect()->route('categoriaservicio.index')->with("notificacion","Se ha guardado correctamente su información");
     }
 
     public function destroy($id)

@@ -32,7 +32,7 @@
 						<input type="text" id="descripcion" name="descripcion" class="form-control" placeholder="Descripción" data-toggle="tooltip" data-placement="bottom" title="Descripción de la Categoría" required="">
 						
 					</div>
-					<div class="form-group">
+					<div class="tile-body">
 						<label class="control-label">Estatus</label>
 						<div class="col-sm-4">
 							<select id="estatus" class="form-control">	

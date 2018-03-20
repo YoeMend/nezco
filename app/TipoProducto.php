@@ -13,7 +13,7 @@ class TipoProducto extends Model
      *
      * @var array
      */
-    protected $fillable = ['id','nombre','categoria_producto_id','estatus','usuario_id'];
+    protected $fillable = ['id','descripcion','categoria_producto_id','estatus','usuario_id'];
     protected $guarded  = ['id'];
 
     public function user(){

@@ -11,6 +11,7 @@
 |
 */
 
+Route::pattern('id','\d+');
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/administrar', 'HomeController@index')->name('home');
@@ -60,7 +61,6 @@ Route::group(['middleware' => 'auth'], function () {
 		'uses' => 'registrar\ProductoController@destroy',
 		'as'   => 'producto.destroy'
 	]);
-
     Route::resource('servicio', 'registrar\ServicioController');
     Route::get('servicio/{id}/destroy', [
 		'uses' => 'registrar\ServicioController@destroy',
@@ -78,7 +78,30 @@ Route::group(['middleware' => 'auth'], function () {
 		'uses' => 'GaleriaController@destroy',
 		'as'   => 'galeria.destroy'
 	]);
+   Route::get('cargatipoproductos','registrar\ProductoController@cargatipoproductos');
+   
+   
 
+   Route::get('imagenes/index/{categoria}/{tipo}', [
+		'uses' => 'ImagenesController@index',
+		'as'   => 'imagenes.index'
+	]);
+  Route::get('imagenes/create/{categoria}/{tipo}', [
+		'uses' => 'ImagenesController@create',
+		'as'   => 'imagenes.create'
+	]); 
+  Route::get('imagenes/show/{categoria}/{tipo}/{id}', [
+		'uses' => 'ImagenesController@show',
+		'as'   => 'imagenes.show'
+	]); 
+
+Route::resource('imagenes','ImagenesController');
+
+Route::resource('empresa', 'configurar\EmpresaController');
+Route::get('empresa/{id}/destroy', [
+		'uses' => 'configurar\EmpresaController@destroy',
+		'as'   => 'empresa.destroy'
+	]);
 
 });
 
