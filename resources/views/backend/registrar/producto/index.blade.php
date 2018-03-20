@@ -43,7 +43,11 @@
 							<a href="{{ route('producto.show',$cate->id) }}" title="Ver ficha de Registro" class="uk-icon-link" uk-icon="icon: file" contextmenu="Ver Registro"><i class="fa fa-search "></i }></a> 
 							<a href="{{ route('producto.edit',$cate->id) }}" title="Editar" class="uk-icon-link" uk-icon="icon: pencil" contextmenu="Editar Registro"><i class="fa fa-edit "></i }></a> 
 							<a href="{{ route('producto.destroy',$cate->id) }}" title="Eliminar Registro" class="uk-icon-link" uk-icon="icon: trash"><i class="fa fa-trash " onclick="return confirm('¿Seguro desea eliminar este registro?')"></i }></a>
-							<a href="{{ route('producto.galeria',$cate->id) }}" title="Ver Galería" class="uk-icon-link" uk-icon="icon: file" contextmenu="Ver Galería"><i class="fa fa-image "></i }></a>
+							<?php 
+							$categoria=1;
+							$tipo=$cate->id;
+							$url = 'imagenes/index/'.$categoria.'/'.$tipo;?>
+							<a href="{{ url($url) }}" title="Ver Galería" class="uk-icon-link" uk-icon="icon: file" contextmenu="Ver Galería"><i class="fa fa-image "></i }></a>
                             				{{ $cate->id }}
 										</td>
 											<td>{{ $cate->codigo }}</td>

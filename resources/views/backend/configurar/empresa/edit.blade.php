@@ -13,69 +13,44 @@
 
 <div class="app-title">
     <div>
-        <h1><i class="fa fa-dashboard"></i> Ficha Producto</h1>
+        <h1><i class="fa fa-dashboard"></i> Crear Empresa</h1>
 
     </div>
     <ul class="app-breadcrumb breadcrumb side">
         <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-        <li class="breadcrumb-item active"><a href="{{ route('producto.index') }}">Atrás</a></li>
+        <li class="breadcrumb-item active"><a href="{{ route('empresa.index') }}">Atrás</a></li>
     </ul>
 </div>
 <div class="row">
     <div class="col-md-12">
         <div class="tile">
 
-            <form class="row" role="form" enctype="multipart/form-data" action="{{ route('producto.update', ($producto->id)) }}" method="POST">
+            <form class="row" role="form" enctype="multipart/form-data" action="{{ route('empresa.update', ($empresa->id)) }}" method="POST">
 
                 <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-               
-                <div class="form-group col-md-2">
-                    <label class="control-label">Código</label>
-                    <input class="form-control" type="text" name="codigo" id="codigo" placeholder="Codigo" value="{{ $producto->codigo }}" readonly="">
-                </div>
+                {{ method_field('PUT') }}
                 <div class="form-group col-md-6">
-                    <label class="control-label">Titulo/Nombre</label>
-                    <input class="form-control" type="text" name="titulo" id="titulo" placeholder="Título y/o Nombre" value="{{ $producto->titulo }}" readonly="">
+                    <label class="control-label">Nombre</label>
+                    <input class="form-control" type="text" name="titulo" id="titulo" placeholder="Título y/o Nombre" value="{{ $empresa->nombre }}">
                 </div>
-                <div class="form-group col-md-10">
+                <div class="form-group col-md-12">
                     <label class="control-label">Descripción</label>
-                    <textarea class="form-control" rows="6" name="descripcion" id="descripcion" placeholder="Descripción y/o Detalles" readonly="">{{ $producto->descripcion }}</textarea>
+                    <textarea class="form-control" rows="6" name="descripcion" id="descripcion" placeholder="Descripción y/o Detalles">{{ $empresa->descripcion }}</textarea>
                 </div>
                 <div class="form-group col-md-4">
-                    <label class="control-label">Categoría Producto</label>
-                    
-                    <input class="form-control" type="text" name="categoria_producto_id" id="categoria_producto_id" placeholder="Título y/o Nombre" value="{{ $producto->categoria_producto_id."-".$descategoria }}" readonly="">
-                </div>
-                <div class="form-group col-md-4">
-                    <label class="control-label">Tipo Producto</label>
-                    <input class="form-control" type="text" name="tipo_producto_id" id="categoria_producto_id" placeholder="Título y/o Nombre" value="{{ $producto->categoria_producto_id."-".$destipo }}" readonly="">
-                </div>
-                <div class="form-group col-md-1">
                     <label class="control-label">Público</label>
-                    <select id="publico"  name="publico" class="form-control" readonly>  
+                    <select id="publico"  name="publico" class="form-control">  
                         <option value="">Seleccione</option>
-                        <option value="Si"@if(old('publico', $producto->publico)=='Si') selected @endif>Si</option>
-                        <option value="No"@if(old('publico', $producto->publico)=='No') selected @endif>No</option>
+                        <option value="Si"@if(old('publico', $empresa->publico)=='Si') selected @endif>Si</option>
+                        <option value="No"@if(old('publico', $empresa->publico)=='No') selected @endif>No</option>
                     </select>
-                </div>
-                <div class="form-group col-md-1">
-                    <label class="control-label">Inicio</label>
-                    <select id="inicio"  name="inicio" class="form-control" readonly>    
-                        <option value="">Seleccione</option>
-                        <option value="1"@if(old('inicio', $producto->inicio)=='1') selected @endif>Si</option>
-                        <option value="0"@if(old('inicio', $producto->inicio)=='0') selected @endif>No</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-4">
-                    <label class="control-label">Posición</label>
-                    <input class="form-control" type="text" name="posicion" id="posicion" placeholder="Posición" maxlength="2" value="{{ $producto->posicion }}" readonly="">
                 </div>
                 <div class="form-group col-md-4">
                     <label class="control-label">Estatus</label>
-                    <select id="estatus" class="form-control" readonly>  
+                    <select id="estatus" class="form-control">  
                         <option value="">Seleccione Estatus</option>
-                        <option value="Activo"@if(old('estatus', $producto->estatus)=='Activo') selected @endif>Activo</option>
-                        <option value="Desactivado"@if(old('estatus', $producto->estatus)=='Desactivado') selected @endif>Desactivado</option>
+                        <option value="Activo"@if(old('estatus', $empresa->estatus)=='Activo') selected @endif>Activo</option>
+                        <option value="Desactivado"@if(old('estatus', $empresa->estatus)=='Desactivado') selected @endif>Desactivado</option>
                     </select>
                 </div>
 
@@ -83,8 +58,10 @@
                   <div class="form-group">
                     <label>Imagen Principal(Imagen Actual)</label>
 
-                   <p><img src="{{ asset('img/productos/'.$producto->imagen) }}" style="max-width: 100%"></p>
-                                
+                   <p><img src="{{ asset('img/empresas/'.$empresa->imagen) }}" style="max-width: 100%"></p>
+                    <input name="archivo" type="file" id="imagen" accept="image/jpeg, image/png, image/gif" />
+                    <h5>Imagen Reemplazo</h5>
+                    <output id="list"></output>            
 
 
                     
@@ -94,7 +71,7 @@
 
         </div>
         <div class="tile-footer">
-            <a class="btn btn-secondary" href="{{ route('producto.index') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+            <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Guardar</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="{{ route('empresa.index') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
 
 
 
@@ -114,33 +91,7 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
 <script type="text/javascript" language="javascript">
     $ = jQuery;
     jQuery(document).ready(function () {
-        $("select#categoria_producto_id").bind('change', function (event) {
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-
-                }
-
-            });
-            $.ajax({
-                type: "GET",
-                url: '{{ url('cargatipoproductos') }}',
-                data: { id: $(this).val() , _token: '{{csrf_token()}}' },
-                success: function (resp){
-                    console.log(resp);
-                    $('#tipo_producto_id').html(resp);
-                }
-            });
-
-        });
-
-        $("input#codigo").bind('change', function (event) {
-         var cod = $(this).val();
-         zcod = cod.toUpperCase();
-
-         $(this).val(zcod);
-     });     
         $("#imagen").change(function(e) {
           archivo(e);           
 

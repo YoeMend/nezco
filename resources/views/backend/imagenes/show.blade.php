@@ -13,7 +13,7 @@
 
 <div class="app-title">
 	<div>
-		<h1><i class="fa fa-dashboard"></i> Crear Imagen</h1>
+		<h1><i class="fa fa-dashboard"></i> Vista Imagen</h1>
 
 	</div>
 	<ul class="app-breadcrumb breadcrumb side">
@@ -26,7 +26,7 @@
 	<div class="col-md-12">
 		<div class="tile">
 			
- <form name="form1" class="row"  enctype="multipart/form-data" method="POST" action="{{route ('imagenes.store')}}" accept-charset="UTF-8"><input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+ <form name="form1" class="row"  enctype="multipart/form-data" method="POST" action="" accept-charset="UTF-8"><input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                
 				<div class="form-group col-md-1">
 					<label class="control-label">Categoria</label>
@@ -45,29 +45,40 @@
 
 				<div class="form-group col-md-6">
 					<label class="control-label">Nombre</label>
-					<input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre">
+					<input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" readonly="">
 				</div>
 				<div class="form-group col-md-1">
 					<label class="control-label">Público</label>
-					<select id="publico"  name="publico" class="form-control">	
-						<option value="">Seleccione</option>
-						<option value="Si">Si</option>
-						<option value="No">No</option>
-					</select>
+					<select id="publico"  name="publico" class="form-control" readonly>	
+                        <option value="">Seleccione</option>
+                        <option value="Si"@if(old('publico', $imagenes->publico)=='Si') selected @endif>Si</option>
+                        <option value="No"@if(old('publico', $imagenes->publico)=='No') selected @endif>No</option>
+                    </select>
 				</div>
 				<div class="form-group col-md-6">
                   <div class="form-group">
 					<label>Imagen</label>
+					<?php if ($imagenes->categoria_imagen_id==1): ?>
+						<p><img src="{{ asset('img/productos/'.$imagenes->url) }}" style="max-width: 100%"></p>	
+					<?php endif ?>
+					<?php if ($imagenes->categoria_imagen_id==2): ?>
+						<p><img src="{{ asset('img/servicios/'.$imagenes->url) }}" style="max-width: 100%"></p>	
+					<?php endif ?>
+					<?php if ($imagenes->categoria_imagen_id==3): ?>
+						<p><img src="{{ asset('img/galeria/'.$imagenes->url) }}" style="max-width: 100%"></p>	
+					<?php endif ?>
+					<?php if ($imagenes->categoria_imagen_id==4): ?>
+						<p><img src="{{ asset('img/empresa/'.$imagenes->url) }}" style="max-width: 100%"></p>	
+					<?php endif ?>
+
 					
-					<input name="archivo" type="file" id="imagen" accept="image/jpeg, image/png, image/gif" />
-                   <output id="list"></output>			
 
                  </div>
 				</div>
 
 			</div>
 			<div class="tile-footer">
-						<button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Guardar</button>&nbsp;&nbsp;&nbsp;
+
 <?php 
 							$url = 'imagenes/index/'.$categoria.'/'.$tipo;?>
 							<a class="btn btn-secondary" href="{{ url($url) }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>

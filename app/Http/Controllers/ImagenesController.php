@@ -11,34 +11,56 @@ use App\Servicio;
 use APP\Galeria;
 class ImagenesController extends Controller
 {
-	public function index($categoria)
+	public function index($categoria,$tipo)
 	{
-		list($cat,$tipo)=explode("-",$categoria); ;
-		switch ($cat) {
+		//dd($categoria);
+		//list($cat,$tipo)=explode("-",$categoria);
+		switch ($categoria) {
     	case '1': #producto
     	$producto= Producto::find($tipo);
-    	$texto = $producto->codigo." ".$producto->titulo;
-    	$atras = "producto.index"
+    	$texto = "Categoría de Imagen: Producto: ".$producto->codigo." ".$producto->titulo;
+    	$atras = "producto.index";
     	break;
     	case '2':
     	$servicio = Servicio::find($tipo);
-    	$texto = $servicio->titulo;
-    	$atras = "servicio.index"
+    	$texto = "Categoría de Imagen: Servicio: ".$servicio->titulo;
+    	$atras = "servicio.index";
     	case '3':
     	$galeria = Galeria::find($tipo);
-    	$texto = $galeria->titulo;
-    	$atras = "galeria.index"
+    	$texto = "Categoría de Imagen: Galeria: ".$galeria->titulo;
+    	$atras = "galeria.index";
 
     	default:
     		# code...
     	break;
     }
     $imagenes= Imagenes::where('categoria_imagen_id',$categoria)->where('tipo_id',$tipo)->paginate(6);
-    return view('backend.imagenes.index')->with('texto',$texto)->with('imagenes',$imagenes)->with('categoria',$cat)->with('tipo',$tipo);
+    return view('backend.imagenes.index')->with('texto',$texto)->with('imagenes',$imagenes)->with('categoria',$categoria)->with('tipo',$tipo)->with('atras',$atras);
 }
 
 public function create($categoria,$tipo){
-	return view('backend.imagenes.create')->with('categoria',$categoria)->with('tipo',$tipo);
+
+	switch ($categoria) {
+    	case '1': #producto
+    	$producto= Producto::find($tipo);
+    	$texto = "Producto: ".$producto->codigo." ".$producto->titulo;
+    	$atras = "producto.ndex";
+    	break;
+    	case '2':
+    	$servicio = Servicio::find($tipo);
+    	$texto = "Servicio: ".$servicio->titulo;
+    	$atras = "servicio.index";
+    	case '3':
+    	$galeria = Galeria::find($tipo);
+    	$texto = "Galeria: ".$galeria->titulo;
+    	$atras = "galeria.index";
+
+    	default:
+    		# code...
+    	break;
+
+    }
+    return view('backend.imagenes.create')->with('categoria',$categoria)->with('tipo',$tipo)->with('atras',$atras)->with('texto',$texto);
 }
 public function store(Request $request)
 {
@@ -72,19 +94,46 @@ public function store(Request $request)
 				unlink($path.$file_temp);  
 			}            
 			$file->move($path, $name_file);
-			$producto->imagen = $name_file;
+			$imagenes->url = $name_file;
 		}
-		$producto->created_at = date('Y-m-d');
-		$producto->updated_at = date('Y-m-d');
-		$producto->usuario_id = $_SESSION["user"];
-		$producto->save();
+
+		$imagenes->created_at = date('Y-m-d');
+		$imagenes->updated_at = date('Y-m-d');
+		$imagenes->usuario_id = $_SESSION["user"];
+		$imagenes->save();
 		return redirect()->route('producto.index')->with("notificacion","Se ha guardado correctamente su información");
 
 	} catch (Exception $e) {
 		\Log::info('Error creating item: '.$e);
 		return \Response::json(['created' => false], 500);
 	}
-
-
 }
+
+public function show($categoria,$tipo,$id){
+
+	switch ($categoria) {
+    	case '1': #producto
+    	$producto= Producto::find($tipo);
+    	$texto = "Producto: ".$producto->codigo." ".$producto->titulo;
+    	$atras = "producto.ndex";
+    	break;
+    	case '2':
+    	$servicio = Servicio::find($tipo);
+    	$texto = "Servicio: ".$servicio->titulo;
+    	$atras = "servicio.index";
+    	case '3':
+    	$galeria = Galeria::find($tipo);
+    	$texto = "Galeria: ".$galeria->titulo;
+    	$atras = "galeria.index";
+
+    	default:
+    		# code...
+    	break;
+
+    }
+    $imagenes=Imagenes::find($id);
+    return view('backend.imagenes.show')->with('categoria',$categoria)->with('tipo',$tipo)->with('atras',$atras)->with('texto',$texto)->with('imagenes',$imagenes);
+}
+
+
 }

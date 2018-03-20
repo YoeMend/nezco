@@ -133,9 +133,10 @@ class ProductoController extends Controller
     {
 
         $producto= Producto::find($id);
-        $categoria="1-".$id;
-        $ruta="imagenes.index,".$categoria.",".$id;
+        $categoria="1-"."$id";
+        $ruta="imagenes.index,".$categoria;
         return redirect()->route('imagenes.index',$categoria);        
+
     }
 
 
