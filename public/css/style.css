@@ -1,12 +1,109 @@
+@font-face {
+  font-family: "HelveticaNeueLTCom-BlkCn";
+  src: url("original_HelveticaNeueLTCom-BlkCn.eot?#iefix") format("embedded-opentype"), url("original_HelveticaNeueLTCom-BlkCn.woff") format("woff"), url("original_HelveticaNeueLTCom-BlkCn.ttf") format("truetype"), url("original_HelveticaNeueLTCom-BlkCn.svg") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+body {
+  font-size: 14px; }
+
+h1 {
+  font-size: 2rem; }
+
+.green {
+  color: #4CAF50; }
+
+.bg-red {
+  background-color: white; }
+
+.bg-red {
+  background-color: red; }
+
+.bg-blue {
+  background-color: #2196F3; }
+
+.bg-teal {
+  background-color: #009688; }
+
+.bg-green {
+  background-color: #4CAF50; }
+
+.bg-brown {
+  background-color: #795548; }
+
+.bg-purple {
+  background-color: #673AB7; }
+
 .video_home {
-  min-height: 100%;
-  max-height: 100%;
+  position: fixed;
   top: 50%;
   left: 50%;
-  z-index: -1;
-  transform: translateX(-50%) translateY(-50%); }
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translate(-50%, -50%); }
 
 .texto {
   min-height: 100%; }
+
+.svg_video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -99;
+  transform: translate(-50%, -50%);
+  background-image: url("../images/svg_video.svg");
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.navbar a {
+  color: white !important; }
+
+.navbar-nav .nav-item .nav-link {
+  padding-left: 3rem; }
+
+.navbar {
+  background-color: rgba(255, 255, 255, 0.1); }
+  @media only screen and (max-width: 768px) {
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.8); } }
+
+.navbar-light .navbar-toggler {
+  border-color: #989898;
+  background-color: #989898;
+  opacity: 0.7; }
+
+.tit {
+  font-family: HelveticaNeueLTCom-BlkCn, sans-serif; }
+
+.top-fijo {
+  top: 80px;
+  z-index: 1000; }
+
+.c-white {
+  color: white; }
+
+.enlaces {
+  color: #811324;
+  text-decoration: underline #811324;
+  font-weight: bold;
+  text-transform: uppercase; }
+
+.bg-img {
+  background-image: url("../images/fondoValores.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; }
+
+.box-sh {
+  box-shadow: 0px 20px 40px black; }
+
+.yellowt {
+  color: #CDD50B; }
 
 /*# sourceMappingURL=style.css.map */
