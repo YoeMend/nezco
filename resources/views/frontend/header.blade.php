@@ -9,6 +9,7 @@
 	{{-- MAIN FOR BOOTSTRAP --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body class="h-100 ">
@@ -115,11 +116,11 @@
 
 		<div class="container-fluid p-4 p-lg-5 bg-white">
 			
-				<div class="row">
+				<div class="row my-lg-5">
 					<div class="col-12 text-center">
 						<h1 class="tit">CAPACITACIÓN Y PERFECCIONAMIENTO DE CAPITAL HUMANO</h1>
 					</div>
-					<div class="col my-lg-5">
+					<div class="col my-lg-5 m">
 						<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 						  <ol class="carousel-indicators">
 						    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -127,32 +128,65 @@
 						    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 						  </ol>
 						  <div class="carousel-inner">
+
 						    <div class="carousel-item active my-4">
 						    	<div class="row align-items-center justify-content-around">
-						    		<div class="col-lg-5">
-						    			<h3 class="font-italic">Atención de emergencias médicas</h3>
+						    		<div class="col-lg-5 col-md-6">
+						    			<h3 class="font-italic">Atención de emergencias médicas </h3>
 						    			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam dolorem suscipit deserunt reprehenderit, quo molestias ipsum, atque ut, odit perspiciatis labore earum unde porro eveniet, adipisci nihil ab. Aliquid, voluptatibus!</p>
-						    			<a class="font-italic enlaces" href="">Más Información</a>
+						    			<div class="col text-right">
+						    				<a class="font-italic enlaces " href="">Más Información</a>
+						    			</div>
+						    			
 						    			
 						    		</div>
-						    		<div class="col-lg-4 mt-3 mt-lg-0">
-						    			<img class="d-block img-fluid" src="{{ asset('images/1.jpg') }}" alt="First slide">
+						    		<div class="col-lg-5 col-md-6 mt-3 mt-lg-0">
+						    			<img class="d-block img-fluid w-100" src="{{ asset('images/1.jpg') }}" alt="First slide">
 						    		</div>
 						    	</div>
 						    </div>
-						    {{-- <div class="carousel-item">
-						      <img class="d-block w-100" src="{{ asset('images/2.jpg') }}" alt="Second slide">
+
+						     <div class="carousel-item my-4">
+						      <div class="row align-items-center justify-content-around">
+						    		<div class="col-lg-5 col-md-6">
+						    			<h3 class="font-italic">Atención de emergencias médicas </h3>
+						    			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam dolorem suscipit deserunt reprehenderit, quo molestias ipsum, atque ut, odit perspiciatis labore earum unde porro eveniet, adipisci nihil ab. Aliquid, voluptatibus!</p>
+						    			<div class="col text-right">
+						    				<a class="font-italic enlaces " href="">Más Información</a>
+						    			</div>
+						    			
+						    			
+						    		</div>
+						    		<div class="col-lg-5 col-md-6 mt-3 mt-lg-0 ">
+						    			<img class="d-block img-fluid" src="{{ asset('images/2.jpg') }}" alt="First slide">
+						    		</div>
+						    	</div>
 						    </div>
-						    <div class="carousel-item">
-						      <img class="d-block w-100" src="{{ asset('images/3.jpg') }}" alt="Third slide">
-						    </div> --}}
+
+						    <div class="carousel-item my-4">
+						      <div class="row align-items-center justify-content-around">
+						    		<div class="col-lg-5 col-md-6">
+						    			<h3 class="font-italic">Atención de emergencias médicas </h3>
+						    			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam dolorem suscipit deserunt reprehenderit, quo molestias ipsum, atque ut, odit perspiciatis labore earum unde porro eveniet, adipisci nihil ab. Aliquid, voluptatibus!</p>
+						    			<div class="col text-right">
+						    				<a class="font-italic enlaces " href="">Más Información</a>
+						    			</div>
+						    			
+						    			
+						    		</div>
+						    		<div class="col-lg-5 col-md-6 mt-3 mt-lg-0">
+						    			<img class="d-block img-fluid" src="{{ asset('images/3.jpg') }}" alt="First slide">
+						    		</div>
+						    	</div>
+						    </div>
+
 						  </div>
 						  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-						    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						    <span class="fa fa-angle-left c-black font-weight-bold position-absolute icon-left" aria-hidden="true"></span>
 						    <span class="sr-only">Previous</span>
 						  </a>
 						  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-						    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+						    <span class="fa fa-angle-right c-black font-weight-bold position-absolute icon-right" aria-hidden="true"></span>
 						    <span class="sr-only">Next</span>
 						  </a>
 						</div>
@@ -168,32 +202,57 @@
 			</div>
 		</div>
 
-		<div class="container-fluid p-5 bg-teal">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-12 text-center"><h1></h1></div>
-					<div class="col-8 ">
-						<a class="twitter-grid" data-limit="6" data-partner="tweetdeck" href="https://twitter.com/AnthoniRodrigu2/timelines/973370227101757440?ref_src=twsrc%5Etfw">Nezco</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+		<div class="container-fluid bg-nubes">
+			<div class="container p-0">
+				<div class="row justify-content-center align-items-center no-gutters py-md-4 py-3">
+
+					<div class="col-md-12  col-lg-6 col-12 text-center ">
+						<div class="row justify-content-center ">
+							<div class="col-3 col-md-2 mb-lg-4">
+								<img class="img-fluid c-white"  src="{{ asset('images/Twitter.svg') }}" alt="">
+							</div>
+							<div class="col-12">
+								<h1 class="c-blue">Siguenos en Twitter</h1>
+							<h2><a class="c-vino" href="#">@Nezco</a></h2>
+							</div>
+						</div>
+						
+						
 					</div>
+					<div class="col-12 py-3 col-md-8 col-lg-6  ">
+						<a class="twitter-grid" data-limit="4" data-partner="tweetdeck" href="https://twitter.com/AnthoniRodrigu2/timelines/973370227101757440?ref_src=twsrc%5Etfw">Nezco</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+					</div>
+
 				</div>
 			</div>
 		</div>
 
-		<div class="container-fluid p-5 bg-red">
-			<div class="container">
+		<div class="container-fluid py-5 bg-white">
+			<div class="container p-0">
 				<div class="row">
-					<div class="col-12 text-center"><h1>Nuestros Clientes</h1></div>
-					<div class="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur a voluptate et ipsa recusandae, nihil facilis molestias, non error atque. Alias suscipit laudantium explicabo adipisci cupiditate in? Odio quis, ut!</div>
-					<div class="col">Fugiat expedita animi tenetur impedit nulla deserunt itaque temporibus provident ipsam eligendi dolore sit dolorum, quis ducimus delectus quod optio quia non quo, recusandae earum repudiandae tempore veniam. Dolore, accusamus.</div>
+					<div class="col-12 text-center tit"><h1>Nuestros Clientes</h1></div>
 
-					<div class="col-12 p-3">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium repellendus voluptas autem aperiam tenetur, culpa natus, inventore iste nostrum voluptate magnam distinctio id laudantium illo dicta sapiente aspernatur maiores debitis!
+					<div class="col-12 col-md-6 my-2">
+						
+						<video class="video" controls="" src="{{ asset('videos/client1.mp4') }}""></video>
+						<p class="font-italic px-2">"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas consequuntur consectetur deserunt ea voluptate, quod possimus modi et id magnam reprehenderit eaque deleniti accusantium quam quo maxime. Labore, delectus, ab."</p>
+						{{-- <img class="img-fluid" src="{{ asset('images/3.jpg') }}" alt=""> --}}
 					</div>
+					<div class="col-12 col-md-6 my-2">
+						<video class="video" controls="" src="{{ asset('videos/client2.mp4') }}""></video>
+						<p class="font-italic px-2">"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi fuga dolore, quia esse eius deleniti earum temporibus, voluptas. Neque fuga laudantium impedit unde dolorem aliquam excepturi, quasi maxime perspiciatis. Fugit!"</p>
+						{{-- <img class="img-fluid" src="{{ asset('images/3.jpg') }}" alt=""> --}}
+					</div>
+
 				</div>
+				<br>
+					<div class="col-12 p-3">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium repellendus voluptas autem aperiam tenetur, culpa natus, inventore iste nostrum voluptate magnam distinctio id laudantium illo dicta sapiente aspernatur maiores debitis! lorem*60
+					</div>
 			</div>
 		</div>
 		
-		<div class="container-fluid p-4">
+		<div class="container-fluid p-4 bg-vino">
 			<footer>
 				<div class="row">
 					<div class="col">lorem</div>
