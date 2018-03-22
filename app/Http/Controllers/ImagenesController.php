@@ -45,7 +45,7 @@ public function create($categoria,$tipo){
     	case '1': #producto
     	$producto= Producto::find($tipo);
     	$texto = "Producto: ".$producto->codigo." ".$producto->titulo;
-    	$atras = "producto.ndex";
+    	$atras = "producto.index";
     	break;
     	case '2':
     	$servicio = Servicio::find($tipo);
@@ -69,8 +69,8 @@ public function store(Request $request)
 	try {
 
 		$imagenes = new Imagenes($request->all());
-		$categoria=$request->categoria_imagen_id;
-        $tipo = $request->tipo_id;
+		$categoria=$request["categoria_imagen_id"];
+        $tipo = $request["tipo_id"];
         $url = 'imagenes/index/'.$categoria.'/'.$tipo;
         switch ($categoria) {
         case '1': #producto
@@ -87,7 +87,7 @@ public function store(Request $request)
         $galeria = Galeria::find($tipo);
         $texto = "Galeria: ".$galeria->titulo;
         $atras = "galeria.index";
-
+        break;
         default:
             # code...
         break;
@@ -95,9 +95,9 @@ public function store(Request $request)
     }
 
     if($request->archivo){
-     $file = $request->file('archivo');
-     $categoria = $request->categoria_imagen_id;
-     if($categoria==1){    
+       $file = $request->file('archivo');
+       $categoria = $request->categoria_imagen_id;
+       if($categoria==1){    
         $name_file = 'producto_'.time().'.'.$file->getClientOriginalExtension();
         $path = public_path().'/img/productos/';
     }
@@ -147,11 +147,12 @@ public function show($categoria,$tipo,$id){
     	$servicio = Servicio::find($tipo);
     	$texto = "Servicio: ".$servicio->titulo;
     	$atras = "servicio.index";
+        break;
     	case '3':
     	$galeria = Galeria::find($tipo);
     	$texto = "Galeria: ".$galeria->titulo;
     	$atras = "galeria.index";
-
+         break;
     	default:
     		# code...
     	break;
@@ -161,5 +162,36 @@ public function show($categoria,$tipo,$id){
     return view('backend.imagenes.show')->with('categoria',$categoria)->with('tipo',$tipo)->with('atras',$atras)->with('texto',$texto)->with('imagenes',$imagenes);
 }
 
+public function destroy($id)
+{
 
+    $imagenes= Imagenes::find($id);
+    $tipo = $imagenes->tipo_id;
+    $categoria = $imagenes->categoria_imagen_id;
+    $filename_old = $imagenes->url;
+    if($categoria==1){  
+        $path = public_path().'/img/productos/';
+        $producto= Producto::find($tipo);
+        $texto = "Producto: ".$producto->codigo." ".$producto->titulo;
+        $atras="producto.index";
+    }    
+    if($categoria==2){  
+        $servicio = Servicio::find($tipo);
+        $texto = "Servicio: ".$servicio->titulo;
+        $atras="servicio.index";
+        $path = public_path().'/img/servicios/';
+    }    
+    if($categoria==3){  
+        $galeria = Galeria::find($tipo);
+        $texto = "Galeria: ".$galeria->titulo;
+        $atras="galeria.index";
+        $path = public_path().'/img/galeria/';
+
+    }    
+    File::delete($path . $filename_old);
+    $imagenes->destroy($id);
+    $imagenes= Imagenes::where('categoria_imagen_id',$categoria)->where('tipo_id',$tipo)->paginate(6);
+    return view('backend.imagenes.index')->with('categoria',$categoria)->with('tipo',$tipo)->with('atras',$atras)->with('texto',$texto)->with('imagenes',$imagenes);
+
+}
 }

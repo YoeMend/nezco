@@ -73,15 +73,14 @@ Route::group(['middleware' => 'auth'], function () {
 		'as'   => 'video.destroy'
 	]);
 
-    Route::resource('galeria', 'GaleriaController');
+    Route::resource('galeria', 'Registrar\GaleriaController');
     Route::get('galeria/{id}/destroy', [
-		'uses' => 'GaleriaController@destroy',
+		'uses' => 'Registrar\GaleriaController@destroy',
 		'as'   => 'galeria.destroy'
 	]);
    Route::get('cargatipoproductos','registrar\ProductoController@cargatipoproductos');
    
-   
-
+   Route::resource('imagenes','ImagenesController');
    Route::get('imagenes/index/{categoria}/{tipo}', [
 		'uses' => 'ImagenesController@index',
 		'as'   => 'imagenes.index'
@@ -94,14 +93,47 @@ Route::group(['middleware' => 'auth'], function () {
 		'uses' => 'ImagenesController@show',
 		'as'   => 'imagenes.show'
 	]); 
+Route::get('imagenes/destroy/{id}', [
+		'uses' => 'ImagenesController@destroy',
+		'as'   => 'imagenes.destroy'
+	]);
 
-Route::resource('imagenes','ImagenesController');
+   Route::resource('archivo','Registrar\ArchivoController');
+   Route::get('archivo/index/{iddocumento}', [
+		'uses' => 'Registrar\ArchivoController@index',
+		'as'   => 'archivo.index'
+	]);
+  Route::get('archivo/create/{iddocumento}', [
+		'uses' => 'Registrar\ArchivoController@create',
+		'as'   => 'archivo.create'
+	]); 
+
+Route::get('archivo/destroy/{id}', [
+		'uses' => 'Registrar\ArchivoController@destroy',
+		'as'   => 'archivo.destroy'
+	]);
+
 
 Route::resource('empresa', 'configurar\EmpresaController');
 Route::get('empresa/{id}/destroy', [
 		'uses' => 'configurar\EmpresaController@destroy',
 		'as'   => 'empresa.destroy'
 	]);
+Route::resource('usuarios', 'configurar\UsersController');
+Route::get('usuarios/{id}/destroy', [
+		'uses' => 'configurar\UsersController@destroy',
+		'as'   => 'usuarios.destroy'
+	]);
+
+Route::get('usuarios/cambiar/{valor}', [
+		'uses' => 'configurar\UsersController@cambiar',
+		'as'   => 'usuarios.cambiar'
+	]);
+Route::get('usuarios/update_password/{valor}', [
+		'uses' => 'configurar\UsersController@update_password',
+		'as'   => 'usuarios.update_password'
+	]);
+
 
 });
 

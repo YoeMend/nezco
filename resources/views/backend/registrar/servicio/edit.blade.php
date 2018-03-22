@@ -33,20 +33,26 @@
                     <label class="control-label">Titulo/Nombre</label>
                     <input class="form-control" type="text" name="titulo" id="titulo" placeholder="Título y/o Nombre" value="{{ $servicio->titulo }}">
                 </div>
-                <div class="form-group col-md-10">
+                <div class="form-group col-md-12">
                     <label class="control-label">Descripción</label>
                     <textarea class="form-control" rows="6" name="descripcion" id="descripcion" placeholder="Descripción">{{ $servicio->descripcion }}</textarea>
                 </div>
-                <div class="form-group col-md-10">
+                <div class="form-group col-md-12">
                     <label class="control-label">Detalles</label>
                     <textarea class="form-control" rows="6" name="detalles" id="detalles" placeholder="Detalles">{{ $servicio->detalles }}</textarea>
                 </div>
 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-2">
                     <label class="control-label">Categoría servicio</label>
                     
-                    <input class="form-control" type="text" name="categoria_servicio_id" id="categoria_servicio_id" placeholder="Título y/o Nombre" value="{{ $servicio->categoria_servicio_id."-".$descategoria }}" readonly="">
+                    <input class="form-control" type="text" name="categoria_servicio_id" id="categoria_servicio_id" placeholder="Título y/o Nombre" value="{{ $servicio->categoria_servicio_id }}" readonly="">
                 </div>
+                <div class="form-group col-md-4">
+                    <label class="control-label">Nombre</label>
+                    
+                    <input class="form-control" type="text" name="servicioid" id="servicioid" placeholder="Título y/o Nombre" value="{{ $descategoria }}" readonly="">
+                </div>
+
                 <div class="form-group col-md-1">
                     <label class="control-label">Público</label>
                     <select id="publico"  name="publico" class="form-control">  

@@ -37,19 +37,30 @@
                     <label class="control-label">Titulo/Nombre</label>
                     <input class="form-control" type="text" name="titulo" id="titulo" placeholder="Título y/o Nombre" value="{{ $producto->titulo }}">
                 </div>
-                <div class="form-group col-md-10">
+                <div class="form-group col-md-12">
                     <label class="control-label">Descripción</label>
                     <textarea class="form-control" rows="6" name="descripcion" id="descripcion" placeholder="Descripción y/o Detalles">{{ $producto->descripcion }}</textarea>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-2">
                     <label class="control-label">Categoría Producto</label>
                     
-                    <input class="form-control" type="text" name="categoria_producto_id" id="categoria_producto_id" placeholder="Título y/o Nombre" value="{{ $producto->categoria_producto_id."-".$descategoria }}" readonly="">
+                    <input class="form-control" type="text" name="categoria_producto_id" id="categoria_producto_id" placeholder="Título y/o Nombre" value="{{ $producto->categoria_producto_id}}" readonly="">
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="control-label">Nombre</label>
+                    
+                    <input class="form-control" type="text" name="producto_id" id="producto_id" placeholder="Título y/o Nombre" value="{{ $descategoria }}" readonly="">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label class="control-label">Tipo Producto</label>
+                    <input class="form-control" type="text" name="tipo_producto_id" id="categoria_producto_id" placeholder="Título y/o Nombre" value="{{ $producto->categoria_producto_id }}" readonly="">
                 </div>
                 <div class="form-group col-md-4">
-                    <label class="control-label">Tipo Producto</label>
-                    <input class="form-control" type="text" name="tipo_producto_id" id="categoria_producto_id" placeholder="Título y/o Nombre" value="{{ $producto->categoria_producto_id."-".$destipo }}" readonly="">
+                    <label class="control-label">Nombre</label>
+                    <input class="form-control" type="text" name="idc" id="idc" placeholder="Título y/o Nombre" value="{{ $destipo }}" readonly="">
                 </div>
+
                 <div class="form-group col-md-1">
                     <label class="control-label">Público</label>
                     <select id="publico"  name="publico" class="form-control">  
