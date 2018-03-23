@@ -7,9 +7,11 @@ $purple: #673AB7
 $white: white
 $black: black
 $greyNezco: #989898
+$greyClaro: #EAEAEA
 $vinoNezco: #811324
 $yellowt: #CDD50B
 $fontNezco: HelveticaNeueLTCom-BlkCn, sans-serif
+
 
 @font-face
 	font-family: 'HelveticaNeueLTCom-BlkCn'
@@ -19,6 +21,7 @@ $fontNezco: HelveticaNeueLTCom-BlkCn, sans-serif
 
 body
 	font-size: 14px
+	background-color: $black 
 
 h1
 	font-size: 2rem
@@ -48,6 +51,9 @@ h1
 .bg-vino
 	background-color: $vinoNezco
 
+.bg-greyClaro
+	background-color: $greyClaro
+
 .video_home
 	position: fixed
 	top: 50%
@@ -64,6 +70,16 @@ h1
 	min-height: 100%
 	height: 100%
 	width: 100%
+
+.cabecera
+	position: fixed
+	top: 0
+	left: 0
+	min-height: 100%
+	z-index: -100
+	background-size: cover
+	background-repeat: no-repeat
+
 
 .texto
 	min-height: 100%
@@ -157,4 +173,38 @@ h1
 	background-repeat: no-repeat
 	background-attachment: fixed
 	
+.item-footer
+	a
+		color: $white
+	a:hover
+		font-weight: bold
+		text-decoration: underline $white
 
+.sub-item-footer
+	a
+		color: $greyNezco
+		padding-top: 3px
+		padding-bottom: 3px
+	a:hover
+		color: $yellowt
+		font-weight: 0
+		text-decoration: none
+
+.img-producto2
+	position: absolute
+	top: 20%
+	left: 20%
+	@media only screen and (max-width: 767px)
+		top: 10%
+		left: 10%
+
+.img-producto
+	overflow: hidden
+	img
+		-webkit-transform: scale(2)
+		-moz-transform: scale(2)
+		-ms-transform: scale(2)
+		-o-transform: scale(2) 
+
+.carousel-inner-productos
+	min-height: 400px

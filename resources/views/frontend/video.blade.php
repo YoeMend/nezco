@@ -1,1 +1,0 @@
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, adipisci, quam deserunt totam incidunt consectetur maxime, reprehenderit architecto ullam consequuntur in obcaecati error tempore et placeat? Et quo molestiae dolore.
