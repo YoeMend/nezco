@@ -109,3 +109,8 @@ Route::get('/', [
       'as'=>'frontend.index',
       'uses'=>'FrontendController@index' 
       ]);
+
+Route::get('/nosotros', [
+      'as'=>'frontend.nosotros',
+      'uses'=>'FrontendController@nosotros' 
+      ]);
