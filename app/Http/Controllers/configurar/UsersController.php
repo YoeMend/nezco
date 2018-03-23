@@ -32,13 +32,13 @@ class UsersController extends Controller
 			if ($validator->fails()){
 				return back()->withErrors($validator)->withInput();
 			}
-			$noticia=User::create([
+			$usuario=User::create([
 				'name' => $request->name,
 				'email' => $request->email,
 				'password' => bcrypt($request->password),
 				'rol_id' => $request->rol_id,
 			]);
-			return redirect()->route('usuarios.edit', codifica($noticia->id))->with("notificacion","Se ha guardado correctamente su información");
+			return redirect()->route('usuarios.edit', codifica($usuario->id))->with("notificacion","Se ha guardado correctamente su información");
 
 		} catch (Exception $e) {
 			\Log::info('Error creating item: '.$e);

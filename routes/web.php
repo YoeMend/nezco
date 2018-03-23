@@ -98,6 +98,11 @@ Route::get('imagenes/destroy/{id}', [
 		'as'   => 'imagenes.destroy'
 	]);
 
+Route::get('imagenes/principal/{id}', [
+		'uses' => 'ImagenesController@principal',
+		'as'   => 'imagenes.principal'
+	]);
+
    Route::resource('archivo','Registrar\ArchivoController');
    Route::get('archivo/index/{iddocumento}', [
 		'uses' => 'Registrar\ArchivoController@index',
