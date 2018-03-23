@@ -228,7 +228,7 @@
 		</div>
 
 		<div class="container-fluid py-5 bg-white">
-			<div class="container p-0">
+			<div class="container p-0 h-100">
 				<div class="row">
 					<div class="col-12 text-center tit"><h1>Nuestros Clientes</h1></div>
 
@@ -236,23 +236,19 @@
 						
 						<video class="video" controls="" src="{{ asset('videos/client1.mp4') }}""></video>
 						<p class="font-italic px-2">"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas consequuntur consectetur deserunt ea voluptate, quod possimus modi et id magnam reprehenderit eaque deleniti accusantium quam quo maxime. Labore, delectus, ab."</p>
-						{{-- <img class="img-fluid" src="{{ asset('images/3.jpg') }}" alt=""> --}}
+						
 					</div>
 					<div class="col-12 col-md-6 my-2">
 						<video class="video" controls="" src="{{ asset('videos/client2.mp4') }}""></video>
 						<p class="font-italic px-2">"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi fuga dolore, quia esse eius deleniti earum temporibus, voluptas. Neque fuga laudantium impedit unde dolorem aliquam excepturi, quasi maxime perspiciatis. Fugit!"</p>
-						{{-- <img class="img-fluid" src="{{ asset('images/3.jpg') }}" alt=""> --}}
+						
 					</div>
 
 				</div>
-				<br>
-					<div class="col-12 p-3">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium repellendus voluptas autem aperiam tenetur, culpa natus, inventore iste nostrum voluptate magnam distinctio id laudantium illo dicta sapiente aspernatur maiores debitis! lorem*60
-					</div>
 			</div>
 		</div>
 		
-		<div class="container-fluid p-4 bg-vino">
+		<div class="container-fluid p-4 bg-vino ">
 			<footer>
 				<div class="row">
 					<div class="col">lorem</div>
