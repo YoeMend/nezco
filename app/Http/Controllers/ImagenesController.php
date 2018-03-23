@@ -194,4 +194,34 @@ public function destroy($id)
     return view('backend.imagenes.index')->with('categoria',$categoria)->with('tipo',$tipo)->with('atras',$atras)->with('texto',$texto)->with('imagenes',$imagenes);
 
 }
+
+public function principal($id)
+{
+
+    $imagenes= Imagenes::where('categoria_imagen_id',$id)->first();
+    return view('backend.imagenes.edit')->with('categoria',$id)->with('imagenes',$imagenes);
+
+}
+
+
+public function update(Request $request, $id)
+    {
+
+        $imagenes = imagenes::find($id);
+
+        $imagenes->fill($request->all());
+        if ($request->file('archivo')) {
+            $filename_old = $imagenes->url;
+            $file = $request->file('archivo');
+            $name = 'principal_'.time().'.'.$file->getClientOriginalExtension();    
+            $path = public_path().'/img/principal/';
+            File::delete($path . $filename_old);
+            $file->move($path,$name);
+            $imagenes->url = $name;
+        } 
+        $imagenes->save();
+        return redirect()->route('imagenes.principal', $id)->with("notificacion","Se ha guardado correctamente su información");
+
+    }
+
 }
