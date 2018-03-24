@@ -32,13 +32,21 @@ class ProductoController extends Controller
 
         try {
 
-            $descripcion = $request["descripcion"];
+            $titulo = $request["titulo"];
+            $codigo = $request["codigo"];
             //dd($descripcion);
-            if(Producto::where('descripcion',$descripcion)->first()){
+            if(Producto::where('titulo',$titulo)->first()){
 
-                return redirect()->route('producto.index')->with("notificacion","Categoría Ya se encuentra Registrada");
+                return redirect()->route('producto.index')->with("notificacion","Producto Ya se encuentra Registrado");
 
             }
+            if(Producto::where('codigo',$codigo)->first()){
+
+                return redirect()->route('producto.index')->with("notificacion","Producto Ya se encuentra Registrado");
+
+            }
+
+
             $producto = new Producto($request->all());
         
             if($request->archivo){

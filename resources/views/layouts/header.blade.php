@@ -94,8 +94,6 @@
     </aside>
     <main class="app-content">
       @yield('content')
-      <div class="row">
-      </div>
     </main>
     <!-- Essential javascripts for application to work-->
 

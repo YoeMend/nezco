@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-03-2018 a las 14:59:12
+-- Tiempo de generación: 24-03-2018 a las 03:21:54
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.0.25
 
@@ -21,6 +21,30 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `dbnezco`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `archivos`
+--
+
+CREATE TABLE `archivos` (
+  `id` int(11) NOT NULL,
+  `documento_id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `publico` enum('Si','No','','') NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `archivos`
+--
+
+INSERT INTO `archivos` (`id`, `documento_id`, `nombre`, `url`, `publico`, `usuario_id`, `created_at`, `updated_at`) VALUES
+(8, 1, 'Ley Contra Delitos Informáticos', 'documento_1521597066.pdf', 'Si', 2, '2018-03-21 00:00:00', '2018-03-21 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -68,7 +92,8 @@ INSERT INTO `categoria_imagen` (`id`, `descripcion`, `estatus`, `usuario_id`, `c
 (1, 'Producto', 'Activo', 2, '2018-03-11 04:00:00', '2018-03-11 04:00:00'),
 (2, 'Servicio', 'Activo', 2, '2018-03-11 04:00:00', '2018-03-11 04:00:00'),
 (3, 'Galeria', 'Activo', 2, '2018-03-11 04:00:00', '2018-03-11 04:00:00'),
-(4, 'Empresa', 'Activo', 2, '2018-03-11 04:00:00', '2018-03-11 04:00:00');
+(4, 'Empresa', 'Activo', 2, '2018-03-11 04:00:00', '2018-03-11 04:00:00'),
+(5, 'Principal', 'Activo', 2, '2018-03-22 04:00:00', '2018-03-22 04:00:00');
 
 -- --------------------------------------------------------
 
@@ -158,12 +183,21 @@ CREATE TABLE `documentos` (
   `id` int(11) NOT NULL,
   `nombre` varchar(250) NOT NULL,
   `descripcion` text NOT NULL,
+  `enlace` varchar(255) NOT NULL,
   `categoria_documento_id` int(11) NOT NULL,
   `publico` enum('Si','No') NOT NULL,
+  `estatus` enum('Activo','Desactivado','','') NOT NULL,
   `usuario_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `documentos`
+--
+
+INSERT INTO `documentos` (`id`, `nombre`, `descripcion`, `enlace`, `categoria_documento_id`, `publico`, `estatus`, `usuario_id`, `created_at`, `updated_at`) VALUES
+(1, 'Ley Contra Delitos Informáticos', '<p>LEY ESPECIAL CONTRA LOS DELITOS INFORM&Aacute;TICOS</p>', 'http://www.conatel.gob.ve/wp-content/uploads/2014/10/PDF-Ley-Especial-contra-los-Delitos-Inform%C3%A1ticos.pdf', 1, 'Si', 'Activo', 2, '2018-03-20 00:00:00', '2018-03-20 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -199,11 +233,19 @@ INSERT INTO `empresa` (`id`, `nombre`, `descripcion`, `imagen`, `publico`, `esta
 CREATE TABLE `galeria` (
   `id` int(10) UNSIGNED NOT NULL,
   `nombre` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `publico` enum('Si','No') COLLATE utf8mb4_unicode_ci NOT NULL,
   `usuario_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `galeria`
+--
+
+INSERT INTO `galeria` (`id`, `nombre`, `descripcion`, `publico`, `usuario_id`, `created_at`, `updated_at`) VALUES
+(1, 'Galería de Prueba', '<p>sadasdasdasdasd</p>', 'Si', 2, '2018-03-24 04:00:00', '2018-03-24 04:00:00');
 
 -- --------------------------------------------------------
 
@@ -228,9 +270,13 @@ CREATE TABLE `imagenes` (
 --
 
 INSERT INTO `imagenes` (`id`, `nombre`, `url`, `categoria_imagen_id`, `tipo_id`, `publico`, `usuario_id`, `created_at`, `updated_at`) VALUES
-(1, 'Foto 1', 'producto_1521501611.jpg', 1, 1, 'Si', 2, '2018-03-19 00:00:00', '2018-03-19 00:00:00'),
+(1, 'Principal', 'principal_1521771661.jpg', 5, 0, 'Si', 2, '2018-03-22 00:00:00', '2018-03-23 02:21:01'),
 (2, 'Taller 1', 'servicio_1521553704.jpg', 2, 1, 'Si', 2, '2018-03-20 00:00:00', '2018-03-20 00:00:00'),
-(3, 'Taller 2', 'servicio_1521554052.jpg', 2, 1, 'Si', 2, '2018-03-20 00:00:00', '2018-03-20 00:00:00');
+(3, 'Foto 1', 'producto_1521501611.jpg', 1, 1, 'Si', 2, '2018-03-19 00:00:00', '2018-03-19 00:00:00'),
+(4, 'Foto 1', 'galeria_1521856107.jpg', 3, 1, 'Si', 2, '2018-03-24 00:00:00', '2018-03-24 00:00:00'),
+(6, 'Foto 2', 'galeria_1521856275.jpg', 3, 1, 'Si', 2, '2018-03-24 00:00:00', '2018-03-24 00:00:00'),
+(7, 'Foto 3', 'galeria_1521856415.jpg', 3, 1, 'Si', 2, '2018-03-24 00:00:00', '2018-03-24 00:00:00'),
+(8, 'Foto 1', 'producto_1521857851.jpg', 1, 2, 'Si', 2, '2018-03-24 00:00:00', '2018-03-24 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -292,7 +338,31 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`id`, `codigo`, `titulo`, `descripcion`, `categoria_producto_id`, `tipo_producto_id`, `publico`, `inicio`, `posicion`, `estatus`, `imagen`, `created_at`, `usuario_id`, `updated_at`) VALUES
-(1, 'EX01', 'Extintor importado de 10 lbs PQS (Polvo Químico Seco) ABC (Monofosfato de amonio) marca KIDDE / FYRECHEM Certificación UL- Incluye soporte para ser instalado en pared.', '<p>Extintor importado de 10 lbs PQS (Polvo Qu&iacute;mico Seco) ABC (Monofosfato de amonio) marca KIDDE / FYRECHEM Certificaci&oacute;n UL- Incluye soporte para ser instalado en pared.&nbsp;</p>', 1, 1, 'Si', 1, 1, 'Activo', 'producto_1521403681.jpg', '2018-03-18 04:00:00', 2, '2018-03-19 00:08:01');
+(1, 'EX01', 'Extintor importado de 10 lbs PQS (Polvo Químico Seco) ABC (Monofosfato de amonio) marca KIDDE / FYRECHEM Certificación UL- Incluye soporte para ser instalado en pared.', '<p>Extintor importado de 10 lbs PQS (Polvo Qu&iacute;mico Seco) ABC (Monofosfato de amonio) marca KIDDE / FYRECHEM Certificaci&oacute;n UL- Incluye soporte para ser instalado en pared.&nbsp;</p>', 1, 1, 'Si', 1, 1, 'Activo', 'producto_1521588621.jpg', '2018-03-18 04:00:00', 2, '2018-03-21 03:30:21'),
+(2, 'EX02', 'Extintor importado de 50 Lbs CO2 (anhidrido carbónico)  sobre ruedas, manguera y Boquilla de descarga, marca NEZCO o similar. (certificación CE)', '<p>Extintor importado de 50 Lbs CO2 (anhidrido carb&oacute;nico)&nbsp; sobre ruedas, manguera y Boquilla de descarga, marca NEZCO o similar. (certificaci&oacute;n CE)&nbsp;&nbsp;</p>', 1, 1, 'Si', 1, 2, 'Activo', 'producto_1521853755.jpg', '2018-03-24 04:00:00', 2, '2018-03-24 04:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `descripcion` varchar(50) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id`, `descripcion`, `created_at`, `updated_at`) VALUES
+(1, 'Super Administrador', '2018-02-12 13:49:07', '2018-02-12 13:49:07'),
+(2, 'Administrador', '2018-02-12 13:49:07', '2018-02-12 13:49:07'),
+(3, 'Editor', '2018-02-12 13:49:33', '2018-02-12 13:49:33'),
+(4, 'Consulta', '2018-02-12 13:49:33', '2018-02-12 13:49:33');
 
 -- --------------------------------------------------------
 
@@ -321,7 +391,7 @@ CREATE TABLE `servicio` (
 --
 
 INSERT INTO `servicio` (`id`, `titulo`, `descripcion`, `detalles`, `categoria_servicio_id`, `publico`, `inicio`, `posicion`, `imagen`, `estatus`, `usuario_id`, `created_at`, `updated_at`) VALUES
-(1, 'Instalación de Extintores', '<p>sadasdasdasd</p>', '<p>sadasdsadasdsadsadsad</p>', 1, 'Si', 1, 1, 'servicio_1521553452.jpg', 'Activo', 2, '2018-03-20 04:00:00', '2018-03-20 04:00:00');
+(1, 'Instalación de Extintores', '<p>sadasdasdasd</p>', '<p>sadasdsadasdsadsadsad</p>', 1, 'Si', 1, 1, 'servicio_1521588782.jpg', 'Activo', 2, '2018-03-20 04:00:00', '2018-03-21 03:33:02');
 
 -- --------------------------------------------------------
 
@@ -357,6 +427,7 @@ CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rol_id` int(11) NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -367,8 +438,9 @@ CREATE TABLE `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'Yoelis Mendoza', 'yoe318@gmail.com', '$2y$10$r7kzW6T6xi25ozsk1tunSegG1R9anftelKYiOy7fzMYSfWTnknu4S', 'jwzUVrhvYYU7Rhj98Fx7IrCDgwZIZoSZKm1pY2AgtZtQZh7MonnmX7GynDLW', NULL, NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `rol_id`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(2, 'Yoelis Mendoza', 'yoe318@gmail.com', 1, '$2y$10$r7kzW6T6xi25ozsk1tunSegG1R9anftelKYiOy7fzMYSfWTnknu4S', 'B9usZsDtPu7b9Fpuy6tU3Fje695eaaaD4FEF9dUclC6nmwG8aie0EBaIWSnp', NULL, '2018-03-23 01:30:39'),
+(3, 'Anthoni Rodriguez', 'yosec.cervino@gmail.com', 2, '$2y$10$Fc/JE9rczAo7fu85rdLvJOze60KmTFG7DZPJio/Pr/TwGNuMeZkO.', NULL, '2018-03-21 16:35:26', '2018-03-23 01:43:36');
 
 -- --------------------------------------------------------
 
@@ -389,8 +461,21 @@ CREATE TABLE `video` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Volcado de datos para la tabla `video`
+--
+
+INSERT INTO `video` (`id`, `nombre`, `url`, `categoria_video_id`, `usuario_id`, `publico`, `posicion`, `created_at`, `updated_at`) VALUES
+(1, 'Principal', '', 1, 2, 'Si', 1, '2018-03-22 04:00:00', '2018-03-22 04:00:00');
+
+--
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `archivos`
+--
+ALTER TABLE `archivos`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `categoria_documentos`
@@ -465,6 +550,12 @@ ALTER TABLE `producto`
   ADD KEY `tipo_producto` (`tipo_producto_id`);
 
 --
+-- Indices de la tabla `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `servicio`
 --
 ALTER TABLE `servicio`
@@ -497,6 +588,12 @@ ALTER TABLE `video`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `archivos`
+--
+ALTER TABLE `archivos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT de la tabla `categoria_documentos`
 --
 ALTER TABLE `categoria_documentos`
@@ -506,7 +603,7 @@ ALTER TABLE `categoria_documentos`
 -- AUTO_INCREMENT de la tabla `categoria_imagen`
 --
 ALTER TABLE `categoria_imagen`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria_producto`
@@ -530,7 +627,7 @@ ALTER TABLE `categoria_video`
 -- AUTO_INCREMENT de la tabla `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `empresa`
@@ -542,13 +639,13 @@ ALTER TABLE `empresa`
 -- AUTO_INCREMENT de la tabla `galeria`
 --
 ALTER TABLE `galeria`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `imagenes`
 --
 ALTER TABLE `imagenes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -560,7 +657,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `servicio`
@@ -578,13 +681,13 @@ ALTER TABLE `tipo_producto`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `video`
 --
 ALTER TABLE `video`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

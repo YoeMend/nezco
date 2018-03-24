@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Imagenes;
 use App\Producto;
 use App\Servicio;
-use APP\Galeria;
+use App\Galeria;
 class ImagenesController extends Controller
 {
 	public function index($categoria,$tipo)
@@ -28,7 +28,7 @@ class ImagenesController extends Controller
         break;
         case '3':
         $galeria = Galeria::find($tipo);
-        $texto = "Categoría de Imagen: Galeria: ".$galeria->titulo;
+        $texto = "Categoría de Imagen: Galeria: ".$galeria->nombre;
         $atras = "galeria.index";
         break;
         default:
@@ -54,7 +54,7 @@ public function create($categoria,$tipo){
         break;
         case '3':
         $galeria = Galeria::find($tipo);
-        $texto = "Galeria: ".$galeria->titulo;
+        $texto = "Galeria: ".$galeria->nombre;
         $atras = "galeria.index";
         break;
         default:
@@ -76,7 +76,7 @@ public function store(Request $request)
         case '1': #producto
         $producto= Producto::find($tipo);
         $texto = "Producto: ".$producto->codigo." ".$producto->titulo;
-        $atras = "producto.ndex";
+        $atras = "producto.index";
         break;
         case '2':
         $servicio = Servicio::find($tipo);
@@ -85,7 +85,7 @@ public function store(Request $request)
         break;
         case '3':
         $galeria = Galeria::find($tipo);
-        $texto = "Galeria: ".$galeria->titulo;
+        $texto = "Galeria: ".$galeria->nombre;
         $atras = "galeria.index";
         break;
         default:
@@ -127,7 +127,7 @@ $imagenes->created_at = date('Y-m-d');
 $imagenes->updated_at = date('Y-m-d');
 $imagenes->usuario_id = $_SESSION["user"];
 $imagenes->save();
-return view('backend.imagenes.index')->with('categoria',$categoria)->with('tipo',$tipo)->with("notificacion","Se ha guardado correctamente su información");
+return view('backend.imagenes.index')->with('categoria',$categoria)->with('tipo',$tipo)->with('texto',$texto)->with('atras',$atras)->with("notificacion","Se ha guardado correctamente su información");
 
 } catch (Exception $e) {
   \Log::info('Error creating item: '.$e);
