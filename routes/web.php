@@ -146,3 +146,33 @@ Route::get('/', [
       'as'=>'frontend.index',
       'uses'=>'FrontendController@index' 
       ]);
+
+Route::get('/nosotros', [
+      'as'=>'frontend.nosotros',
+      'uses'=>'FrontendController@nosotros' 
+      ]);
+
+Route::get('servicios', [
+      'as'=>'frontend.servicios',
+      'uses'=>'FrontendController@servicios' 
+      ]);
+
+Route::get('productos', [
+      'as'=>'frontend.productos',
+      'uses'=>'FrontendController@productos' 
+      ]);
+
+Route::get('leyes', [
+      'as'=>'frontend.leyes',
+      'uses'=>'FrontendController@leyes' 
+      ]);
+
+Route::get('galeria', [
+      'as'=>'frontend.galeria',
+      'uses'=>'FrontendController@galeria' 
+      ]);
+
+Route::get('contacto', [
+      'as'=>'frontend.contacto',
+      'uses'=>'FrontendController@contacto' 
+      ]);
