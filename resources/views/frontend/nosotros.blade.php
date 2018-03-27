@@ -1,22 +1,33 @@
 @extends ('frontend.layaut')
 
+@section('title', "Nosotros -")
+
+@section('tit-cabecera', "Nosotros")
+
 @section ('cabecera')
 	@include ('frontend.cabecera')
+		
 @endsection
 
 @section ('content')
 
 	{{-- NOSOTROS --}}
-	<div class="col-lg-4 col-md-5 ">
-		<img src="{{ asset('images/LogoNezco.svg') }}" alt="">
-	</div>
+	<div class="container py-lg-5 my-lg-5">
+		<div class="row justify-content-around align-items-center">
 
-	<div class="col-lg-6 my-lg-0 my-5">
-		<h1 class="tit text-lg-right text-center"><b>NUESTRA FILOSOFÍA</b></h1>
-		<p class="text-lg-right text-justify">
-			Nuestra filosofía está sustentada en sólidos principios y valores humanistas. Basamos nuestra gestión de servicios en un verdadero compromiso humano, orientado a fortalecer la debilitada Cultura Preventiva y de Seguridad existente en las organizaciones. En este sentido, fomentamos valores y patrones de conducta que al ponerse en práctica dejen en nuestra gente la enseñanza, que a través de la prevención protegemos nuestras vidas y fortalecemos la salud, lo que por consiguiente nos hace más sanos y productivos. <br>
-			<h3 class="text-lg-right"><b>¡Generando Calidad de Vida!</b></h3>
-		</p>
+			<div class="col-lg-4 col-md-4 pt-3 pt-md-0">
+				<img src="{{ asset('images/LogoNezco.svg') }}" alt="">
+			</div>
+
+			<div class="col-lg-6 col-md-6 my-lg-0 my-5">
+				<h1 class="tit text-lg-right text-center"><b>NUESTRA FILOSOFÍA</b></h1>
+				<p class="text-lg-right text-justify">
+					Nuestra filosofía está sustentada en sólidos principios y valores humanistas. Basamos nuestra gestión de servicios en un verdadero compromiso humano, orientado a fortalecer la debilitada Cultura Preventiva y de Seguridad existente en las organizaciones. En este sentido, fomentamos valores y patrones de conducta que al ponerse en práctica dejen en nuestra gente la enseñanza, que a través de la prevención protegemos nuestras vidas y fortalecemos la salud, lo que por consiguiente nos hace más sanos y productivos. <br>
+					<h3 class="text-lg-right"><b>¡Generando Calidad de Vida!</b></h3>
+				</p>
+			</div>
+
+		</div>
 	</div>
 
 @endsection
@@ -24,7 +35,7 @@
 @section ('img-float')
 
 	{{-- SEPARADOR --}}
-	<div class="container-fluid p-4 p-lg-5  bg-img">
+	<div class="container-fluid p-4 p-lg-5 bg-fixed" style="background-image: url('{{ asset('images/fondoValores.png') }}');">
 		<div class="container">
 			<div class="row ">
 				<div class="my-5 py-5"></div>

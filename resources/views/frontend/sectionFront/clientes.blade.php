@@ -1,9 +1,9 @@
 {{-- CLIENTES --}}
 		<div class="container-fluid py-5 bg-white">
 			<div class="container">
-				<div class="col-12 text-center tit mb-3"><h1>Nuestros Clientes</h1></div>
+				<div class="col-12 text-center tit mb-3"><h1>NUESTROS CLIENTES</h1></div>
 				<div class="row ">
-					<div class="col-12 col-md-6 my-2">
+					<div  class="col-12 col-md-6 my-2">
 						<div class="row justify-content-around ">
 							<div class="col-12 col-md-10 px-0">
 								<video class="video" controls="" src="{{ asset('videos/client1.mp4') }}""></video>

@@ -6,34 +6,39 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    public function index()
-	{
+    public function index(){
 		return view('frontend.index');
 	}
 	
-	public function nosotros()
-	{
+	public function nosotros(){
 		return view('frontend.nosotros');
 	}
 
-	public function servicios()
-	{
+	public function servicios(){
 		return view('frontend.servicios');
 	}
-	public function productos()
-	{
+	public function servicios_detail(){
+		return view('frontend.servicios_detail');
+	}
+	public function productos(){
 		return view('frontend.productos');
 	}
-	public function leyes()
-	{
+	public function productos_detail(){
+		return view('frontend.productos_detail');
+	}
+	public function leyes(){
 		return view('frontend.leyes');
 	}
-	public function galeria()
-	{
+	public function galeria(){
 		return view('frontend.galeria');
 	}
-	public function contacto()
-	{
+	public function galeria_detail(){
+		return view('frontend.galeria_detail');
+	}
+	public function contacto(){
 		return view('frontend.contacto');
+	}
+	public function pruebas(){
+		return view('frontend.pruebas');
 	}
 }
