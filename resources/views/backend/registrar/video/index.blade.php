@@ -19,7 +19,6 @@
 
 	</div>
 
-
 	<ul class="app-breadcrumb breadcrumb side">
 		<li class="breadcrumb-item"><a href="{{ route($atras) }}">Atrás</a><i class="fa fa-home fa-lg"></i></li>
 		<?php $url = 'videosb/create/'.$categoria.'/'.$tipo;?>

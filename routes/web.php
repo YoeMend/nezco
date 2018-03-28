@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::pattern('id','\d+');
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
