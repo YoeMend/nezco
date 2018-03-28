@@ -13,11 +13,12 @@
 
 <div class="app-title">
 	<div>
-		<h1><i class="fa fa-dashboard"></i> Crear Video</h1>
+		<h1><i class="fa fa-dashboard"></i> Crear video</h1>
+
 	</div>
 	<ul class="app-breadcrumb breadcrumb side">
 		<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-		<?php $url = 'video/index/'.$categoria.'/'.$tipo;?>
+		<?php $url = 'videosb/index/'.$categoria.'/'.$tipo;?>
 		<li class="breadcrumb-item active"><a href="{{ url($url) }}">Atrás</a></li>
 	</ul>
 </div>
@@ -54,17 +55,13 @@
 						<option value="No">No</option>
 					</select>
 				</div>
-	            <div class="form-group col-md-4">
-					<label class="control-label">Posición</label>
-					<input class="form-control" type="text" name="posicion" id="posicion" placeholder="Posición" maxlength="2">
-				</div>				
 				<div class="form-group col-md-6">
                   <div class="form-group">
-					<label>Video</label>
+					<label>video</label>
 					
-                    <input name="archivo" type="file" id="archivo" accept="video/ogg, video/mp4" />
-					
-                   <output id="list"></output>			
+                    <input name="archivo" type="file" id="video" accept="video/ogg, video/mp4" />
+                    <h5>video Reemplazo</h5>
+                    <output id="list"></output>                    
 
                  </div>
 				</div>
@@ -73,7 +70,7 @@
 			<div class="tile-footer">
 						<button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Guardar</button>&nbsp;&nbsp;&nbsp;
 <?php 
-							$url = 'videosb/index/'.$categoria.'/'.$tipo;?>
+							$url = 'videoes/index/'.$categoria.'/'.$tipo;?>
 							<a class="btn btn-secondary" href="{{ url($url) }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
 
 
@@ -94,23 +91,35 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
 <script type="text/javascript" language="javascript">
 	$ = jQuery;
 	jQuery(document).ready(function () {
-		
-
-		$("#archivo").change(function(e) {
-              archivo(e);           
-
+		$("select#categoria_producto_id").bind('change', function (event) {
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
+			$.ajax({
+				type: "GET",
+				url: '{{ url('cargatipoproductos') }}',
+				data: { id: $(this).val() , _token: '{{csrf_token()}}' },
+				success: function (resp){
+					console.log(resp);
+					$('#tipo_producto_id').html(resp);
+				}
+			});
+		});
+		$("input#codigo").bind('change', function (event) {
+           var cod = $(this).val();
+           zcod = cod.toUpperCase();
+           $(this).val(zcod);
 		});		
-
-
-
-
-
+		$("#video").change(function(e) {
+              archivo(e);           
+		});		
 });
-
 function archivo(e) {
       var files = e.target.files; // FileList object
        
-        //Obtenemos la imagen del campo "file". 
+        //Obtenemos la video del campo "file". 
       for (var i = 0, f; f = files[i]; i++) {         
            //Solo admitimos imágenes.
            if (!f.type.match('video.*')) {
@@ -121,8 +130,8 @@ function archivo(e) {
            
            reader.onload = (function(theFile) {
                return function(e) {
-               // Creamos la imagen.
-                      document.getElementById("list").innerHTML = ['<video class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/></video>'].join('');
+               // Creamos la video.
+                      document.getElementById("list").innerHTML = ['<video src="', e.target.result,'"></video>'].join('');
                };
            })(f);
  
