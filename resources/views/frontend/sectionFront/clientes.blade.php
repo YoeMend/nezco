@@ -31,12 +31,9 @@
 			</div>
 			<div class="col-12 my-5">
 				<div class="row justify-content-around align-items-center text-center">
-					<div class="col "><img class="img-fluid" src="{{ asset('images/logo1.png') }}" alt=""></div>
-					<div class="col "><img class="img-fluid" src="{{ asset('images/logo2.png') }}" alt=""></div>
-					<div class="col "><img class="img-fluid" src="{{ asset('images/logo3.png') }}" alt=""></div>
-					<div class="col "><img class="img-fluid" src="{{ asset('images/logo4.png') }}" alt=""></div>
-					<div class="col "><img class="img-fluid" src="{{ asset('images/logo5.png') }}" alt=""></div>
-					<div class="col "><img class="img-fluid" src="{{ asset('images/logo6.png') }}" alt=""></div>
+					@foreach ($logo_empresa as $logo)
+					<div data-scroll="toggle(.fromTopIn, .fromTopOut)" class="col "><img class="img-fluid" src="{{ asset('img/empresas/'.$logo->imagen) }}" alt="{{ $logo->nombre }}"></div>
+					@endforeach
 				</div>
 			</div>
 		</div>

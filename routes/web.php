@@ -157,7 +157,7 @@ Route::get('servicios', [
       'uses'=>'FrontendController@servicios' 
       ]);
 
-Route::get('servicios_detail', [
+Route::get('servicios_detail/{id}', [
       'as'=>'frontend.servicios_detail',
       'uses'=>'FrontendController@servicios_detail' 
       ]);
@@ -167,7 +167,7 @@ Route::get('productos', [
       'uses'=>'FrontendController@productos' 
       ]);
 
-Route::get('productos_detail', [
+Route::get('productos_detail/{id}', [
       'as'=>'frontend.productos_detail',
       'uses'=>'FrontendController@productos_detail' 
       ]);
@@ -176,10 +176,19 @@ Route::get('leyes', [
       'as'=>'frontend.leyes',
       'uses'=>'FrontendController@leyes' 
       ]);
+Route::get('leyes/{id}', [
+      'as'=>'frontend.leyes',
+      'uses'=>'FrontendController@leyes' 
+      ]);
 
-Route::get('galeria', [
-      'as'=>'frontend.galeria',
-      'uses'=>'FrontendController@galeria' 
+Route::get('documentDetail/{id}', [
+      'as'=>'frontend.documentDetail',
+      'uses'=>'FrontendController@documentDetail' 
+      ]);
+
+Route::get('galeriaFront', [
+      'as'=>'frontend.galeriaFront',
+      'uses'=>'FrontendController@galeriaFront' 
       ]);
 
 Route::get('galeria_detail', [

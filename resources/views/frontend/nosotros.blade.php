@@ -15,7 +15,7 @@
 	<div class="container py-lg-5 my-lg-5">
 		<div class="row justify-content-around align-items-center">
 
-			<div class="col-lg-4 col-md-4 pt-3 pt-md-0">
+			<div class="col-lg-4 col-md-4 col-6 pt-3 pt-md-0">
 				<img src="{{ asset('images/LogoNezco.svg') }}" alt="">
 			</div>
 

@@ -46,7 +46,7 @@
 				        <a class="nav-link" href="{{ route('frontend.leyes') }}">Leyes</a>
 				      </li>
 				      <li class="nav-item">
-				        <a class="nav-link" href="{{ route('frontend.galeria') }}">Galería</a>
+				        <a class="nav-link" href="{{ route('frontend.galeriaFront') }}">Galería</a>
 				      </li>
 				      <li class="nav-item">
 				        <a class="nav-link" data-toggle="modal" data-target="#exampleModal" href="">Contacto</a>
@@ -144,17 +144,6 @@
 							  </li>
 							  <li class="nav-item item-footer">
 							    <a class="nav-link" href="#">Galería</a>
-							    	<ul class="nav flex-column sub-item-footer">
-							    		<li class="nav-item pl-2">
-											<a class="nav-link" href="">Galeria</a>
-							    		</li>
-							    		<li class="nav-item pl-2">
-											<a class="nav-link" href="">Galeria</a>
-							    		</li>
-							    		<li class="nav-item pl-2">
-											<a class="nav-link" href="">Galería</a>
-							    		</li>
-							    	</ul>
 							  </li>
 							  <li class="nav-item item-footer">
 							    <a class="nav-link" href="#">Contacto</a>
