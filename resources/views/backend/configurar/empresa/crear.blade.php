@@ -26,7 +26,6 @@
 		<div class="tile">
 			
  <form name="form1" class="row"  enctype="multipart/form-data" method="POST" action="{{route ('empresa.store')}}" accept-charset="UTF-8"><input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-
 				
 				<div class="form-group col-md-6">
 					<label class="control-label">Nombre</label>
@@ -34,7 +33,7 @@
 				</div>
 				<div class="form-group col-md-12">
 					<label class="control-label">Descripción</label>
-					<textarea class="form-control" rows="6" name="descripcion" id="descripcion" placeholder="Descripción y/o Detalles" required></textarea>
+					<textarea class="form-control" rows="6" name="descripcion" id="descripcion" placeholder="Descripcion y/o Detalles"></textarea>
 				</div>
 				<div class="form-group col-md-4">
 					<label class="control-label">Público</label>
@@ -65,7 +64,8 @@
 
 			</div>
 			<div class="tile-footer">
-						<button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Guardar</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="{{ route('empresa.index') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+						<button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Guardar</button>&nbsp;&nbsp;&nbsp;
+						<a class="btn btn-secondary" href="{{ route('empresa.index') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
 					</div>
 		</form>
 

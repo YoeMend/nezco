@@ -34,49 +34,52 @@ public function create($categoria,$tipo){
     	break;
        }
     $video= Video::where('categoria_video_id',$categoria)->where('tipo_id',$tipo)->paginate(6);
-     return view('backend.registro.video.create')->with('categoria',$categoria)->with('tipo',$tipo)->with('atras',$atras)->with('texto',$texto);
+     return view('backend.registrar.video.create')->with('categoria',$categoria)->with('tipo',$tipo)->with('atras',$atras)->with('texto',$texto);
 }
 public function store(Request $request)
 {
+    
 	try {
 
 		$video = new Video($request->all());
 		$categoria=$request["categoria_video_id"];
+        $video->categoria_video_id = $categoria;
         $tipo = $request["tipo_id"];
         $url = 'video/index/'.$categoria.'/'.$tipo;
         switch ($categoria) {
         case '2': #producto
+        
+        $video->tipo_id = $tipo; 
         $empresa= Empresa::find($tipo);
         $texto = "Empresa: ".$empresa->id." ".$empresa->nombre;
         $atras = "empresa.index";
         break;
-
-    }
-
-    if($request->archivo){
-       $file = $request->file('archivo');
-       $categoria = $request->categoria_imagen_id;
-       if($categoria==1){    
-        $name_file = 'principal_'.time().'.'.$file->getClientOriginalExtension();
-        $path = public_path().'/video/principal/';
-    }
-    if($categoria==2){
-        $name_file = 'empresa_'.time().'.'.$file->getClientOriginalExtension();
-        $path = public_path().'/video/empresa/';
-
+      }
+      
+     if($request->archivo){
+         $file = $request->file('archivo');
+         if($categoria==1){    
+            $name_file = 'principal_'.time().'.'.$file->getClientOriginalExtension();
+            $path = public_path().'/video/principal/';
+        }
+        if($categoria==2){
+            $name_file = 'empresa_'.time().'.'.$file->getClientOriginalExtension();
+            $path = public_path().'/video/empresa/';
+        
     }
     if(!empty($file_temp)){
         unlink($path.$file_temp);  
     }            
     $file->move($path, $name_file);
     $video->url = $name_file;
-}
+  }
 
 $video->created_at = date('Y-m-d');
 $video->updated_at = date('Y-m-d');
 $video->usuario_id = $_SESSION["user"];
 $video->save();
-return view('backend.registrar.video.index')->with('categoria',$categoria)->with('tipo',$tipo)->with('texto',$texto)->with('atras',$atras)->with("notificacion","Se ha guardado correctamente su información");
+$video= Video::where('categoria_video_id',$categoria)->where('tipo_id',$tipo)->paginate(6);
+return view('backend.registrar.video.index')->with('categoria',$categoria)->with('tipo',$tipo)->with('texto',$texto)->with('atras',$atras)->with("notificacion","Se ha guardado correctamente su información")->with("video",$video);
 
 } catch (Exception $e) {
   \Log::info('Error creating item: '.$e);
@@ -146,7 +149,7 @@ public function update(Request $request, $id)
             $video->url = $name;
         } 
         $video->save();
-        return redirect()->route('videos.principal', $id)->with("notificacion","Se ha guardado correctamente su información");
+        return redirect()->route('videosb.principal', $id)->with("notificacion","Se ha guardado correctamente su información");
 
     }
 

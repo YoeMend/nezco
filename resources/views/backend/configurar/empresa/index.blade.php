@@ -43,6 +43,12 @@
 							<a href="{{ route('empresa.show',$cate->id) }}" title="Ver ficha de Registro" class="uk-icon-link" uk-icon="icon: file" contextmenu="Ver Registro"><i class="fa fa-search "></i }></a> 
 							<a href="{{ route('empresa.edit',$cate->id) }}" title="Editar" class="uk-icon-link" uk-icon="icon: pencil" contextmenu="Editar Registro"><i class="fa fa-edit "></i }></a> 
 							<a href="{{ route('empresa.destroy',$cate->id) }}" title="Eliminar Registro" class="uk-icon-link" uk-icon="icon: trash"><i class="fa fa-trash " onclick="return confirm('¿Seguro desea eliminar este registro?')"></i }></a>
+							<?php 
+							$categoria=2;
+							$tipo=$cate->id;
+							$url = 'videosb/index/'.$categoria.'/'.$tipo;?>
+							<a href="{{ url($url) }}" title="Ver Galería de Videos" class="uk-icon-link" uk-icon="icon: file" contextmenu="Ver Galería de Videos"><i class="fa fa-image "></i }></a>
+
                               </td>
 											<td>{{ $cate->id }}</td>
 											<td><?php echo wordwrap($cate->nombre,100,"<br />"); ?></td>

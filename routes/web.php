@@ -98,24 +98,36 @@ Route::get('imagenes/principal/{id}', [
 		'as'   => 'imagenes.principal'
 	]);
 
-    Route::resource('videos', 'Registrar\VideoController');
-    Route::get('videos/{id}/destroy', [
+Route::get('videosb/index/{categoria}/{tipo}', [
+		'uses' => 'Registrar\VideoController@index',
+		'as'   => 'videosb.index'
+	]);
+Route::get('videosb/create/{categoria}/{tipo}', [
+		'uses' => 'Registrar\VideoController@create',
+		'as'   => 'videosb.create'
+	]); 
+
+Route::get('videosb/{id}/destroy', [
 		'uses' => 'Registrar\VideoController@destroy',
-		'as'   => 'videos.destroy'
+		'as'   => 'videosb.destroy'
 	]);
-Route::get('videos/principal/{id}', [
+Route::get('videosb/principal/{id}', [
 		'uses' => 'Registrar\VideoController@principal',
-		'as'   => 'videos.principal'
+		'as'   => 'videosb.principal'
 	]);
+Route::get('videosb/show/{categoria}/{tipo}/{id}', [
+		'uses' => 'Registras\VideoController@show',
+		'as'   => 'videosb.show'
+	]); 
+Route::resource('videosb', 'Registrar\VideoController');
 
 
-
-   Route::resource('archivo','Registrar\ArchivoController');
-   Route::get('archivo/index/{iddocumento}', [
+Route::resource('archivo','Registrar\ArchivoController');
+Route::get('archivo/index/{iddocumento}', [
 		'uses' => 'Registrar\ArchivoController@index',
 		'as'   => 'archivo.index'
 	]);
-  Route::get('archivo/create/{iddocumento}', [
+Route::get('archivo/create/{iddocumento}', [
 		'uses' => 'Registrar\ArchivoController@create',
 		'as'   => 'archivo.create'
 	]); 

@@ -18,7 +18,7 @@
 	</div>
 	<ul class="app-breadcrumb breadcrumb side">
 		<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-		<?php $url = 'imagenes/index/'.$categoria.'/'.$tipo;?>
+		<?php $url = 'videosb/index/'.$categoria.'/'.$tipo;?>
 		<li class="breadcrumb-item active"><a href="{{ url($url) }}">Atrás</a></li>
 	</ul>
 </div>
@@ -45,30 +45,21 @@
 
 				<div class="form-group col-md-6">
 					<label class="control-label">Nombre</label>
-					<input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre" readonly="">
+					<input class="form-control" type="text" name="nombre" value="{{ $video->nombre }}" id="nombre" placeholder="Nombre" readonly="">
 				</div>
 				<div class="form-group col-md-1">
 					<label class="control-label">Público</label>
 					<select id="publico"  name="publico" class="form-control" readonly>	
                         <option value="">Seleccione</option>
-                        <option value="Si"@if(old('publico', $imagenes->publico)=='Si') selected @endif>Si</option>
-                        <option value="No"@if(old('publico', $imagenes->publico)=='No') selected @endif>No</option>
+                        <option value="Si"@if(old('publico', $videos->publico)=='Si') selected @endif>Si</option>
+                        <option value="No"@if(old('publico', $videos->publico)=='No') selected @endif>No</option>
                     </select>
 				</div>
 				<div class="form-group col-md-6">
                   <div class="form-group">
 					<label>Imagen</label>
-					<?php if ($imagenes->categoria_imagen_id==1): ?>
-						<p><img src="{{ asset('img/productos/'.$imagenes->url) }}" style="max-width: 100%"></p>	
-					<?php endif ?>
-					<?php if ($imagenes->categoria_imagen_id==2): ?>
-						<p><img src="{{ asset('img/servicios/'.$imagenes->url) }}" style="max-width: 100%"></p>	
-					<?php endif ?>
-					<?php if ($imagenes->categoria_imagen_id==3): ?>
-						<p><img src="{{ asset('img/galeria/'.$imagenes->url) }}" style="max-width: 100%"></p>	
-					<?php endif ?>
-					<?php if ($imagenes->categoria_imagen_id==4): ?>
-						<p><img src="{{ asset('img/empresa/'.$imagenes->url) }}" style="max-width: 100%"></p>	
+					<?php if ($video->categoria_imagen_id==2): ?>
+						<p><video src="{{ asset('video/empresa/'.$video->url) }}" style="max-width: 100%"></video></p>	
 					<?php endif ?>
 
 					
@@ -80,7 +71,7 @@
 			<div class="tile-footer">
 
 <?php 
-							$url = 'imagenes/index/'.$categoria.'/'.$tipo;?>
+							$url = 'videosb/index/'.$categoria.'/'.$tipo;?>
 							<a class="btn btn-secondary" href="{{ url($url) }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
 
 
@@ -101,35 +92,9 @@ integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLFo
 <script type="text/javascript" language="javascript">
 	$ = jQuery;
 	jQuery(document).ready(function () {
-		$("select#categoria_producto_id").bind('change', function (event) {
 
-			$.ajaxSetup({
-				headers: {
-					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 
-				}
-
-			});
-			$.ajax({
-				type: "GET",
-				url: '{{ url('cargatipoproductos') }}',
-				data: { id: $(this).val() , _token: '{{csrf_token()}}' },
-				success: function (resp){
-					console.log(resp);
-					$('#tipo_producto_id').html(resp);
-				}
-			});
-
-		});
-
-		$("input#codigo").bind('change', function (event) {
-           var cod = $(this).val();
-           zcod = cod.toUpperCase();
-
-           $(this).val(zcod);
-		});		
-
-		$("#imagen").change(function(e) {
+		$("#archivo").change(function(e) {
               archivo(e);           
 
 		});		
@@ -146,7 +111,7 @@ function archivo(e) {
         //Obtenemos la imagen del campo "file". 
       for (var i = 0, f; f = files[i]; i++) {         
            //Solo admitimos imágenes.
-           if (!f.type.match('image.*')) {
+           if (!f.type.match('video.*')) {
                 continue;
            }
        

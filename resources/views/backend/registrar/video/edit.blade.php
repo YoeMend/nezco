@@ -26,7 +26,7 @@
 	<div class="col-md-12">
 		<div class="tile">
 			
- <form name="form1" class="row"  enctype="multipart/form-data" method="POST" action="{{ route('videos.update', $video->id) }}" accept-charset="UTF-8"> <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+ <form name="form1" class="row"  enctype="multipart/form-data" method="POST" action="{{ route('videosb.update', $video->id) }}" accept-charset="UTF-8"> <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
           
                {{ method_field('PUT') }}
 
@@ -101,7 +101,7 @@ function archivo(e) {
            reader.onload = (function(theFile) {
                return function(e) {
                // Creamos la video.
-                      document.getElementById("list").innerHTML = ['<video src="', e.target.result,'"</video>'].join('');
+                      document.getElementById("list").innerHTML = ['<video src="', e.target.result,'"></video>'].join('');
                };
            })(f);
  

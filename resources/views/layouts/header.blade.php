@@ -75,7 +75,7 @@
  <li><a class="treeview-item" href="{{ url($url) }}"><i class="icon fa fa-circle-o"></i>Banner Principal</a></li>
             <?php 
               $categoria=1;
-              $url = 'videos/principal/'.$categoria;?>
+              $url = 'videosb/principal/'.$categoria;?>
  <li><a class="treeview-item" href="{{ url($url) }}"><i class="icon fa fa-circle-o"></i>Video Principal</a></li>
 
             
