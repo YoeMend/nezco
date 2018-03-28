@@ -22,6 +22,7 @@
 					</div>
 			</div>
 
+
 			{{-- FIN BUSCADOR --}}
 
 	{{-- ======================
@@ -34,16 +35,13 @@
 				  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 				    <span class="navbar-toggler-icon"></span>
 				  </button>
-
 				  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 				    <ul class=" navbar-nav flex-column list-group mr-auto mt-2 mt-lg-0 w-100">
 				    	<div class="row">
 							@foreach ($categorias_documentos as $categoria)
 								<li class=" tex-dec-none  nav-item col-12 col-md-6 col-lg-12 mt-1 px-1">
-									<a href="">
-								   		<button class="btn w-100 btn-primary text-left" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-											{{ $categoria->descripcion }}
-										</button>
+							   		<a href="" class="btn w-100 btn-primary text-left">
+										{{ $categoria->descripcion }}
 									</a>
 								</li>
 							@endforeach
@@ -77,7 +75,7 @@
 										</a>
 									</div>
 									<div class="col">
-										<a href="">
+										<a href="{{ $documento->enlace }}" target="blank">
 											<i class="fa fa-link" aria-hidden="true"></i>
 										</a>
 									</div>

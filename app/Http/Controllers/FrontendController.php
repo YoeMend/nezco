@@ -10,6 +10,8 @@ use App\Producto;
 use App\Servicio;
 use App\Empresa;
 use App\Documentos;
+use App\Galeria;
+use App\Imagenes;
 
 class FrontendController extends Controller
 {
@@ -73,13 +75,14 @@ class FrontendController extends Controller
 		
 		return view('frontend.leyes')->with('categorias_documentos', $categorias_documentos)->with('documentos', $documentos);
 	}
-	public function leyesFiltro($id){
+	public function leyesF($id){
 
 		$categorias_documentos = DB::table('categoria_documentos')
 								 -> where('estatus','Activo')
 								 -> get();
 
-		$documentos = DB::table('documentos')->where('publico', 'Si')->get();
+		$documentos = DB::table('documentos')->where('categoria_documento_id', $id)->get();
+
 		return view('frontend.leyes')->with('categorias_documentos', $categorias_documentos)->with('documentos', $documentos);
 	}
 
@@ -90,10 +93,16 @@ class FrontendController extends Controller
 		return view('frontend.documentDetail')->with('documentos',$documentos);
 	}
 	public function galeriaFront(){
-		return view('frontend.galeria');
+
+		$galerias = Galeria::where('publico','Si')->get();
+
+		return view('frontend.galeria')->with('galerias', $galerias);
 	}
-	public function galeria_detail(){
-		return view('frontend.galeria_detail');
+	public function galeria_detail($id_categoria, $id_galeria){
+
+		$imagenes = Imagenes::where('categoria_imagen_id',$id_categoria)->where('tipo_id',$id_galeria)->get();
+
+		return view('frontend.galeria_detail')->this('imagenes',$imagenes);
 	}
 	public function contacto(){
 		return view('frontend.contacto');

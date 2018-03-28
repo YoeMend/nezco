@@ -12,11 +12,14 @@
 
 	<div class="container">
 		<div class="row">
-			
-			<h2 class="tit">{{ $documentos->nombre }}</h2>
-			<p>
-				{{ $documentos->descripcion }}
-			</p>
+			<div class="col-12">
+				<h2 class="tit">{{ $documentos->nombre }}</h2>
+			</div>
+			<div class="col-12">
+				<p>
+					{{ $documentos->descripcion }}
+				</p>
+			</div>
 		</div>
 	</div>
 

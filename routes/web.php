@@ -118,7 +118,6 @@ Route::get('archivo/destroy/{id}', [
 		'as'   => 'archivo.destroy'
 	]);
 
-
 Route::resource('empresa', 'configurar\EmpresaController');
 Route::get('empresa/{id}/destroy', [
 		'uses' => 'configurar\EmpresaController@destroy',
@@ -176,9 +175,10 @@ Route::get('leyes', [
       'as'=>'frontend.leyes',
       'uses'=>'FrontendController@leyes' 
       ]);
-Route::get('leyes/{id}', [
-      'as'=>'frontend.leyes',
-      'uses'=>'FrontendController@leyes' 
+
+Route::get('leyesF/{id}', [
+      'as'=>'frontend.leyesF',
+      'uses'=>'FrontendController@leyesF' 
       ]);
 
 Route::get('documentDetail/{id}', [
@@ -191,7 +191,7 @@ Route::get('galeriaFront', [
       'uses'=>'FrontendController@galeriaFront' 
       ]);
 
-Route::get('galeria_detail', [
+Route::get('galeria_detail/{id_categoria}/{id_galeria}', [
       'as'=>'frontend.galeria_detail',
       'uses'=>'FrontendController@galeria_detail' 
       ]);
