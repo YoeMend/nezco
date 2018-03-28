@@ -34,6 +34,7 @@ class HomeController extends Controller
                ->first();
       $cantidad= $producto->prod_cant;
       $_SESSION["cantidad"] = $cantidad;
+
     $servicio = DB::table('servicio as a')
                ->select(DB::raw('count(*) as ser_cant'))
                ->where('publico','Si')
@@ -45,14 +46,17 @@ class HomeController extends Controller
                ->where('publico','Si')
                ->first();
       $_SESSION["cantdoc"] = $documentos->doc_cant;
+
      $empresa = DB::table('empresa as a')
                ->select(DB::raw('count(*) as emp_cant'))
                ->where('publico','Si')
                ->first();
       $_SESSION["cantemp"] = $empresa->emp_cant;
+
       $zproductos = DB::table('producto')
                 ->where('publico','Si')
                ->paginate('6');  
+               
       $zservicios = DB::table('servicio')
                 ->where('publico','Si')
                ->paginate('6');  

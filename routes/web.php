@@ -118,7 +118,6 @@ Route::get('archivo/destroy/{id}', [
 		'as'   => 'archivo.destroy'
 	]);
 
-
 Route::resource('empresa', 'configurar\EmpresaController');
 Route::get('empresa/{id}/destroy', [
 		'uses' => 'configurar\EmpresaController@destroy',
@@ -157,9 +156,19 @@ Route::get('servicios', [
       'uses'=>'FrontendController@servicios' 
       ]);
 
+Route::get('servicios_detail/{id}', [
+      'as'=>'frontend.servicios_detail',
+      'uses'=>'FrontendController@servicios_detail' 
+      ]);
+
 Route::get('productos', [
       'as'=>'frontend.productos',
       'uses'=>'FrontendController@productos' 
+      ]);
+
+Route::get('productos_detail/{id}', [
+      'as'=>'frontend.productos_detail',
+      'uses'=>'FrontendController@productos_detail' 
       ]);
 
 Route::get('leyes', [
@@ -167,12 +176,32 @@ Route::get('leyes', [
       'uses'=>'FrontendController@leyes' 
       ]);
 
-Route::get('galeria', [
-      'as'=>'frontend.galeria',
-      'uses'=>'FrontendController@galeria' 
+Route::get('leyesF/{id}', [
+      'as'=>'frontend.leyesF',
+      'uses'=>'FrontendController@leyesF' 
+      ]);
+
+Route::get('documentDetail/{id}', [
+      'as'=>'frontend.documentDetail',
+      'uses'=>'FrontendController@documentDetail' 
+      ]);
+
+Route::get('galeriaFront', [
+      'as'=>'frontend.galeriaFront',
+      'uses'=>'FrontendController@galeriaFront' 
+      ]);
+
+Route::get('galeria_detail/{id_categoria}/{id_galeria}', [
+      'as'=>'frontend.galeria_detail',
+      'uses'=>'FrontendController@galeria_detail' 
       ]);
 
 Route::get('contacto', [
       'as'=>'frontend.contacto',
       'uses'=>'FrontendController@contacto' 
+      ]);
+
+Route::get('pruebas', [
+      'as'=>'frontend.pruebas',
+      'uses'=>'FrontendController@pruebas' 
       ]);
