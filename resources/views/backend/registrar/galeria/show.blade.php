@@ -18,37 +18,35 @@
     </div>
     <ul class="app-breadcrumb breadcrumb side">
         <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-        <li class="breadcrumb-item active"><a href="{{ route('galeria.index') }}">Atrás</a></li>
+        <li class="breadcrumb-item active"><a href="{{ route('galeriab.index') }}">Atrás</a></li>
     </ul>
 </div>
 <div class="row">
     <div class="col-md-12">
         <div class="tile">
 
-            <form class="row" role="form" enctype="multipart/form-data" action="" method="POST">
+            <form class="row" role="form" enctype="multipart/form-data" action="">
 
-                <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-               
-                <div class="form-group col-md-6">
-                    <label class="control-label">Titulo/Nombre</label>
-                    <input class="form-control" type="text" name="titulo" id="titulo" placeholder="Título y/o Nombre" value="{{ $galeria->nombre }}" readonly="">
-                </div>
-                <div class="form-group col-md-10">
-                    <label class="control-label">Descripción</label>
-                    <textarea class="form-control" rows="6" name="descripcion" id="descripcion" placeholder="Descripción y/o Detalles" readonly="">{{ $galeria->descripcion }}</textarea>
-                </div>
-                <div class="form-group col-md-1">
-                    <label class="control-label">Público</label>
-                    <select id="publico"  name="publico" class="form-control" readonly>  
-                        <option value="">Seleccione</option>
-                        <option value="Si"@if(old('publico', $galeria->publico)=='Si') selected @endif>Si</option>
-                        <option value="No"@if(old('publico', $galeria->publico)=='No') selected @endif>No</option>
-                    </select>
-                </div>
+             <div class="form-group col-md-6">
+                <label class="control-label">Titulo/Nombre</label>
+                <input class="form-control" type="text" name="nombre" id="nombre" value="{{ $galeria->nombre }}" readonly="readonly">
             </div>
+            <div class="form-group col-md-10">
+                <label class="control-label">Descripción</label>
+                <textarea class="form-control" rows="6" name="descripcion" id="descripcion" placeholder="Descripción y/o Detalles" readonly="">{{ $galeria->descripcion }}</textarea>
+            </div>
+            <div class="form-group col-md-1">
+                <label class="control-label">Público</label>
+                <select id="publico"  name="publico" class="form-control" readonly>  
+                    <option value="">Seleccione</option>
+                    <option value="Si"@if(old('publico', $galeria->publico)=='Si') selected @endif>Si</option>
+                    <option value="No"@if(old('publico', $galeria->publico)=='No') selected @endif>No</option>
+                </select>
+            </div>
+        </div>
 
         <div class="tile-footer">
-            <a class="btn btn-secondary" href="{{ route('galeria.index') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
+            <a class="btn btn-secondary" href="{{ route('galeriab.index') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancelar</a>
 
 
 

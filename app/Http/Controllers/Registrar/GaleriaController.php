@@ -15,8 +15,8 @@ class GaleriaController extends Controller
     public function index()
     {
 
-        $galeria = Galeria::orderBy('id', 'ASC')->paginate(6);
-        return view('backend.registrar.galeria.index')->with('galeria', $galeria);
+     $galeria = Galeria::orderBy('id', 'ASC')->paginate(6);
+     return view('backend.registrar.galeria.index')->with('galeria', $galeria);
 
     }
     public function create(){
@@ -33,7 +33,7 @@ class GaleriaController extends Controller
             //dd($descripcion);
             if(Galeria::where('nombre',$titulo)->first()){
 
-                return redirect()->route('Galeria.index')->with("notificacion","Galeria Ya se encuentra Registrado");
+                return redirect()->route('galeriab.index')->with("notificacion","Galeria Ya se encuentra Registrado");
 
             }
             $galeria = new Galeria($request->all());
@@ -42,7 +42,7 @@ class GaleriaController extends Controller
             $galeria->updated_at = date('Y-m-d');
             $galeria->usuario_id = $_SESSION["user"];
             $galeria->save();
-            return redirect()->route('galeria.index')->with("notificacion","Se ha guardado correctamente su información");
+            return redirect()->route('galeriab.index')->with("notificacion","Se ha guardado correctamente su información");
 
         } catch (Exception $e) {
             \Log::info('Error creating item: '.$e);
@@ -52,8 +52,8 @@ class GaleriaController extends Controller
 
     public function show($id)
     {
-        $galeria=Galeria::find($id);
-        return view('backend.registrar.galeria.show')->with('galeria',$galeria);
+      $galeria=Galeria::find($id);
+    return view('backend.registrar.galeria.show')->with('galeria',$galeria);
     }
 
     public function edit($id)
@@ -70,7 +70,7 @@ class GaleriaController extends Controller
 
         $galeria->fill($request->all());
         $galeria->save();
-        return redirect()->route('galeria.edit', $id)->with("notificacion","Se ha guardado correctamente su información");
+        return redirect()->route('galeriab.edit', $id)->with("notificacion","Se ha guardado correctamente su información");
 
     }
 
@@ -80,30 +80,11 @@ class GaleriaController extends Controller
         $galeria= Galeria::find($id);
         $galeria->destroy($id);
 
-        return redirect()->route('galeria.index');
+        return redirect()->route('galeriab.index');
         
 
     }
 
-    public function cargatipoGalerias(Request $request)
-    {
-      $request->all();
-      if(isset($request["id"])) $id=$request["id"];
-      $tipoGaleria = TipoGaleria::where('categoria_Galeria_id',$id)->get();
-      foreach ($tipoGaleria as $tip) {
-          echo '<option value="' .$tip->id. '">' .$tip->descripcion. '</option>';
-      }
-      return null;
-  }
- public function galeria($id)
-    {
-
-        $Galeria= Galeria::find($id);
-        $categoria="1-"."$id";
-        $ruta="imagenes.index,".$categoria;
-        return redirect()->route('imagenes.index',$categoria);        
-
-    }
 
 
 }

@@ -50,35 +50,30 @@ Route::group(['middleware' => 'auth'], function () {
 		'as'   => 'tipoproducto.destroy'
 	]);
 
-    Route::resource('documento', 'registrar\DocumentoController');
+    Route::resource('documento', 'Registrar\DocumentoController');
     Route::get('documento/{id}/destroy', [
-		'uses' => 'registrar\DocumentoController@destroy',
+		'uses' => 'Registrar\DocumentoController@destroy',
 		'as'   => 'documento.destroy'
 	]);
 
-    Route::resource('producto', 'registrar\ProductoController');
+    Route::resource('producto', 'Registrar\ProductoController');
     Route::get('producto/{id}/destroy', [
-		'uses' => 'registrar\ProductoController@destroy',
+		'uses' => 'Registrar\ProductoController@destroy',
 		'as'   => 'producto.destroy'
 	]);
-    Route::resource('servicio', 'registrar\ServicioController');
+    Route::resource('servicio', 'Registrar\ServicioController');
     Route::get('servicio/{id}/destroy', [
-		'uses' => 'registrar\ServicioController@destroy',
+		'uses' => 'Registrar\ServicioController@destroy',
 		'as'   => 'servicio.destroy'
 	]);
 
-    Route::resource('video', 'registrar\VideoController');
-    Route::get('video/{id}/destroy', [
-		'uses' => 'registrar\VideoController@destroy',
-		'as'   => 'video.destroy'
-	]);
 
-    Route::resource('galeria', 'Registrar\GaleriaController');
-    Route::get('galeria/{id}/destroy', [
+    Route::resource('galeriab', 'Registrar\GaleriaController');
+    Route::get('galeriab/{id}/destroy', [
 		'uses' => 'Registrar\GaleriaController@destroy',
-		'as'   => 'galeria.destroy'
+		'as'   => 'galeriab.destroy'
 	]);
-   Route::get('cargatipoproductos','registrar\ProductoController@cargatipoproductos');
+   Route::get('cargatipoproductos','Registrar\ProductoController@cargatipoproductos');
    
    Route::resource('imagenes','ImagenesController');
    Route::get('imagenes/index/{categoria}/{tipo}', [
@@ -102,6 +97,18 @@ Route::get('imagenes/principal/{id}', [
 		'uses' => 'ImagenesController@principal',
 		'as'   => 'imagenes.principal'
 	]);
+
+    Route::resource('videos', 'Registrar\VideoController');
+    Route::get('videos/{id}/destroy', [
+		'uses' => 'Registrar\VideoController@destroy',
+		'as'   => 'videos.destroy'
+	]);
+Route::get('videos/principal/{id}', [
+		'uses' => 'Registrar\VideoController@principal',
+		'as'   => 'videos.principal'
+	]);
+
+
 
    Route::resource('archivo','Registrar\ArchivoController');
    Route::get('archivo/index/{iddocumento}', [

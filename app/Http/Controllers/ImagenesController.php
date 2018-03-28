@@ -29,7 +29,7 @@ class ImagenesController extends Controller
         case '3':
         $galeria = Galeria::find($tipo);
         $texto = "Categoría de Imagen: Galeria: ".$galeria->nombre;
-        $atras = "galeria.index";
+        $atras = "galeriab.index";
         break;
         default:
     		# code...
@@ -55,7 +55,7 @@ public function create($categoria,$tipo){
         case '3':
         $galeria = Galeria::find($tipo);
         $texto = "Galeria: ".$galeria->nombre;
-        $atras = "galeria.index";
+        $atras = "galeriab.index";
         break;
         default:
     		# code...
@@ -86,7 +86,7 @@ public function store(Request $request)
         case '3':
         $galeria = Galeria::find($tipo);
         $texto = "Galeria: ".$galeria->nombre;
-        $atras = "galeria.index";
+        $atras = "galeriab.index";
         break;
         default:
             # code...
@@ -151,7 +151,7 @@ public function show($categoria,$tipo,$id){
     	case '3':
     	$galeria = Galeria::find($tipo);
     	$texto = "Galeria: ".$galeria->titulo;
-    	$atras = "galeria.index";
+    	$atras = "galeriab.index";
          break;
     	default:
     		# code...
@@ -184,7 +184,7 @@ public function destroy($id)
     if($categoria==3){  
         $galeria = Galeria::find($tipo);
         $texto = "Galeria: ".$galeria->titulo;
-        $atras="galeria.index";
+        $atras="galeriab.index";
         $path = public_path().'/img/galeria/';
 
     }    

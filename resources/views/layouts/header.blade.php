@@ -68,12 +68,17 @@
             <li><a class="treeview-item" href="{{ route('categoriaservicio.index') }}"><i class="icon fa fa-circle-o"></i>Servicios</a></li>
             <li><a class="treeview-item" href="{{ route('tipoproducto.index') }}"><i class="icon fa fa-circle-o"></i>Tipo Productos</a></li>
             <li><a class="treeview-item" href="{{ route('categoriadocumento.index') }}"><i class="icon fa fa-circle-o"></i>Documentos</a></li>
+           @if ($perfil==1) 
             <?php 
               $categoria=5;
               $url = 'imagenes/principal/'.$categoria;?>
  <li><a class="treeview-item" href="{{ url($url) }}"><i class="icon fa fa-circle-o"></i>Banner Principal</a></li>
+            <?php 
+              $categoria=1;
+              $url = 'videos/principal/'.$categoria;?>
+ <li><a class="treeview-item" href="{{ url($url) }}"><i class="icon fa fa-circle-o"></i>Video Principal</a></li>
 
-            @if ($perfil==1)
+            
             <li><a class="treeview-item" href="{{ route('usuarios.index') }}"><i class="icon fa fa-circle-o"></i>Usuarios</a></li>
             @endif
 
@@ -85,7 +90,7 @@
             <li><a class="treeview-item" href="{{ route('servicio.index') }}"><i class="icon fa fa-circle-o"></i>Servicios</a></li>
             <li><a class="treeview-item" href="{{ route('documento.index') }}"><i class="icon fa fa-circle-o"></i>Documentos</a></li>
             <li><a class="treeview-item" href="{{ route('empresa.index') }}"><i class="icon fa fa-circle-o"></i>Empresas</a></li>
-            <li><a class="treeview-item" href="{{ route('galeria.index') }}"><i class="icon fa fa-circle-o"></i>Galeria</a></li>
+            <li><a class="treeview-item" href="{{ route('galeriab.index') }}"><i class="icon fa fa-circle-o"></i>Galeria</a></li>
 
           </ul>
         </li>

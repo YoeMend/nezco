@@ -19,7 +19,7 @@
 	</div>
 	<ul class="app-breadcrumb breadcrumb side">
 		<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-		<li class="breadcrumb-item active"><a href="{{ route('galeria.create') }}">Crear</a></li>
+		<li class="breadcrumb-item active"><a href="{{ route('galeriab.create') }}">Crear</a></li>
 	</ul>
 </div>
 
@@ -40,8 +40,8 @@
 						@foreach ($galeria as $cate)
 						<tr>
 							<td>
-							<a href="{{ route('galeria.show',$cate->id) }}" title="Ver ficha de Registro" class="uk-icon-link" uk-icon="icon: file" contextmenu="Ver Registro"><i class="fa fa-search "></i }></a> 
-							<a href="{{ route('galeria.destroy',$cate->id) }}" title="Eliminar Registro" class="uk-icon-link" uk-icon="icon: trash"><i class="fa fa-trash " onclick="return confirm('¿Seguro desea eliminar este registro?')"></i }></a>
+							<a href="{{ route('galeriab.show',$cate->id) }}" title="Ver ficha de Registro" class="uk-icon-link" uk-icon="icon: file" contextmenu="Ver Registro"><i class="fa fa-search "></i }></a> 
+							<a href="{{ route('galeriab.destroy',$cate->id) }}" title="Eliminar Registro" class="uk-icon-link" uk-icon="icon: trash"><i class="fa fa-trash " onclick="return confirm('¿Seguro desea eliminar este registro?')"></i }></a>
 							<?php 
 							$categoria=3;
 							$tipo=$cate->id;

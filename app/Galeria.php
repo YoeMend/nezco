@@ -13,7 +13,7 @@ class Galeria extends Model
      *
      * @var array
      */
-    protected $fillable = ['id','nombre','publico','usuario_id'];
+    protected $fillable = ['id','nombre','descripcion','publico','usuario_id'];
     protected $guarded  = ['id'];
 
     public function user(){
