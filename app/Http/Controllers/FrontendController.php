@@ -18,7 +18,7 @@ class FrontendController extends Controller
     public function index(){
 
     	$servicios = DB::table('servicio')-> where('publico','Si')->where('inicio','1')-> get();
-    	$productos = DB::table('producto')-> where('publico','Si')->where('inicio','1')-> get();
+    	$productos = DB::table('producto')-> where('publico','Si')->where('inicio','1')->orderby('posicion', 'ASC')-> get();
     	$logo_empresa   = DB::table('empresa')-> where('publico','Si')->where('estatus','Activo')-> get();
 
 		return view('frontend.index')->with('servicios',$servicios)->with('productos',$productos)->with('logo_empresa',$logo_empresa);
@@ -38,24 +38,35 @@ class FrontendController extends Controller
 		return view('frontend.servicios')->with('servicios',$servicios);
 	}
 
-	public function servicios_detail($id){
+	public function servicios_detail($categoriaid, $id){
 
 		$servicio_detail = DB::table('servicio')->where('id', $id)->first();
 
+		$imagenes = Imagenes::where('publico', 'Si')
+					->where('categoria_imagen_id', $categoriaid)
+					->where('tipo_id', $id)
+					->get();
 
-		return view('frontend.servicios_detail')->with('servicio_detail',$servicio_detail);
+		//dd($imagenes);
+		return view('frontend.servicios_detail')->with('servicio_detail',$servicio_detail)->with('imagenes',$imagenes);
 	}
 	
 	public function productos(){
+
 		$categorias_productos = DB::table('categoria_producto')
 								-> where('estatus','Activo')
-								//->leftJoin('producto', 'users.id', '=', 'posts.user_id')
 								-> get();
 
 		$productos = DB::table('producto')->where('publico','Si')->get();
 
+		$productosFilter = DB::table('categoria_producto')
+							->join('producto', 'producto.categoria_producto_id', '=', 'categoria_producto.id')
+							->select('categoria_producto.descripcion as categoria', 'producto.titulo', 'producto.descripcion as pdescripcion', 'categoria_producto.id as categoriaid' )
+							->where('categoria_producto.estatus','Activo')
+							->get();
 
-		return view('frontend.productos')->with('categorias_productos',$categorias_productos)->with('productos',$productos);
+//dd($productosFilter);
+		return view('frontend.productos')->with('categorias_productos',$categorias_productos)->with('productos',$productos)->with('productosFilter',$productosFilter);
 	}
 	public function productos_detail($id){
 
@@ -96,18 +107,26 @@ class FrontendController extends Controller
 
 		$galerias = Galeria::where('publico','Si')->get();
 
-		return view('frontend.galeria')->with('galerias', $galerias);
+		$imagenes = Galeria::find(1)->imagenesGalery()->where('categoria_imagen_id','=','3')->first();
+
+		//$imagenes = Imagenes::where('publico', 'Si')->first();
+
+		return view('frontend.galeria')->with('galerias', $galerias)->with('imagenes', $imagenes);
 	}
 	public function galeria_detail($id_categoria, $id_galeria){
 
-		$imagenes = Imagenes::where('categoria_imagen_id',$id_categoria)->where('tipo_id',$id_galeria)->get();
+		$imagenes = Imagenes::where('categoria_imagen_id',$id_categoria)->where('tipo_id',$id_galeria)->where('publico','Si')->get();
 
-		return view('frontend.galeria_detail')->this('imagenes',$imagenes);
+		$galerias = Galeria::where('publico','Si')->where('id', $id_galeria)->first();
+
+		return view('frontend.galeria_detail')->with('imagenes',$imagenes)->with('galerias', $galerias);
 	}
 	public function contacto(){
 		return view('frontend.contacto');
 	}
 	public function pruebas(){
-		return view('frontend.pruebas');
+		$productos = DB::table('producto')-> where('publico','Si')->where('inicio','1')->orderby('posicion', 'ASC')-> get();
+
+		return view('frontend.pruebas')->with('productos',$productos);
 	}
 }

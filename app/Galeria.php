@@ -20,4 +20,9 @@ class Galeria extends Model
 
     	return $this->belongsTo('App\User');
     }
+
+    public function imagenesGalery(){
+
+        return $this->hasMany(Imagenes::class,'tipo_id');
+    }
 }
