@@ -30,7 +30,7 @@
 				
 				<div class="form-group col-md-2">
 					<label class="control-label">Código</label>
-					<input class="form-control" type="text" name="codigo" id="codigo" placeholder="Codigo">
+					<input class="form-control" type="text" name="codigo" id="codigo" placeholder="Codigo" required="">
 				</div>
 				<div class="form-group col-md-6">
 					<label class="control-label">Titulo/Nombre</label>
@@ -42,7 +42,7 @@
 				</div>
 				<div class="form-group col-md-4">
 					<label class="control-label">Categoría Producto</label>
-					<select id="categoria_producto_id"  name="categoria_producto_id" class="form-control">	
+					<select id="categoria_producto_id"  name="categoria_producto_id" class="form-control" required="">	
 						<option value="">Seleccione Categoria Producto</option>
 						@foreach ($categoriaproducto as $categ)
 						<option value="{{ $categ->id }}">{{ $categ->descripcion }}</option>	
@@ -51,7 +51,7 @@
 				</div>
 				<div class="form-group col-md-4">
 					<label class="control-label">Tipo Producto</label>
-					<select id="tipo_producto_id"  name="tipo_producto_id" class="form-control">	
+					<select id="tipo_producto_id"  name="tipo_producto_id" class="form-control" required="">	
 						<option value="">Seleccione Tipo Producto</option>
 					</select>
 				</div>

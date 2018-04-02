@@ -87,6 +87,11 @@ Route::group(['middleware' => 'auth'], function () {
 		'uses' => 'ImagenesController@show',
 		'as'   => 'imagenes.show'
 	]); 
+  Route::get('imagenes/edit/{categoria}/{tipo}/{id}', [
+		'uses' => 'ImagenesController@edit',
+		'as'   => 'imagenes.edit'
+	]); 
+
 Route::get('imagenes/destroy/{id}', [
 		'uses' => 'ImagenesController@destroy',
 		'as'   => 'imagenes.destroy'

@@ -13,13 +13,13 @@
 
 <div class="app-title">
 	<div>
-		<h1><i class="fa fa-dashboard"></i> Crear Imagen</h1>
+		<h1><i class="fa fa-dashboard"></i> Editar Imagen</h1>
 
 	</div>
 	<ul class="app-breadcrumb breadcrumb side">
 		<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-		
-		<li class="breadcrumb-item active"><a href="{{ route('home') }}">Atrás</a></li>
+		<?php $url = 'imagenes/index/'.$categoria.'/'.$tipo;?>
+		<li class="breadcrumb-item active"><a href="{{ url($url) }}">Atrás</a></li>
 	</ul>
 </div>
 <div class="row">
@@ -34,16 +34,41 @@
 					<label class="control-label">Categoria</label>
 					<input class="form-control" type="text" name="categoria_imagen_id" id="categoria_imagen_id" value="{{ $categoria }}" readonly="">
 				</div>
+				<div class="form-group col-md-1">
+					<label class="control-label">Tipo</label>
+					<input class="form-control" type="text" name="tipo_id" id="tipo_id" value="{{ $tipo }}" readonly="">
+
+				</div>
 
 				<div class="form-group col-md-6">
 					<label class="control-label">Nombre</label>
 					<input class="form-control" type="text" name="nombre" id="nombre" value="{{ $imagenes->nombre }}" placeholder="Nombre" readonly="">
 				</div>
-                <div class="form-group col-md-6">
-                  <div class="form-group">
-                    <label>Imagen Principal(Imagen Actual)</label>
+			 <div class="form-group col-md-2">
+                    <label class="control-label">Público</label>
+                    <select id="publico"  name="publico" class="form-control">  
+                        <option value="">Seleccione</option>
+                        <option value="Si"@if(old('publico', $imagenes->publico)=='Si') selected @endif>Si</option>
+                        <option value="No"@if(old('publico', $imagenes->publico)=='No') selected @endif>No</option>
+                    </select>
+                </div>
 
-                   <p><img src="{{ asset('img/principal/'.$imagenes->url) }}" style="max-width: 100%"></p>
+				<div class="form-group col-md-6">
+                  <div class="form-group">
+					<label>Imagen</label>
+					<?php if ($imagenes->categoria_imagen_id==1): ?>
+						<p><img src="{{ asset('img/productos/'.$imagenes->url) }}" style="max-width: 100%"></p>	
+					<?php endif ?>
+					<?php if ($imagenes->categoria_imagen_id==2): ?>
+						<p><img src="{{ asset('img/servicios/'.$imagenes->url) }}" style="max-width: 100%"></p>	
+					<?php endif ?>
+					<?php if ($imagenes->categoria_imagen_id==3): ?>
+						<p><img src="{{ asset('img/galeria/'.$imagenes->url) }}" style="max-width: 100%"></p>	
+					<?php endif ?>
+					<?php if ($imagenes->categoria_imagen_id==4): ?>
+						<p><img src="{{ asset('img/empresa/'.$imagenes->url) }}" style="max-width: 100%"></p>	
+					<?php endif ?>
+
                     <input name="archivo" type="file" id="imagen" accept="image/jpeg, image/png, image/gif" />
                     <h5>Imagen Reemplazo</h5>
                     <output id="list"></output>            

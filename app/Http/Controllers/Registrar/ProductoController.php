@@ -10,6 +10,7 @@ use Storage;
 use App\TipoProducto;
 use App\Producto;
 use APP\Imagenes;
+use DB;
 use Laracasts\Flash\Flash; 
 
 class ProductoController extends Controller
@@ -17,7 +18,12 @@ class ProductoController extends Controller
     public function index()
     {
 
-        $producto = Producto::orderBy('id', 'ASC')->paginate(6);
+ $producto = DB::table('producto as a')
+                         ->join('categoria_producto as b','a.categoria_producto_id','=','b.id')
+                         ->join('tipo_producto as c','a.tipo_producto_id','=','c.id')
+                         ->select('a.id','a.codigo','a.titulo','a.descripcion','b.descripcion as descat','c.descripcion as destipo','a.estatus')
+                         ->orderBy('a.id','desc')
+                         ->paginate(6);
         return view('backend.registrar.producto.index')->with('producto', $producto);
 
     }

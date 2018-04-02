@@ -24,6 +24,7 @@
 		<li class="breadcrumb-item"><a href="{{ route($atras) }}">Atrás</a><i class="fa fa-home fa-lg"></i></li>
 		<?php $url = 'imagenes/create/'.$categoria.'/'.$tipo;?>
 		<li class="breadcrumb-item active"><a href="{{ url($url) }}">Crear</a></li>
+
 	</ul>
 </div>
 
@@ -47,6 +48,9 @@
 							<td width="2%">
 							<?php $url = 'imagenes/show/'.$categoria.'/'.$tipo.'/'.$cate->id;?>	
 							<a href="{{ url($url) }}" title="Ver ficha de Registro" class="uk-icon-link" uk-icon="icon: file" contextmenu="Ver Registro"><i class="fa fa-search "></i }></a> 
+							<?php $url = 'imagenes/edit/'.$categoria.'/'.$tipo.'/'.$cate->id;?>	
+							<a href="{{ url($url) }}" title="Editar" class="uk-icon-link" uk-icon="icon: pencil" contextmenu="Editar Registro"><i class="fa fa-edit "></i }></a> 
+							
 							<a href="{{ route('imagenes.destroy',$cate->id) }}" title="Eliminar Registro" class="uk-icon-link" uk-icon="icon: trash"><i class="fa fa-trash " onclick="return confirm('¿Seguro desea eliminar este registro?')"></i }></a>
 								
 										</td>

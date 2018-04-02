@@ -33,6 +33,8 @@
 							<th>#</th>
 							<th>Codigo</th>
 							<th>Nombre</th>
+							<th>Categoria</th>
+							<th>Tipo</th>
 							<th>Estatus</th>
 						</tr>
 					</thead>
@@ -52,6 +54,8 @@
 										</td>
 											<td>{{ $cate->codigo }}</td>
 											<td><?php echo wordwrap($cate->titulo,100,"<br />"); ?></td>
+											<td>{{ $cate->descat }}</td>
+											<td>{{ $cate->destipo }}</td>
 											<td>{{ $cate->estatus }}</td>
 										</tr>
 					@endforeach
