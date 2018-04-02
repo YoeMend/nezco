@@ -179,7 +179,7 @@ Route::get('servicios', [
       'uses'=>'FrontendController@servicios' 
       ]);
 
-Route::get('servicios_detail/{id}', [
+Route::get('servicios_detail/{categoriaid}/{id}', [
       'as'=>'frontend.servicios_detail',
       'uses'=>'FrontendController@servicios_detail' 
       ]);

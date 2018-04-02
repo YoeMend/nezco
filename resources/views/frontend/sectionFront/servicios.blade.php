@@ -10,26 +10,47 @@
 					
 					  <div class="carousel-inner align-items-center">
 
-					  	@foreach($servicios as $servicio)
-
-					    <div class="carousel-item active mt-5">
-					    	<div class="row align-items-center justify-content-around">
-					    		<div class="col-lg-5 col-md-5">
-					    			<h3 class="font-italic">{{ $servicio->titulo }} </h3>
-					    			<p>{{ $servicio->descripcion }}</p>
-					    			<div class="col text-right">
-					    				<a class="font-italic enlaces " href="servicios_detail/{{ $servicio->id }}">Más Información</a>
-					    			</div>
-					    			
-					    			
-					    		</div>
-					    		<div class="col-lg-5 col-md-5 mt-3 mt-lg-0">
-					    			<img class="d-block img-fluid w-100" src="{{ asset('img/servicios/'.$servicio->imagen) }}" alt="{{ $servicio->titulo }} ">
-					    		</div>
-					    	</div>
-					    </div>
-
-						@endforeach
+					  	<?php
+						$longitud = count($servicios);
+						?>
+					@for($i=0; $i<$longitud; $i++)
+						@if($i == 0)
+						    <div class="carousel-item active mt-5">
+						    	<div class="row align-items-center justify-content-around">
+						    		<div class="col-lg-5 col-md-5">
+						    			<h3 class="font-italic">{{ $servicios[$i]->titulo }} </h3>
+						    			<p>{{ $servicios[$i]->descripcion }}</p>
+						    			<div class="col text-right">
+						    				<a class="font-italic enlaces " href="servicios_detail/2/{{ $servicios[$i]->id }}">Más Información</a>
+						    			</div>
+						    			
+						    			
+						    		</div>
+						    		<div class="col-lg-5 col-md-5 mt-3 mt-lg-0 ">
+						    			<img class="d-block img-fluid w-100" src="{{ asset('img/servicios/'.$servicios[$i]->imagen) }}" alt="{{ $servicios[$i]->titulo }} ">
+						    		</div>
+						    	</div>
+						    </div>
+						@endif
+						@if($i > 0)
+						    <div class="carousel-item mt-5">
+						    	<div class="row align-items-center justify-content-around">
+						    		<div class="col-lg-5 col-md-5">
+						    			<h3 class="font-italic">{{ $servicios[$i]->titulo }} </h3>
+						    			<p>{{ $servicios[$i]->descripcion }}</p>
+						    			<div class="col text-right">
+						    				<a class="font-italic enlaces " href="servicios_detail/2/{{ $servicios[$i]->id }}">Más Información</a>
+						    			</div>
+						    			
+						    			
+						    		</div>
+						    		<div class="col-lg-5 col-md-5 mt-3 mt-lg-0 ">
+						    			<img class="d-block img-fluid w-100" src="{{ asset('img/servicios/'.$servicios[$i]->imagen) }}" alt="{{ $servicios[$i]->titulo }} ">
+						    		</div>
+						    	</div>
+						    </div>
+						@endif
+					@endfor
 
 					  </div>
 					  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

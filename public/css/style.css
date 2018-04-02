@@ -106,6 +106,9 @@
 .tex-dec-none {
   text-decoration: none !important; }
 
+.border-bottom-1 {
+  border-bottom: 1px solid #EAEAEA; }
+
 @font-face {
   font-family: "HelveticaNeueLTCom-BlkCn";
   src: url("../font/original_HelveticaNeueLTCom-BlkCn.eot?#iefix") format("embedded-opentype"), url("../font/original_HelveticaNeueLTCom-BlkCn.woff") format("woff"), url("../font/original_HelveticaNeueLTCom-BlkCn.ttf") format("truetype"), url("../font/original_HelveticaNeueLTCom-BlkCn.svg") format("svg");

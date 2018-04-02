@@ -2,7 +2,7 @@
 
 @section('title', "Leyes -")
 
-@section('tit-cabecera')
+@section('tit-cabecera', 'ASESORÍA LEGAL EN LA IMPLEMENTACIÓN DE SISTEMAS DE GESTIÓN')
 
 @section ('cabecera')
 	@include ('frontend.cabecera')

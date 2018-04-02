@@ -34,21 +34,24 @@
 				    <ul class="navbar-nav flex-column list-group mr-auto mt-2 mt-lg-0 w-100">
 				    	<div class="row">
 
-					@foreach($categorias_productos as $categoria)
-
+					{{-- @foreach($categorias_productos as $categoria) --}}
+						@foreach($productosFilter as $productoF)
 				      <li class="nav-item col-12 col-md-6 col-lg-12 mt-1 px-1">
-					       <button class="btn w-100 btn-primary text-left" type="button" data-toggle="collapse" data-target="#{{ $categoria->id }}" aria-expanded="false" aria-controls="collapseExample">
-								{{ $categoria->descripcion }}
+					       <button class="btn w-100 btn-primary text-left" type="button" data-toggle="collapse" data-target="#{{ $productoF->categoriaid }}" aria-expanded="false" aria-controls="collapseExample">
+								{{ $productoF->categoria }}
 							</button>
 						
-							<div class="collapse" id="{{ $categoria->id }}">
+							<div class="collapse" id="{{ $productoF->categoriaid }}">
 						  		<div class=" card-body pt-0">
-								    <p><a id="filter_item" href="">Extintor 1 este es mas largo que otros</a></p>
+						  			{{-- @while($categoria->id == $productos->categoria_producto_id) --}}
+						  			
+								    <p><a id="filter_item" href="">{{ $productoF->titulo }}</a></p>
+								  
+								   {{--  @endwhile --}}
 								</div>
 							</div>
-
 				      </li>
-					@endforeach
+					 @endforeach
 				   
 				      </div>
 				     
