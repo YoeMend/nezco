@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}" class="h-100">
 <head>
 	<meta charset="utf-8">
-	<title>Nezco</title>
+	<title>@yield('title')  Nezco</title>
 	<meta name="description" content="description">
 	<meta name="author" content="Nezco">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,6 +10,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/lightgallery.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/scroll.css') }}">
+
 
 </head>
 <body class="h-100 ">
@@ -17,7 +20,7 @@
 
 		
 			{{-- MENU --}}
-		<nav class="navbar sticky-top navbar-expand-lg navbar-light ">
+		<nav class="navbar navbar-expand-lg navbar-light ">
 			<div class="container">
 				  {{-- <a class="navbar-brand" href="#">Navbar</a> --}}
 				  <button class="navbar-toggler text-primary" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,10 +46,10 @@
 				        <a class="nav-link" href="{{ route('frontend.leyes') }}">Leyes</a>
 				      </li>
 				      <li class="nav-item">
-				        <a class="nav-link" href="{{ route('frontend.galeria') }}">Galería</a>
+				        <a class="nav-link" href="{{ route('frontend.galeriaFront') }}">Galería</a>
 				      </li>
 				      <li class="nav-item">
-				        <a class="nav-link" href="{{ route('frontend.contacto') }}">Contacto</a>
+				        <a class="nav-link" data-toggle="modal" data-target="#exampleModal" href="">Contacto</a>
 				      </li>
 				    </ul>
 				    {{--  <form class="form-inline my-2 my-lg-0">
@@ -65,13 +68,9 @@
 		{{-- CONTENIDO --}}
 
 		<div class="container-fluid p-2 p-lg-5 bg-white box-sh">
-			<div class="container py-lg-5 my-lg-5">
-				<div class="row justify-content-around align-items-center">
 
 					@yield('content')
 
-				</div>
-			</div>
 		</div>
 
 		@yield ('img-float')
@@ -145,17 +144,6 @@
 							  </li>
 							  <li class="nav-item item-footer">
 							    <a class="nav-link" href="#">Galería</a>
-							    	<ul class="nav flex-column sub-item-footer">
-							    		<li class="nav-item pl-2">
-											<a class="nav-link" href="">Galeria</a>
-							    		</li>
-							    		<li class="nav-item pl-2">
-											<a class="nav-link" href="">Galeria</a>
-							    		</li>
-							    		<li class="nav-item pl-2">
-											<a class="nav-link" href="">Galería</a>
-							    		</li>
-							    	</ul>
 							  </li>
 							  <li class="nav-item item-footer">
 							    <a class="nav-link" href="#">Contacto</a>
@@ -215,7 +203,10 @@
 			</footer>
 		</div>
 		{{-- END FOOTER --}}
-		
+
+		{{-- CONTACTO --}}
+
+		@include ('Frontend.contacto')
 
 	</div>
 	
@@ -225,6 +216,7 @@
 
 @yield('javascript')
 
+    <script src="{{ asset('js/ScrollTrigger.min.js') }}"></script>
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -232,5 +224,8 @@
     <script src="{{ asset('js/plugins/pace.min.js') }}"></script>
     <!-- Page specific javascripts-->
     <script type="text/javascript" src="{{ asset('js/plugins/chart.js') }}"></script>
+   
+
+
 </body>
 </html>
