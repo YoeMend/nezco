@@ -17,10 +17,23 @@
 		<h1><i class="fa fa-dashboard"></i> Productos</h1>
 
 	</div>
-	<ul class="app-breadcrumb breadcrumb side">
-		<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-		<li class="breadcrumb-item active"><a href="{{ route('producto.create') }}">Crear</a></li>
-	</ul>
+
+	<ul class="app-nav">
+		<form name="form1" method="get" action="{{route ('producto.index')}}" accept-charset="UTF-8"><input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+			<li class="app-search">
+				<input id="valor" name="valor" class="app-search__input" type="search" placeholder="Buscar">
+				<button type="submit" class="app-search__button" name="boton" id="boton"><i class="fa fa-search"></i></button>
+			</li>
+			
+		</form>
+    </ul>
+    <ul class="app-breadcrumb breadcrumb side">
+    	<li class="breadcrumb-item active">
+
+    		<a href="{{ route('producto.create') }}" title="Crear" class="uk-icon-link" uk-icon="icon: file" contextmenu="Crear Registro"><i class="fa fa-file-o "></i }></a></li>
+
+    </ul>
+
 </div>
 
 <div class="row">
@@ -29,7 +42,6 @@
 			<div class="tile-body">
 				<table class="table table-hover table-bordered" id="sampleTable">
 					<thead>
-						<tr>
 							<th>#</th>
 							<th>Codigo</th>
 							<th>Nombre</th>
@@ -69,4 +81,6 @@
 	</div>
 
 </div>
+
+
 @endsection

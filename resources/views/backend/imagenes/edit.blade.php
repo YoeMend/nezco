@@ -18,7 +18,10 @@
 	</div>
 	<ul class="app-breadcrumb breadcrumb side">
 		<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-		<?php $url = 'imagenes/index/'.$categoria.'/'.$tipo;?>
+		<?php if($tipo==0)
+		      $url="administrar/home";
+		else
+		$url = 'imagenes/index/'.$categoria.'/'.$tipo;?>
 		<li class="breadcrumb-item active"><a href="{{ url($url) }}">Atrás</a></li>
 	</ul>
 </div>
@@ -68,8 +71,11 @@
 					<?php if ($imagenes->categoria_imagen_id==4): ?>
 						<p><img src="{{ asset('img/empresa/'.$imagenes->url) }}" style="max-width: 100%"></p>	
 					<?php endif ?>
+					<?php if ($imagenes->categoria_imagen_id==5): ?>
+						<p><img src="{{ asset('img/principal/'.$imagenes->url) }}" style="max-width: 100%"></p>	
+					<?php endif ?>
 
-                    <input name="archivo" type="file" id="imagen" accept="image/jpeg, image/png, image/gif" />
+                    <input name="archivo" type="file" id="imagen" accept="image/jpeg, image/png, image/gif, image/svg" />
                     <h5>Imagen Reemplazo</h5>
                     <output id="list"></output>            
 

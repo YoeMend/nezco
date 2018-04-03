@@ -59,11 +59,18 @@ class FrontendController extends Controller
 
 		$productos = DB::table('producto')->where('publico','Si')->get();
 
-		$productosFilter = DB::table('categoria_producto')
+		/*$productosFilter = DB::table('categoria_producto')
 							->join('producto', 'producto.categoria_producto_id', '=', 'categoria_producto.id')
 							->select('categoria_producto.descripcion as categoria', 'producto.titulo', 'producto.descripcion as pdescripcion', 'categoria_producto.id as categoriaid' )
 							->where('categoria_producto.estatus','Activo')
-							->get();
+							->get();*/
+
+       $productosFilter = DB::table('producto as a')
+       ->join('categoria_producto as b','a.categoria_producto_id','=','b.id')
+       ->select('a.id','a.codigo','a.titulo','a.descripcion as pdescripcion','b.descripcion as categoria','b.id as categoriaid')
+       ->where('a.estatus','Activo')
+       ->get();
+
 
 //dd($productosFilter);
 		return view('frontend.productos')->with('categorias_productos',$categorias_productos)->with('productos',$productos)->with('productosFilter',$productosFilter);

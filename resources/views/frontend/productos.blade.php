@@ -35,17 +35,21 @@
 				    	<div class="row">
 
 					{{-- @foreach($categorias_productos as $categoria) --}}
-						@foreach($productosFilter as $productoF)
+					@foreach($categorias_productos as $categoriap)
 				      <li class="nav-item col-12 col-md-6 col-lg-12 mt-1 px-1">
-					       <button class="btn w-100 btn-primary text-left" type="button" data-toggle="collapse" data-target="#{{ $productoF->categoriaid }}" aria-expanded="false" aria-controls="collapseExample">
-								{{ $productoF->categoria }}
+					       <button class="btn w-100 btn-primary text-left" type="button" data-toggle="collapse" data-target="#{{ $categoriap->id }}" aria-expanded="false" aria-controls="collapseExample">
+								{{ $categoriap->descripcion }}
 							</button>
 						
-							<div class="collapse" id="{{ $productoF->categoriaid }}">
+							<div class="collapse" id="{{ $categoriap->id }}">
 						  		<div class=" card-body pt-0">
+						  			@foreach ($productos as $producto)
+						  			@if ($producto->categoria_producto_id == $categoriap->id)
+								    <p><a id="filter_item" href="">{{ $producto->titulo }}</a></p>
+						  			@endif	
+						  			@endforeach
 						  			{{-- @while($categoria->id == $productos->categoria_producto_id) --}}
 						  			
-								    <p><a id="filter_item" href="">{{ $productoF->titulo }}</a></p>
 								  
 								   {{--  @endwhile --}}
 								</div>

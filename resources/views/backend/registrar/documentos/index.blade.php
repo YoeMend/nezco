@@ -47,7 +47,7 @@
 							$categoria=1;
 							$tipo=$cate->id;
 							$url = 'archivo/index/'.$tipo;?>
-							<a href="{{ url($url) }}" title="Ver Archivador" class="uk-icon-link" uk-icon="icon: file" contextmenu="Ver Archivador"><i class="fa fa-file "></i }></a>
+							<a href="{{ url($url) }}" title="Ver Archivador" class="uk-icon-link" uk-icon="icon: file" contextmenu="Ver Archivador"><i class="fa fa-file-pdf-o "></i }></a>
                             				{{ $cate->id }}
 										</td>
 											<td>{{ $cate->id }}</td>

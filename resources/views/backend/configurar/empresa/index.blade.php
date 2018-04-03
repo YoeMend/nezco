@@ -47,7 +47,7 @@
 							$categoria=2;
 							$tipo=$cate->id;
 							$url = 'videosb/index/'.$categoria.'/'.$tipo;?>
-							<a href="{{ url($url) }}" title="Ver Galería de Videos" class="uk-icon-link" uk-icon="icon: file" contextmenu="Ver Galería de Videos"><i class="fa fa-image "></i }></a>
+							<a href="{{ url($url) }}" title="Ver Galería de Videos" class="uk-icon-link" uk-icon="icon: file" contextmenu="Ver Galería de Videos"><i class="fa fa-file-video-o "></i }></a>
 
                               </td>
 											<td>{{ $cate->id }}</td>

@@ -13,8 +13,6 @@ class ImagenesController extends Controller
 {
 	public function index($categoria,$tipo)
 	{
-		//dd($categoria);
-		//list($cat,$tipo)=explode("-",$categoria);
 		switch ($categoria) {
     	case '1': #producto
     	$producto= Producto::find($tipo);
@@ -227,8 +225,10 @@ public function destroy($id)
 public function principal($id)
 {
 
+
     $imagenes= Imagenes::where('categoria_imagen_id',$id)->first();
-    return view('backend.imagenes.edit')->with('categoria',$id)->with('imagenes',$imagenes);
+    $tipo = $imagenes->tipo_id;
+    return view('backend.imagenes.edit')->with('categoria',$id)->with('imagenes',$imagenes)->with('tipo',$tipo);
 
 }
 
@@ -259,6 +259,12 @@ public function update(Request $request, $id)
         $texto = "Galeria: ".$galeria->nombre;
         $atras = "galeriab.index";
         break;
+        case '5':
+
+          $texto = "Banner Principal: ".$imagenes->nombre;
+        $atras = "administrar/home";;
+        break;
+
         default:
             # code...
         break;
@@ -271,7 +277,7 @@ public function update(Request $request, $id)
        $categoria = $request->categoria_imagen_id;
        $filename_old = $imagenes->url;
 
-       if($categoria==1){    
+    if($categoria==1){    
         $name_file = 'producto_'.time().'.'.$file->getClientOriginalExtension();
         $path = public_path().'/img/productos/';
     }
@@ -290,9 +296,16 @@ public function update(Request $request, $id)
         $path = public_path().'/img/empresa/';
 
     }
+    if($categoria==5){
+        $name_file = 'principal_'.time().'.'.$file->getClientOriginalExtension();
+        $path = public_path().'/img/principal/';
+
+    }
+
     if(!empty($file_temp)){
         unlink($path.$file_temp);  
-    }       
+    } 
+
     File::delete($path . $filename_old);     
     $file->move($path, $name_file);
     $imagenes->url = $name_file;
@@ -302,8 +315,14 @@ public function update(Request $request, $id)
 $imagenes->updated_at = date('Y-m-d');
 $imagenes->save();
 
-$imagenes= Imagenes::where('categoria_imagen_id',$categoria)->where('tipo_id',$tipo)->paginate(6);
+
+if($categoria==5){
+     return view('backend.imagenes.edit')->with('categoria',$id)->with('imagenes',$imagenes)->with('tipo',$tipo);
+    }
+    else{
+        $imagenes= Imagenes::where('categoria_imagen_id',$categoria)->where('tipo_id',$tipo)->paginate(6);
     return view('backend.imagenes.index')->with('categoria',$categoria)->with('tipo',$tipo)->with('atras',$atras)->with('texto',$texto)->with('imagenes',$imagenes);
+}
 
 } catch (Exception $e) {
   \Log::info('Error creating item: '.$e);
