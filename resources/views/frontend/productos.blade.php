@@ -48,10 +48,6 @@
 								    <p><a id="filter_item" href="">{{ $producto->titulo }}</a></p>
 						  			@endif	
 						  			@endforeach
-						  			{{-- @while($categoria->id == $productos->categoria_producto_id) --}}
-						  			
-								  
-								   {{--  @endwhile --}}
 								</div>
 							</div>
 				      </li>
