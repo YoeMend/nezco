@@ -173,6 +173,14 @@ Route::get('usuarios/update_password/{valor}', [
 
 });
 
+// FIN RUTAS BACKEND
+
+//////////////////////////
+
+// RUTAS FRONTEND
+
+//////////
+
 Route::get('/', [
       'as'=>'frontend.index',
       'uses'=>'FrontendController@index' 

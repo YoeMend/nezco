@@ -15,21 +15,28 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="row align-items-start">
-					<div class="col-lg-12 col-md-6 py-3 px-4 border-bottom" >
+					<div class="col-lg-12 col-md-12 py-3 px-4 border-bottom" >
 						<div class="row align-items-center">
 							<div class="col-lg-12 pl-lg-5 border-bottom-1">
 								<h3 class="font-italic pt-3 pt-lg-0 ">{{ $servicio_detail->titulo }}</h3>
-								<p>
-									{{ $servicio_detail->descripcion }}
-								</p>
-								<h5>Detalles</h5>
-								<p>
-									{{ $servicio_detail->detalles }}
-								</p>
+								
+									<?= $servicio_detail->descripcion; ?>
+
+								
+								
+									<?= $servicio_detail->detalles; ?>
+								
 							</div>
 							<hr>
 							<div class="col-lg-12">
-								<ul id="lightgallery" class="cards cards-galery text-center list-unstyled row">
+								
+								<ul id="lightgallery" class=" col cards cards-galery text-center list-unstyled row">
+
+									
+									<li class=" card py-2" data-responsive="{{ asset('img/servicios/'.$servicio_detail->imagen) }}" data-src="{{ asset('img/servicios/'.$servicio_detail->imagen) }}" data-sub-html="{{ $servicio_detail->titulo }}" {{-- data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" --}}>
+									<a href="">
+				                      <img src="{{ asset('img/servicios/'.$servicio_detail->imagen) }}" alt="{{ $servicio_detail->titulo }}" class="img-fluid">
+				                    </a>
 
 					                @foreach($imagenes as $imagen)
 					                <li class=" card py-2" data-responsive="{{ asset('img/servicios/'.$imagen->url) }}" data-src="{{ asset('img/servicios/'.$imagen->url) }}" data-sub-html="{{ $imagen->nombre }}" {{-- data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" --}}>

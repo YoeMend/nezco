@@ -14,16 +14,26 @@
 						$longitud = count($productos);
 						?>
 						@for($i=0; $i<$longitud; $i++)
+
+						<?php	 
+							$length = 150;
+						    $stringDisplay = substr($productos[$i]->descripcion, 0, $length);
+
+						    if (strlen($stringDisplay) > $length - 1) {
+						    	 $stringDisplay.="...";
+						    }
+
+						?>
 								@if($i == 0)
 							     <div class="carousel-item active my-4">
 							    	<div class="row align-items-center justify-content-around">
 							    		
 							    		<div class="col-12 col-lg-4 col-md-5 mt-3 mt-lg-0">
 							    			<div class="img-producto w-100">
-							    				<img class="img-fluid" src="{{ asset('img/productos/'.$productos[$i]->imagen) }}" alt="First slide">
+							    				<img class="img-fluid h-100" src="{{ asset('img/productos/'.$productos[$i]->imagen) }}" alt="First slide">
 							    			</div>
 							    			<div class="img-producto2 w-100">
-							    				<img class="img-fluid" src="{{ asset('img/productos/'.$productos[$i]->imagen) }}" alt="First slide">
+							    				<img class="img-fluid h-100" src="{{ asset('img/productos/'.$productos[$i]->imagen) }}" alt="First slide">
 							    			</div>
 							    			
 							    			
@@ -31,9 +41,7 @@
 
 							    		<div class="col-12 col-lg-5 col-md-4 mt-5">
 							    			<h3 class="font-italic">{{ $productos[$i]->titulo }}</h3>
-							    			<p>
-							    				{{ $productos[$i]->descripcion }}
-							    			</p>
+							    			<?=  $stringDisplay; ?>
 
 							    			<div class="col text-left">
 							    				<a class="font-italic enlaces " href="productos_detail/{{ $productos[$i]->id }}">Más Información</a>
@@ -62,9 +70,8 @@
 
 							    		<div class="col-12 col-lg-5 col-md-4 mt-5">
 							    			<h3 class="font-italic">{{ $productos[$i]->titulo }}</h3>
-							    			<p>
-							    				{{ $productos[$i]->descripcion }}
-							    			</p>
+							    			<?=  $stringDisplay; ?>
+
 
 							    			<div class="col text-left">
 							    				<a class="font-italic enlaces " href="productos_detail/{{ $productos[$i]->id }}">Más Información</a>
