@@ -12,16 +12,20 @@ use App\Empresa;
 use App\Documentos;
 use App\Galeria;
 use App\Imagenes;
+use App\Video;
+use App\TipoProducto;
 
 class FrontendController extends Controller
 {
     public function index(){
 
-    	$servicios = DB::table('servicio')-> where('publico','Si')->where('inicio','1')-> get();
+    	$servicios = DB::table('servicio')-> where('publico','Si')->where('inicio','1')->orderBy('posicion', 'ASC')-> get();
     	$productos = DB::table('producto')-> where('publico','Si')->where('inicio','1')->orderby('posicion', 'ASC')-> get();
     	$logo_empresa   = DB::table('empresa')-> where('publico','Si')->where('estatus','Activo')-> get();
 
-		return view('frontend.index')->with('servicios',$servicios)->with('productos',$productos)->with('logo_empresa',$logo_empresa);
+    	$video   = Video::where('publico','Si')->where('categoria_video_id','1')-> first();
+
+		return view('frontend.index')->with('servicios',$servicios)->with('productos',$productos)->with('logo_empresa',$logo_empresa)->with('video',$video);
 	}
 	
 	public function nosotros(){
@@ -32,7 +36,7 @@ class FrontendController extends Controller
 
 		$servicios = DB::table('servicio')
 								-> where('publico','Si')
-								//->leftJoin('producto', 'users.id', '=', 'posts.user_id')
+								->orderBy('posicion', 'ASC')
 								-> get();
 
 		return view('frontend.servicios')->with('servicios',$servicios);
@@ -57,32 +61,38 @@ class FrontendController extends Controller
 								-> where('estatus','Activo')
 								-> get();
 
-		$productos = DB::table('producto')->where('publico','Si')->get();
+		$productos = DB::table('producto')->where('publico','Si')->orderBy('posicion', 'ASC')->get();
 
-		/*$productosFilter = DB::table('categoria_producto')
-							->join('producto', 'producto.categoria_producto_id', '=', 'categoria_producto.id')
-							->select('categoria_producto.descripcion as categoria', 'producto.titulo', 'producto.descripcion as pdescripcion', 'categoria_producto.id as categoriaid' )
-							->where('categoria_producto.estatus','Activo')
-							->get();*/
+		$tipo_productos = TipoProducto::where('estatus', 'Activo')->get();
 
-       $productosFilter = DB::table('producto as a')
-       ->join('categoria_producto as b','a.categoria_producto_id','=','b.id')
-       ->select('a.id','a.codigo','a.titulo','a.descripcion as pdescripcion','b.descripcion as categoria','b.id as categoriaid')
-       ->where('a.estatus','Activo')
-       ->get();
+       // $productosFilter = DB::table('producto as a')
+       // ->join('tipo_producto as c','a.tipo_producto_id','=','c.id')
+       // ->join('categoria_producto as b','a.categoria_producto_id','=','b.id')
+       
+       // ->select('a.id','a.codigo','a.titulo','a.descripcion as pdescripcion','a.tipo_producto_id','b.descripcion as categoria','b.id as categoriaid', 'c.id as id_tipo', 'c.descripcion as descripcion_tipo')
+       // ->where('a.estatus','Activo')
+       // ->get();
 
-
-//dd($productosFilter);
-		return view('frontend.productos')->with('categorias_productos',$categorias_productos)->with('productos',$productos)->with('productosFilter',$productosFilter);
+		return view('frontend.productos')->with('categorias_productos',$categorias_productos)->with('productos',$productos)->with('tipo_productos', $tipo_productos);
 	}
 	public function productos_detail($id){
 
-		//$categoria_productos=DB::table('categoria_producto')
+		$producto = Producto::where('id', '1')->where('publico','Si')->first();
+		
+		$productos = Producto::where('publico','Si')->get();
 
-		$productos_detail = DB::table('producto')->where('id', $id)->first();
+		$categorias_productos = CategoriaProducto::where('estatus','Activo')->get();
 
-		return view('frontend.productos_detail')->with('productos_detail',$productos_detail);
+		// $tipo_productos = TipoProducto::where('estatus', 'Activo')->get();
+
+		// $imagenes = Imagenes::where('publico', 'Si')->where('categoria_imagen_id', $categoriaid)->where('tipo_id', $id)->get();
+
+			return view('frontend.productos_detail')->with('producto',$producto)->with('categorias_productos',$categorias_productos);
+
+		//->with('tipo_productos', $tipo_productos)->with('imagenes',$imagenes);
+
 	}
+
 	public function leyes(){
 
 		$categorias_documentos = DB::table('categoria_documentos')

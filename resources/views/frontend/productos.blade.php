@@ -45,13 +45,13 @@
 						  		<div class=" card-body pt-0">
 						  			@foreach ($productos as $producto)
 						  			@if ($producto->categoria_producto_id == $categoriap->id)
-								    <p><a id="filter_item" href="">{{ $producto->titulo }}</a></p>
+						  			{{-- ENLACE --}}
+								    <a id="filter_item" href="productos_detail/{{ $producto->id }}" >
+								    	{{ $producto->titulo }}
+								    </a>
+								    <hr class="mt-0">
 						  			@endif	
 						  			@endforeach
-						  			{{-- @while($categoria->id == $productos->categoria_producto_id) --}}
-						  			
-								  
-								   {{--  @endwhile --}}
 								</div>
 							</div>
 				      </li>
@@ -73,13 +73,31 @@
 					<div class="py-2 border-bottom">
 						<img src="{{ asset('img/productos/'.$producto->imagen) }}" alt="" class="img-fluid">
 						<div class="">
-							<h3 class="font-italic pt-3 pt-lg-0 ">{{ $producto->titulo }}</h3>
-							<p>
-								{{ $producto->descripcion }}
-							</p>
-							<button class="btn btn-primary mt-2">{{ $producto->tipo_producto_id }}</button>
+							{{-- ENLACE --}}
+							<a class="c-vino" href="productos_detail/{{ $producto->id }}">
+								<h5 class="font-italic pt-3 pt-lg-2 ">{{ $producto->titulo }}</h5>
+						</a>
+						<?php	 
+							$length = 100;
+						    $stringDisplay = substr($producto->descripcion, 0, $length);
+
+						    if (strlen($stringDisplay) > $length - 1) {
+						    	 $stringDisplay.="...";
+						    }
+
+						?>
+								<?= $stringDisplay; ?>
+							
+							{{-- @foreach ($tipo_productos as $tipo)
+						  		@if ($tipo->id == $producto->tipo_producto_id)
+
+								<p class=" mt-2">{{ $tipo->descripcion }}</p>
+							
+								@endif
+							@endforeach --}}
 
 							<div class="col text-right pt-3 ">
+								{{-- ENLACE --}}
 					   			<a class="font-italic enlaces " href="productos_detail/{{ $producto->id }}">Ver más</a>
 					    	</div>
 						</div>

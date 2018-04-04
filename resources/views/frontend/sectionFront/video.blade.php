@@ -8,7 +8,7 @@
 		</div>
 		<div>
 			<div class="svg_video"></div>
-			<video src="{{ asset('videos/home.mp4') }}" class="video_home"  loop muted preload autoplay poster="{{-- imagen cuando el video tarda en cargar --}}"></video>
+			<video src="{{ asset('video/principal/'.$video->url) }}" class="video_home"  loop muted preload autoplay poster="{{-- imagen cuando el video tarda en cargar --}}"></video>
 		</div>
 		
 	</div>

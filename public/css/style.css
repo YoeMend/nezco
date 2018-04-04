@@ -97,6 +97,10 @@
 .h-10em {
   height: 10em; }
 
+.h-360px {
+  height: 360px;
+  min-height: 360px; }
+
 .z-index-90 {
   z-index: -90; }
 
@@ -125,6 +129,9 @@ body {
 
 h1 {
   font-size: 2rem; }
+
+a:hover {
+  color: black; }
 
 .video_home {
   position: fixed;
@@ -224,15 +231,22 @@ h1 {
   text-decoration: none; }
 
 .img-producto2 {
+  height: 400px;
+  min-height: 400px;
+  overflow: hidden;
   position: absolute;
   top: 20%;
   left: 20%; }
   @media only screen and (max-width: 767px) {
     .img-producto2 {
-      top: 10%;
-      left: 10%; } }
+      top: 0%;
+      left: 0%; }
+      .img-producto2 img {
+        height: auto !important; } }
 
 .img-producto {
+  height: 400px;
+  min-height: 400px;
   overflow: hidden; }
   .img-producto img {
     -webkit-transform: scale(2);
@@ -240,6 +254,13 @@ h1 {
     -ms-transform: scale(2);
     -o-transform: scale(2);
     transform: slace(2); }
+  @media only screen and (max-width: 767px) {
+    .img-producto {
+      visibility: hidden;
+      height: auto;
+      min-height: auto; }
+      .img-producto img {
+        height: auto !important; } }
 
 .carousel-inner-productos {
   min-height: 400px; }
@@ -285,10 +306,8 @@ input[type="email"]:focus {
 
 #filter_item {
   color: black !important;
-  padding-top: 0.6em;
   font-style: italic;
-  font-weight: bold;
-  border-bottom: 1px solid #989898; }
+  font-weight: bold; }
 
 #filter_item:hover {
   text-decoration: none; }

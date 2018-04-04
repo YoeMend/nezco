@@ -14,20 +14,34 @@
 						$longitud = count($servicios);
 						?>
 					@for($i=0; $i<$longitud; $i++)
+
+						<?php	 
+							$length = 150;
+						    $stringDisplay = substr($servicios[$i]->descripcion, 0, $length);
+
+						    if (strlen($stringDisplay) > $length - 1) {
+						    	 $stringDisplay.="...";
+						    }
+
+						?>
+
 						@if($i == 0)
 						    <div class="carousel-item active mt-5">
 						    	<div class="row align-items-center justify-content-around">
 						    		<div class="col-lg-5 col-md-5">
 						    			<h3 class="font-italic">{{ $servicios[$i]->titulo }} </h3>
-						    			<p>{{ $servicios[$i]->descripcion }}</p>
+
+						    			<?= $stringDisplay; ?>
+						    			
+
 						    			<div class="col text-right">
 						    				<a class="font-italic enlaces " href="servicios_detail/2/{{ $servicios[$i]->id }}">Más Información</a>
 						    			</div>
 						    			
 						    			
 						    		</div>
-						    		<div class="col-lg-5 col-md-5 mt-3 mt-lg-0 ">
-						    			<img class="d-block img-fluid w-100" src="{{ asset('img/servicios/'.$servicios[$i]->imagen) }}" alt="{{ $servicios[$i]->titulo }} ">
+						    		<div class="col-lg-5 col-md-5 mt-3 mt-lg-0 h-360px overflow-hidden" >
+						    			<img class="d-block img-fluid h-100" src="{{ asset('img/servicios/'.$servicios[$i]->imagen) }}" alt="{{ $servicios[$i]->titulo }} ">
 						    		</div>
 						    	</div>
 						    </div>
@@ -37,15 +51,17 @@
 						    	<div class="row align-items-center justify-content-around">
 						    		<div class="col-lg-5 col-md-5">
 						    			<h3 class="font-italic">{{ $servicios[$i]->titulo }} </h3>
-						    			<p>{{ $servicios[$i]->descripcion }}</p>
+
+						    			<?= $stringDisplay; ?>
+
 						    			<div class="col text-right">
 						    				<a class="font-italic enlaces " href="servicios_detail/2/{{ $servicios[$i]->id }}">Más Información</a>
 						    			</div>
 						    			
 						    			
 						    		</div>
-						    		<div class="col-lg-5 col-md-5 mt-3 mt-lg-0 ">
-						    			<img class="d-block img-fluid w-100" src="{{ asset('img/servicios/'.$servicios[$i]->imagen) }}" alt="{{ $servicios[$i]->titulo }} ">
+						    		<div class="col-lg-5 col-md-5 mt-3 mt-lg-0 h-360px  overflow-hidden" >
+						    			<img class="d-block img-fluid h-100" src="{{ asset('img/servicios/'.$servicios[$i]->imagen) }}" alt="{{ $servicios[$i]->titulo }} ">
 						    		</div>
 						    	</div>
 						    </div>
