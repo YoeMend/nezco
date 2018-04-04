@@ -37,6 +37,7 @@
 							<th>Nombre</th>
 							<th>Url</th>
 							<th>Público</th>
+							<th>Inicio</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -45,12 +46,17 @@
 							<td>
 							<?php $url = 'videosb/show/'.$categoria.'/'.$tipo.'/'.$cate->id;?>	
 							<a href="{{ url($url) }}" title="Ver ficha de Registro" class="uk-icon-link" uk-icon="icon: file" contextmenu="Ver Registro"><i class="fa fa-search "></i }></a> 
+							<?php $url = 'videosb/editar/'.$categoria.'/'.$tipo.'/'.$cate->id;?>	
+
+							<a href="{{ url($url) }}" title="Editar" class="uk-icon-link" uk-icon="icon: pencil" contextmenu="Editar Registro"><i class="fa fa-edit "></i }></a> 
+
 							<a href="{{ route('videosb.destroy',$cate->id) }}" title="Eliminar Registro" class="uk-icon-link" uk-icon="icon: trash"><i class="fa fa-trash " onclick="return confirm('¿Seguro desea eliminar este registro?')"></i }></a>
 								
 										</td>
 											<td>{{ $cate->nombre }}</td>
 											<td>{{ $cate->url }}</td>
 											<td>{{ $cate->publico }}</td>
+											<td>{{ $cate->inicio }}</td>
 										</tr>
 					@endforeach
 				</tbody>

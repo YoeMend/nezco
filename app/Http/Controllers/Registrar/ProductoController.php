@@ -23,7 +23,7 @@ class ProductoController extends Controller
        ->join('categoria_producto as b','a.categoria_producto_id','=','b.id')
        ->join('tipo_producto as c','a.tipo_producto_id','=','c.id')
        ->select('a.id','a.codigo','a.titulo','a.descripcion','b.descripcion as descat','c.descripcion as destipo','a.estatus')
-       ->where('titulo','LIKE',$valor.'%')
+       ->where('titulo','LIKE','%'.$valor.'%')
        ->orderBy('a.id','desc')
        ->paginate(6);
 

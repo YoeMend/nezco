@@ -17,10 +17,21 @@
 		<h1><i class="fa fa-dashboard"></i> Servicios</h1>
 
 	</div>
-	<ul class="app-breadcrumb breadcrumb side">
-		<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-		<li class="breadcrumb-item active"><a href="{{ route('servicio.create') }}">Crear</a></li>
-	</ul>
+	<ul class="app-nav">
+		<form name="form1" method="get" action="{{route ('servicio.index')}}" accept-charset="UTF-8"><input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+			<li class="app-search">
+				<input id="valor" name="valor" class="app-search__input" type="search" placeholder="Buscar">
+				<button type="submit" class="app-search__button" name="boton" id="boton"><i class="fa fa-search"></i></button>
+			</li>
+			
+		</form>
+    </ul>
+    <ul class="app-breadcrumb breadcrumb side">
+    	<li class="breadcrumb-item active">
+
+    		<a href="{{ route('servicio.create') }}" title="Crear" class="uk-icon-link" uk-icon="icon: file" contextmenu="Crear Registro"><i class="fa fa-file-o "></i }></a></li>
+
+    </ul>
 </div>
 
 <div class="row">
@@ -33,6 +44,7 @@
 							<th>#</th>
 							<th>Id</th>
 							<th>Nombre</th>
+							<th>Categoria</th>
 							<th>Estatus</th>
 						</tr>
 					</thead>
@@ -52,6 +64,7 @@
 										</td>
 											<td>{{ $cate->id }}</td>
 											<td><?php echo wordwrap($cate->titulo,100,"<br />"); ?></td>
+											<td>{{ $cate->descat }}</td>
 											<td>{{ $cate->estatus }}</td>
 										</tr>
 					@endforeach

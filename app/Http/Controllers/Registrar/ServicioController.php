@@ -9,14 +9,30 @@ use App\CategoriaServicio;
 use Storage;
 use App\Servicio;
 use APP\Imagenes;
+use DB;
 use Laracasts\Flash\Flash; 
 
 class ServicioController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+       $valor = $request["valor"];
+      if($valor!=''){
+       $servicio = DB::table('servicio as a')
+       ->join('categoria_servicio as b','a.categoria_servicio_id','=','b.id')
+       ->select('a.id','a.titulo','a.descripcion','b.descripcion as descat','a.estatus')
+       ->where('titulo','LIKE','%'.$valor.'%')
+       ->orderBy('a.id','desc')
+       ->paginate(6);
 
-        $servicio = Servicio::orderBy('id', 'ASC')->paginate(6);
+      }else{
+       $servicio = DB::table('servicio as a')
+       ->join('categoria_servicio as b','a.categoria_servicio_id','=','b.id')
+       ->select('a.id','a.titulo','a.descripcion','b.descripcion as descat','a.estatus')
+       ->orderBy('a.id','desc')
+       ->paginate(6);
+      } 
+
         return view('backend.registrar.servicio.index')->with('servicio', $servicio);
 
     }

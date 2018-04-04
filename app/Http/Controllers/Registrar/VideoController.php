@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Registrar;
 use File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
 use App\Video;
 use App\Servicio;
 use App\Empresa;
@@ -44,6 +45,8 @@ public function store(Request $request)
 		$categoria=$request["categoria_video_id"];
         $video->categoria_video_id = $categoria;
         $tipo = $request["tipo_id"];
+        $inicio = $request["inicio"];
+        $video->inicio = $inicio;
         $url = 'video/index/'.$categoria.'/'.$tipo;
         switch ($categoria) {
         case '2': #producto
@@ -113,7 +116,7 @@ public function destroy($id)
     if($categoria==2){  
         $empresa = Empresa::find($tipo);
         $texto = "Empresa: ".$empresa->nombre;
-        $atras="servicio.index";
+        $atras="empresa.index";
         $path = public_path().'/video/empresa/';
     }    
     File::delete($path . $filename_old);
@@ -131,6 +134,24 @@ public function principal($id)
 
 }
 
+public function editar($categoria,$tipo,$id)
+{
+
+    switch ($categoria) {
+        case '2':
+        $empresa = Empresa::find($tipo);
+        $texto = "Empresa: ".$empresa->nombre;
+        $atras = "empresa.index";
+        break;
+        default:
+            # code...
+        break;
+
+    }
+    $video=Video::find($id);
+    return view('backend.registrar.video.editar')->with('categoria',$categoria)->with('video',$video)->with('tipo',$tipo)->with('texto',$texto);
+
+}
 
 public function update(Request $request, $id)
     {
@@ -149,6 +170,42 @@ public function update(Request $request, $id)
         } 
         $video->save();
         return redirect()->route('videosb.principal', $id)->with("notificacion","Se ha guardado correctamente su información");
+
+    }
+
+
+public function actualizar(Request $request, $id)
+    {
+        //dd($request);
+        $tipo = $request["tipo_id"];
+        $categoria = $request["categoria_video_id"];
+        $inicio = $request["inicio"];
+        $publico = $request["publico"];
+
+        $cvideo = Video::orderby('id')->get();
+        foreach($cvideo as $zvideo){
+            $zvideo->inicio = 0;
+            $zvideo->update();
+        }
+
+
+        $video = video::find($id);
+        $video->fill($request->all());
+        $video->inicio = $inicio;
+        $video->publico = $publico;
+        $video->save();
+        switch ($categoria) 
+        {
+            case '2': #producto
+            $empresa= Empresa::find($tipo);
+            $texto = "Categoría de Video: Empresa: ".$empresa->id." ".$empresa->nombre;
+            $atras = "empresa.index";
+            break;
+            default:
+            break;
+         }
+    $video= Video::where('categoria_video_id',$categoria)->where('tipo_id',$tipo)->paginate(6);
+    return view('backend.registrar.video.index')->with('texto',$texto)->with('video',$video)->with('categoria',$categoria)->with('tipo',$tipo)->with('atras',$atras);
 
     }
 

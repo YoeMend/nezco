@@ -120,9 +120,18 @@ Route::get('videosb/principal/{id}', [
 		'as'   => 'videosb.principal'
 	]);
 Route::get('videosb/show/{categoria}/{tipo}/{id}', [
-		'uses' => 'Registras\VideoController@show',
+		'uses' => 'Registrar\VideoController@show',
 		'as'   => 'videosb.show'
 	]); 
+Route::put('videosb/actualizar/{id}',[
+      'uses' => 'Registrar\VideoController@actualizar',
+      'as'   => 'videosb.actualizar']);
+
+Route::get('videosb/editar/{categoria}/{tipo}/{id}', [
+		'uses' => 'Registrar\VideoController@editar',
+		'as'   => 'videosb.editar'
+	]);
+
 Route::resource('videosb', 'Registrar\VideoController');
 
 

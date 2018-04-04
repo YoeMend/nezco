@@ -7,18 +7,31 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\CategoriaDocumentos;
 use Storage;
-
+use DB;
 use App\Documentos;
 use APP\Archivo;
 use Laracasts\Flash\Flash; 
 
 class DocumentoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-
-        $documentos = Documentos::orderBy('id', 'ASC')->paginate(6);
-        return view('backend.registrar.documentos.index')->with('documento', $documentos);
+       $valor = $request["valor"];
+      if($valor!=''){
+        $documentos = DB::table('documentos as a')
+       ->join('categoria_documentos as b','a.categoria_documento_id','=','b.id')
+       ->select('a.id','a.nombre','a.descripcion','b.descripcion as descat','a.estatus')
+       ->where('nombre','LIKE','%'.$valor.'%')
+       ->orderBy('a.id','desc')
+       ->paginate(6);
+      }else{
+        $documentos = DB::table('documentos as a')
+       ->join('categoria_documentos as b','a.categoria_documento_id','=','b.id')
+       ->select('a.id','a.nombre','a.descripcion','b.descripcion as descat','a.estatus')
+       ->orderBy('a.id','desc')
+       ->paginate(6);
+      }
+      return view('backend.registrar.documentos.index')->with('documento', $documentos);
 
     }
     public function create(){

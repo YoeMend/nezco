@@ -5,7 +5,7 @@ namespace App\Http\Controllers\configurar;
 use File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use DB;
 use Storage;
 
 use App\Empresa;
@@ -14,10 +14,24 @@ use Laracasts\Flash\Flash;
 
 class EmpresaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
 
-        $empresa = Empresa::orderBy('id', 'ASC')->paginate(6);
+      $valor = $request["valor"];
+      if($valor!=''){
+       $empresa = DB::table('empresa as a')
+       ->select('a.id','a.nombre','a.descripcion','a.publico','a.estatus')
+       ->where('nombre','LIKE','%'.$valor.'%')
+       ->orderBy('a.id','desc')
+       ->paginate(6);
+
+      }else{
+       $empresa = DB::table('empresa as a')
+       ->select('a.id','a.nombre','a.descripcion','a.publico','a.estatus')
+       ->orderBy('a.id','desc')
+       ->paginate(6);
+
+      }
         return view('backend.configurar.empresa.index')->with('empresa', $empresa);
 
     }

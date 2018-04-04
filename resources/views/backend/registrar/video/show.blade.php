@@ -13,7 +13,7 @@
 
 <div class="app-title">
 	<div>
-		<h1><i class="fa fa-dashboard"></i> Vista Imagen</h1>
+		<h1><i class="fa fa-dashboard"></i> Presentación Video</h1>
 	</div>
 	<ul class="app-breadcrumb breadcrumb side">
 		<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
@@ -50,16 +50,16 @@
 					<label class="control-label">Público</label>
 					<select id="publico"  name="publico" class="form-control" readonly>	
                         <option value="">Seleccione</option>
-                        <option value="Si"@if(old('publico', $videos->publico)=='Si') selected @endif>Si</option>
-                        <option value="No"@if(old('publico', $videos->publico)=='No') selected @endif>No</option>
+                        <option value="Si"@if(old('publico', $video->publico)=='Si') selected @endif>Si</option>
+                        <option value="No"@if(old('publico', $video->publico)=='No') selected @endif>No</option>
                     </select>
 				</div>
 				<div class="form-group col-md-6">
                   <div class="form-group">
-					<label>Imagen</label>
-					<?php if ($video->categoria_imagen_id==2): ?>
-						<p><video src="{{ asset('video/empresa/'.$video->url) }}" style="max-width: 100%"></video></p>	
-					<?php endif ?>
+					<label>Video Cargado</label>
+						<p>
+                  	<video src="{{ asset('video/empresa/'.$video->url) }}" class="video_home"  loop muted preload autoplay poster=""></video></p>
+
 
 					
 

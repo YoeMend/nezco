@@ -47,7 +47,7 @@
 					<label class="control-label">Nombre</label>
 					<input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre">
 				</div>
-				<div class="form-group col-md-1">
+				<div class="form-group col-md-2">
 					<label class="control-label">Público</label>
 					<select id="publico"  name="publico" class="form-control">	
 						<option value="">Seleccione</option>
@@ -55,6 +55,15 @@
 						<option value="No">No</option>
 					</select>
 				</div>
+				<div class="form-group col-md-2">
+					<label class="control-label">Inicio</label>
+					<select id="inicio"  name="inicio" class="form-control">	
+						<option value="">Seleccione</option>
+						<option value="1">Si</option>
+						<option value="0">No</option>
+					</select>
+				</div>
+
 				<div class="form-group col-md-6">
                   <div class="form-group">
 					<label>video</label>
