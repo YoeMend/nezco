@@ -70,14 +70,6 @@
 					<label class="control-label">Posición</label>
 					<input class="form-control" type="text" name="posicion" id="posicion" placeholder="Posición" maxlength="2">
 				</div>
-				<div class="form-group col-md-6">
-					<label class="control-label">Estatus</label>
-					<select id="estatus"  name="estatus" class="form-control">	
-						<option value="">Seleccione</option>
-						<option value="Activo">Activo</option>
-						<option value="Desactivado">Desactivado</option>
-					</select>
-				</div>
 
 				<div class="form-group col-md-6">
                   <div class="form-group">

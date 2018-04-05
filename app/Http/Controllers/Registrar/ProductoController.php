@@ -22,7 +22,7 @@ class ProductoController extends Controller
        $producto = DB::table('producto as a')
        ->join('categoria_producto as b','a.categoria_producto_id','=','b.id')
        ->join('tipo_producto as c','a.tipo_producto_id','=','c.id')
-       ->select('a.id','a.codigo','a.titulo','a.descripcion','b.descripcion as descat','c.descripcion as destipo','a.estatus')
+       ->select('a.id','a.codigo','a.titulo','a.descripcion','b.descripcion as descat','c.descripcion as destipo','a.publico','a.posicion')
        ->where('titulo','LIKE','%'.$valor.'%')
        ->orderBy('a.id','desc')
        ->paginate(6);
@@ -31,7 +31,7 @@ class ProductoController extends Controller
        $producto = DB::table('producto as a')
        ->join('categoria_producto as b','a.categoria_producto_id','=','b.id')
        ->join('tipo_producto as c','a.tipo_producto_id','=','c.id')
-       ->select('a.id','a.codigo','a.titulo','a.descripcion','b.descripcion as descat','c.descripcion as destipo','a.estatus')
+       ->select('a.id','a.codigo','a.titulo','a.descripcion','b.descripcion as descat','c.descripcion as destipo','a.publico','a.posicion')
        ->orderBy('a.id','desc')
        ->paginate(6);
 
@@ -52,6 +52,7 @@ class ProductoController extends Controller
 
             $titulo = $request["titulo"];
             $codigo = $request["codigo"];
+            $posicion = $request["posicion"];
             //dd($descripcion);
             if(Producto::where('titulo',$titulo)->first()){
 
@@ -63,13 +64,11 @@ class ProductoController extends Controller
                 return redirect()->route('producto.index')->with("notificacion","Producto Ya se encuentra Registrado");
 
             }
-
-
             $producto = new Producto($request->all());
-        
+
             if($request->archivo){
             $file = $request->file('archivo');
-                
+              
             $name_file = 'producto_'.time().'.'.$file->getClientOriginalExtension();
             $path = public_path().'/img/productos/';
             if(!empty($file_temp)){
@@ -82,6 +81,17 @@ class ProductoController extends Controller
             $producto->updated_at = date('Y-m-d');
             $producto->usuario_id = $_SESSION["user"];
             $producto->save();
+            $idg = $producto->id;
+            $cproducto = Producto::where('id','!=',$idg)->orderby('posicion')->get();
+            foreach($cproducto as $cproducto){
+              if($cproducto->posicion==$posicion){
+                $posicion++;
+                $cproducto->posicion = $posicion;
+                $cproducto->update();
+              }
+               
+             }
+          
             return redirect()->route('producto.index')->with("notificacion","Se ha guardado correctamente su información");
 
         } catch (Exception $e) {
@@ -119,7 +129,11 @@ class ProductoController extends Controller
     {
 
         $producto = producto::find($id);
-
+        $posicion = $request["posicion"];
+        $actualizar=0;
+        if($producto->posicion!=$posicion){
+            $actualizar=1;
+        }
         $producto->fill($request->all());
         if ($request->file('archivo')) {
             $filename_old = $producto->imagen;
@@ -131,6 +145,20 @@ class ProductoController extends Controller
             $producto->imagen = $name;
         } 
         $producto->save();
+        if($actualizar==1)
+        {
+            $cproducto = Producto::where('id','!=',$id)->orderby('posicion')->get();
+            foreach($cproducto as $cproducto){
+              if($cproducto->posicion==$posicion){
+                $posicion++;
+                $cproducto->posicion = $posicion;
+                $cproducto->update();
+              }
+               
+             }
+
+        }
+
         return redirect()->route('producto.edit', $id)->with("notificacion","Se ha guardado correctamente su información");
 
     }

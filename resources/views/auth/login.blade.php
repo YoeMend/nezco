@@ -15,8 +15,11 @@
 		<div class="cover"></div>
 	</section>
 	<section class="login-content">
-		<div class="logo">
-			<h1>Nezco-SAC</h1>
+		<div class="text-center">
+			
+			<img src="{{ asset('img/LogoNezco.svg')}}" width="25%">
+			<h3 class="py-4">Sistema de Administración de Contenido</h3>
+			
 		</div>
 		<div class="login-box">
 			<form class="login-form" method="POST" action="{{ route('login') }}">

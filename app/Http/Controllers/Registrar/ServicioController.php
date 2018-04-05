@@ -20,7 +20,7 @@ class ServicioController extends Controller
       if($valor!=''){
        $servicio = DB::table('servicio as a')
        ->join('categoria_servicio as b','a.categoria_servicio_id','=','b.id')
-       ->select('a.id','a.titulo','a.descripcion','b.descripcion as descat','a.estatus')
+       ->select('a.id','a.titulo','a.descripcion','b.descripcion as descat','a.publico', 'a.posicion')
        ->where('titulo','LIKE','%'.$valor.'%')
        ->orderBy('a.id','desc')
        ->paginate(6);
@@ -28,7 +28,7 @@ class ServicioController extends Controller
       }else{
        $servicio = DB::table('servicio as a')
        ->join('categoria_servicio as b','a.categoria_servicio_id','=','b.id')
-       ->select('a.id','a.titulo','a.descripcion','b.descripcion as descat','a.estatus')
+       ->select('a.id','a.titulo','a.descripcion','b.descripcion as descat','a.publico', 'a.posicion')
        ->orderBy('a.id','desc')
        ->paginate(6);
       } 
@@ -49,6 +49,7 @@ class ServicioController extends Controller
             $descripcion = $request["descripcion"];
             $detalles = $request["detalles"];
             $titulo = $request["titulo"];
+            $posicion = $request["posicion"];
             //dd($descripcion);
             if(Servicio::where('titulo',$titulo)->first()){
 
@@ -74,7 +75,16 @@ class ServicioController extends Controller
             $servicio->updated_at = date('Y-m-d');
             $servicio->usuario_id = $_SESSION["user"];
             $servicio->save();
-            return redirect()->route('servicio.index')->with("notificacion","Se ha guardado correctamente su información");
+            $idg = $servicio->id;
+            $cservicio = Servicio::where('id','!=',$idg)->orderby('posicion')->get();
+            foreach($cservicio as $cservicio){
+              if($cservicio->posicion==$posicion){
+                $posicion++;
+                $cservicio->posicion = $posicion;
+              }
+               $cservicio->update();
+             }
+            return redirect()->route('servicio.index')->with("notificacion","Se ha guardado correctamente su información, Servicio Generado Nro: ".$idg);
 
         } catch (Exception $e) {
             \Log::info('Error creating item: '.$e);
@@ -104,7 +114,14 @@ class ServicioController extends Controller
     public function update(Request $request, $id)
     {
 
+        $detalles = $request["detalles"];
+        $posicion = $request["posicion"];
+        $descripcion = $request["descripcion"];
         $servicio = Servicio::find($id);
+        $actualizar=0;
+        if($servicio->posicion!=$posicion){
+            $actualizar=1;
+        }
 
         $servicio->fill($request->all());
         if ($request->file('archivo')) {
@@ -116,7 +133,23 @@ class ServicioController extends Controller
             $file->move($path,$name);
             $servicio->imagen = $name;
         } 
+        $servicio->descripcion = $descripcion;
+        $servicio->detalles = $detalles;
         $servicio->save();
+        if($actualizar==1)
+        {
+            $cservicio = Servicio::where('id','!=',$id)->orderby('posicion')->get();
+            foreach($cservicio as $cservicio){
+              if($cservicio->posicion==$posicion){
+                $posicion++;
+                $cservicio->posicion = $posicion;
+                $cservicio->update();
+              }
+               
+             }
+
+        }
+
         return redirect()->route('servicio.edit', $id)->with("notificacion","Se ha guardado correctamente su información");
 
     }

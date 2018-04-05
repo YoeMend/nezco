@@ -47,7 +47,7 @@
 							$tipo=$cate->id;
 							$url = 'imagenes/index/'.$categoria.'/'.$tipo;?>
 							<a href="{{ url($url) }}" title="Ver Galería" class="uk-icon-link" uk-icon="icon: file" contextmenu="Ver Galería"><i class="fa fa-image "></i }></a>
-                            				{{ $cate->id }}
+                            				
 										</td>
 											<td>{{ $cate->id }}</td>
 											<td><?php echo wordwrap($cate->nombre,100,"<br />"); ?></td>

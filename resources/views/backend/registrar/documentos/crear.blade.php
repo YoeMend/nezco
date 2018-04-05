@@ -58,14 +58,6 @@
 						<option value="No">No</option>
 					</select>
 				</div>
-				<div class="form-group col-md-4">
-					<label class="control-label">Estatus</label>
-					<select id="estatus"  name="estatus" class="form-control">	
-						<option value="">Seleccione</option>
-						<option value="Activo">Activo</option>
-						<option value="Desactivado">Desactivado</option>
-					</select>
-				</div>
 
 	
 			</div>

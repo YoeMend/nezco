@@ -63,14 +63,6 @@
                         <option value="No"@if(old('publico', $documento->publico)=='No') selected @endif>No</option>
                     </select>
                 </div>
-                <div class="form-group col-md-2">
-                    <label class="control-label">Estatus</label>
-                    <select id="estatus" class="form-control">  
-                        <option value="">Seleccione Estatus</option>
-                        <option value="Activo"@if(old('estatus', $documento->estatus)=='Activo') selected @endif>Activo</option>
-                        <option value="Desactivado"@if(old('estatus', $documento->estatus)=='Desactivado') selected @endif>Desactivado</option>
-                    </select>
-                </div>
 
 
         </div>

@@ -53,7 +53,7 @@
                     <input class="form-control" type="text" name="servicioid" id="servicioid" placeholder="Título y/o Nombre" value="{{ $descategoria }}" readonly="">
                 </div>
 
-                <div class="form-group col-md-1">
+                <div class="form-group col-md-2">
                     <label class="control-label">Público</label>
                     <select id="publico"  name="publico" class="form-control">  
                         <option value="">Seleccione</option>
@@ -61,7 +61,7 @@
                         <option value="No"@if(old('publico', $servicio->publico)=='No') selected @endif>No</option>
                     </select>
                 </div>
-                <div class="form-group col-md-1">
+                <div class="form-group col-md-2">
                     <label class="control-label">Inicio</label>
                     <select id="inicio"  name="inicio" class="form-control">    
                         <option value="">Seleccione</option>
@@ -72,14 +72,6 @@
                 <div class="form-group col-md-4">
                     <label class="control-label">Posición</label>
                     <input class="form-control" type="text" name="posicion" id="posicion" placeholder="Posición" maxlength="2" value="{{ $servicio->posicion }}">
-                </div>
-                <div class="form-group col-md-4">
-                    <label class="control-label">Estatus</label>
-                    <select id="estatus" class="form-control">  
-                        <option value="">Seleccione Estatus</option>
-                        <option value="Activo"@if(old('estatus', $servicio->estatus)=='Activo') selected @endif>Activo</option>
-                        <option value="Desactivado"@if(old('estatus', $servicio->estatus)=='Desactivado') selected @endif>Desactivado</option>
-                    </select>
                 </div>
 
                 <div class="form-group col-md-6">

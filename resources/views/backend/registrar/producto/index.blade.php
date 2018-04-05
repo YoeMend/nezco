@@ -47,7 +47,8 @@
 							<th>Nombre</th>
 							<th>Categoria</th>
 							<th>Tipo</th>
-							<th>Estatus</th>
+							<th>Público</th>
+							<th>Posición</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -62,13 +63,14 @@
 							$tipo=$cate->id;
 							$url = 'imagenes/index/'.$categoria.'/'.$tipo;?>
 							<a href="{{ url($url) }}" title="Ver Galería" class="uk-icon-link" uk-icon="icon: file" contextmenu="Ver Galería"><i class="fa fa-image "></i }></a>
-                            				{{ $cate->id }}
+                            				
 										</td>
 											<td>{{ $cate->codigo }}</td>
-											<td><?php echo wordwrap($cate->titulo,100,"<br />"); ?></td>
+											<td><?php echo wordwrap($cate->titulo,70,"<br />"); ?></td>
 											<td>{{ $cate->descat }}</td>
 											<td>{{ $cate->destipo }}</td>
-											<td>{{ $cate->estatus }}</td>
+											<td>{{ $cate->publico }}</td>
+											<td>{{ $cate->posicion }}</td>
 										</tr>
 					@endforeach
 				</tbody>

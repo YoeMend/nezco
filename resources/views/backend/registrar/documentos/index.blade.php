@@ -45,7 +45,7 @@
 							<th>Id</th>
 							<th>Nombre</th>
 							<th>Categoria</th>
-							<th>Estatus</th>
+							<th>Público</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -60,12 +60,12 @@
 							$tipo=$cate->id;
 							$url = 'archivo/index/'.$tipo;?>
 							<a href="{{ url($url) }}" title="Ver Archivador" class="uk-icon-link" uk-icon="icon: file" contextmenu="Ver Archivador"><i class="fa fa-file-pdf-o "></i }></a>
-                            				{{ $cate->id }}
+                            				
 										</td>
 											<td>{{ $cate->id }}</td>
 											<td><?php echo wordwrap($cate->nombre,100,"<br />"); ?></td>
 											<td>{{ $cate->descat }}</td>
-											<td>{{ $cate->estatus }}</td>
+											<td>{{ $cate->publico }}</td>
 										</tr>
 					@endforeach
 				</tbody>

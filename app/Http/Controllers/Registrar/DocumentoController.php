@@ -20,14 +20,14 @@ class DocumentoController extends Controller
       if($valor!=''){
         $documentos = DB::table('documentos as a')
        ->join('categoria_documentos as b','a.categoria_documento_id','=','b.id')
-       ->select('a.id','a.nombre','a.descripcion','b.descripcion as descat','a.estatus')
+       ->select('a.id','a.nombre','a.descripcion','b.descripcion as descat','a.publico')
        ->where('nombre','LIKE','%'.$valor.'%')
        ->orderBy('a.id','desc')
        ->paginate(6);
       }else{
         $documentos = DB::table('documentos as a')
        ->join('categoria_documentos as b','a.categoria_documento_id','=','b.id')
-       ->select('a.id','a.nombre','a.descripcion','b.descripcion as descat','a.estatus')
+       ->select('a.id','a.nombre','a.descripcion','b.descripcion as descat','a.publico')
        ->orderBy('a.id','desc')
        ->paginate(6);
       }

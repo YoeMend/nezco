@@ -70,14 +70,6 @@
                     <label class="control-label">Posición</label>
                     <input class="form-control" type="text" name="posicion" id="posicion" placeholder="Posición" maxlength="2" value="{{ $producto->posicion }}" readonly="">
                 </div>
-                <div class="form-group col-md-4">
-                    <label class="control-label">Estatus</label>
-                    <select id="estatus" class="form-control" readonly>  
-                        <option value="">Seleccione Estatus</option>
-                        <option value="Activo"@if(old('estatus', $producto->estatus)=='Activo') selected @endif>Activo</option>
-                        <option value="Desactivado"@if(old('estatus', $producto->estatus)=='Desactivado') selected @endif>Desactivado</option>
-                    </select>
-                </div>
 
                 <div class="form-group col-md-6">
                   <div class="form-group">
