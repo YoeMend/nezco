@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+@session_start();
 use Illuminate\Http\Request;
 use DB;
 use App\CategoriaDocumentos;
@@ -18,7 +18,10 @@ use App\TipoProducto;
 class FrontendController extends Controller
 {
     public function index(){
-
+    	$id=1;
+        $imagenes= Imagenes::find($id);
+        $_SESSION['banner'] = $imagenes->url;
+        //dd($_SESSION['banner']);
     	$servicios = DB::table('servicio')-> where('publico','Si')->where('inicio','1')->orderBy('posicion', 'ASC')-> get();
     	$productos = DB::table('producto')-> where('publico','Si')->where('inicio','1')->orderby('posicion', 'ASC')-> get();
     	$logo_empresa   = DB::table('empresa')-> where('publico','Si')->where('estatus','Activo')-> get();
