@@ -165,7 +165,7 @@ Route::get('usuarios/cambiar/{valor}', [
 		'uses' => 'configurar\UsersController@cambiar',
 		'as'   => 'usuarios.cambiar'
 	]);
-Route::get('usuarios/update_password/{valor}', [
+Route::put('usuarios/update_password/{valor}', [
 		'uses' => 'configurar\UsersController@update_password',
 		'as'   => 'usuarios.update_password'
 	]);

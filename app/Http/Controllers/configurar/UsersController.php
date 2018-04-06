@@ -38,7 +38,7 @@ class UsersController extends Controller
 				'password' => bcrypt($request->password),
 				'rol_id' => $request->rol_id,
 			]);
-			return redirect()->route('usuarios.edit', codifica($usuario->id))->with("notificacion","Se ha guardado correctamente su información");
+			return redirect()->route('usuarios.edit', ($usuario->id))->with("notificacion","Se ha guardado correctamente su información");
 
 		} catch (Exception $e) {
 			\Log::info('Error creating item: '.$e);
@@ -54,7 +54,7 @@ class UsersController extends Controller
 	public function edit($id)
 	{
 		$roles=Roles::orderby('id')->get();
-		$usuario=User::find(decodifica($id));
+		$usuario=User::find($id);
 		return view('backend.configurar.usuario.edit')->with('usuario',$usuario)
 		->with('roles',$roles);
 	}
@@ -70,13 +70,13 @@ class UsersController extends Controller
 			if ($validator->fails()){
 				return back()->withErrors($validator)->withInput();
 			}
-			$id=decodifica($id);
+			
 			$data=[
 				'nombre' => $request->nombre,
 				'rol_id' => $request->rol_id,
 			];
 			User::find($id)->update($data);
-			return redirect()->route('usuarios.edit', codifica($id))->with("notificacion","Se ha guardado correctamente su información");
+			return redirect()->route('usuarios.edit', $id)->with("notificacion","Se ha guardado correctamente su información");
 
 		} catch (Exception $e) {
 			\Log::info('Error creating item: '.$e);
@@ -86,7 +86,7 @@ class UsersController extends Controller
 
 	public function destroy($id)
 	{
-		$id=decodifica($id);
+		//$id=decodifica($id);
 		try{
 			User::find($id)->delete();
 			return redirect()->route('usuarios.index');
@@ -97,13 +97,13 @@ class UsersController extends Controller
 	public function cambiar($id)
 	{
         //dd($id);
-		$usuario=User::find(decodifica($id));
+		$usuario=User::find($id);
 		return view('backend.configurar.usuario.cambiarp')->with('usuario',$usuario);
 	}
 	public function update_password(Request $request, $valor)
 	{
-			dd($valor);
-			$id=decodifica($id);
+			//dd($valor);
+			$id=$valor;
 			$password = bcrypt($request->password);
 			$usuarios=User::find($id);
             $usuarios->password = $password;

@@ -40,16 +40,16 @@
                         @foreach($usuarios as $usuario)
                         <tr>
                             <td>
-                                <a href="{{ route('usuarios.edit', codifica($usuario->id) ) }}" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
+                                <a href="{{ route('usuarios.edit', ($usuario->id) ) }}" title="Editar"><i class="fa fa-fw fa-edit"></i></a>
                                 <?php 
-                                $valor = codifica($usuario->id); 
+                                $valor = ($usuario->id); 
                                 $url="usuarios/cambiar/".$valor; ?>
                                 <a href="{{ url($url) }}" title="Cambiar clave"><i class="fa fa-fw fa-key"></i></a>
                                 <a href="{{ route('usuarios.destroy',$usuario->id) }}" title="Eliminar Registro" class="uk-icon-link" uk-icon="icon: trash"><i class="fa fa-trash " onclick="return confirm('¿Seguro desea eliminar este registro?')"></i></a>
                             </td>
 
-                            <td><a href="{{ route('usuarios.edit', codifica($usuario->id) ) }}" title="Editar">{{ $usuario->email }}</a></td>
-                            <td><a href="{{ route('usuarios.edit', codifica($usuario->id) ) }}" title="Editar">{{ $usuario->name }}</a></td>
+                            <td><a href="{{ route('usuarios.edit', ($usuario->id) ) }}" title="Editar">{{ $usuario->email }}</a></td>
+                            <td><a href="{{ route('usuarios.edit', ($usuario->id) ) }}" title="Editar">{{ $usuario->name }}</a></td>
                             <td>{{ $usuario->created_at }}</td>
                         </tr>
                     @endforeach                </tbody>

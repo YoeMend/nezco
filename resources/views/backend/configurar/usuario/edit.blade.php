@@ -27,7 +27,7 @@
         <p class="text-right"><a href="{{ route('usuarios.index') }}" class="btn btn-sm btn-primary"><i class="fa fa-fw fa-list"></i> Volver a la lista</a></p>
     </div>
 </div>
-<form role="form" action="{{ route('usuarios.update', codifica($usuario->id)) }}" method="POST">
+<form role="form" action="{{ route('usuarios.update', ($usuario->id)) }}" method="POST">
     {{ csrf_field() }}
     {{ method_field('PUT') }}
     <div class="row">
