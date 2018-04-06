@@ -23,7 +23,10 @@
 							<div class="col-lg-4 h-15em overflow-hidden bg-img" style="background-image: url('{{ asset('img/servicios/'.$servicio->imagen) }}');">
 							</div>
 							<div class="col-lg-8 pl-lg-5">
-								<h3 class="font-italic pt-3 pt-lg-0 ">{{ $servicio->titulo }}</h3>
+								<a href="servicios_detail/2/{{ $servicio->id }}">
+									<h3 class="font-italic pt-3 pt-lg-0 ">{{ $servicio->titulo }}</h3>
+								</a>
+								
 								
 								<?php
 									 
