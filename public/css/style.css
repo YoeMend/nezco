@@ -173,11 +173,9 @@ a:hover {
 .navbar-nav .nav-item .nav-link {
   padding-left: 3rem; }
 
-.navbar {
-  background-color: rgba(255, 255, 255, 0.1); }
-  @media only screen and (max-width: 768px) {
-    .navbar {
-      background-color: rgba(0, 0, 0, 0.8); } }
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background-color: rgba(0, 0, 0, 0.8); } }
 
 .navbar-light .navbar-toggler {
   border-color: #989898;
