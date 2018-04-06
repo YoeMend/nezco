@@ -72,8 +72,10 @@ class Tipo_ProductoController extends Controller
 
     public function update(Request $request, $id)
     {
+        $estatus= $request["estatus"];
         $tipoproducto = TipoProducto::find($id);
         $tipoproducto->fill($request->all());
+        $tipoproducto->estatus = $estatus;
         $tipoproducto->save();
         
 
