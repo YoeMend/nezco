@@ -14,12 +14,13 @@ use App\Galeria;
 use App\Imagenes;
 use App\Video;
 use App\TipoProducto;
+use App\Archivo;
 
 class FrontendController extends Controller
 {
     public function index(){
     	$id=1;
-        $imagenes= Imagenes::find($id);
+        $imagenes= Imagenes::find(1);
         $_SESSION['banner'] = $imagenes->url;
         //dd($_SESSION['banner']);
     	$servicios = DB::table('servicio')-> where('publico','Si')->where('inicio','1')->orderBy('posicion', 'ASC')-> get();
@@ -80,17 +81,27 @@ class FrontendController extends Controller
 	}
 	public function productos_detail($id){
 
-		$producto = Producto::where('id', '1')->where('publico','Si')->first();
+		$producto = Producto::where('id', $id)->where('publico','Si')->first();
 		
-		$productos = Producto::where('publico','Si')->get();
+		$producto_categoria = CategoriaProducto::where('id', $producto->categoria_producto_id )->where('estatus','Activo')->first();
 
 		$categorias_productos = CategoriaProducto::where('estatus','Activo')->get();
 
-		// $tipo_productos = TipoProducto::where('estatus', 'Activo')->get();
+		$productos_filter = Producto::where('publico','Si')->orderBy('posicion', 'ASC')->get();
 
-		// $imagenes = Imagenes::where('publico', 'Si')->where('categoria_imagen_id', $categoriaid)->where('tipo_id', $id)->get();
+		$tipos_producto = TipoProducto::where('estatus', 'Activo')->get();
 
-			return view('frontend.productos_detail')->with('producto',$producto)->with('categorias_productos',$categorias_productos);
+		$imagenes = Imagenes::where('publico', 'Si')->where('categoria_imagen_id', '1')->where('tipo_id', $id)->get();
+
+		//dd($imagenes);
+
+			return view('frontend.productos_detail')
+					->with('producto',$producto)
+					->with('productos_filter',$productos_filter)
+					->with('tipos_producto',$tipos_producto)
+					->with('imagenes',$imagenes)
+					->with('producto_categoria',$producto_categoria)
+					->with('categorias_productos',$categorias_productos);
 
 		//->with('tipo_productos', $tipo_productos)->with('imagenes',$imagenes);
 
@@ -98,24 +109,15 @@ class FrontendController extends Controller
 
 	public function leyes(){
 
-		$categorias_documentos = DB::table('categoria_documentos')
-								 -> where('estatus','Activo')
-								 -> get();
+		$categorias_documentos = CategoriaDocumentos::where('estatus','Activo')-> get();
 
-		$documentos = DB::table('documentos')->where('publico', 'Si')->get();
+		$documentos = Documentos::where('publico', 'Si')->get();
+
+		$archivos = Archivo::where('publico','Si')->get();
 		
-		return view('frontend.leyes')->with('categorias_documentos', $categorias_documentos)->with('documentos', $documentos);
+		return view('frontend.leyes')->with('categorias_documentos', $categorias_documentos)->with('documentos', $documentos)->with('archivos', $archivos );
 	}
-	public function leyesF($id){
 
-		$categorias_documentos = DB::table('categoria_documentos')
-								 -> where('estatus','Activo')
-								 -> get();
-
-		$documentos = DB::table('documentos')->where('categoria_documento_id', $id)->get();
-
-		return view('frontend.leyes')->with('categorias_documentos', $categorias_documentos)->with('documentos', $documentos);
-	}
 
 	public function documentDetail($id){
 
@@ -123,16 +125,18 @@ class FrontendController extends Controller
 
 		return view('frontend.documentDetail')->with('documentos',$documentos);
 	}
+
 	public function galeriaFront(){
 
 		$galerias = Galeria::where('publico','Si')->get();
 
-		$imagenes = Galeria::find(1)->imagenesGalery()->where('categoria_imagen_id','=','3')->first();
+		//$imagenes = Galeria::find(1)->imagenesGalery()->where('categoria_imagen_id','=','3')->first();
 
-		//$imagenes = Imagenes::where('publico', 'Si')->first();
-
+		$imagenes = Imagenes::where('publico', 'Si')->get();
+//dd($imagenes);
 		return view('frontend.galeria')->with('galerias', $galerias)->with('imagenes', $imagenes);
 	}
+
 	public function galeria_detail($id_categoria, $id_galeria){
 
 		$imagenes = Imagenes::where('categoria_imagen_id',$id_categoria)->where('tipo_id',$id_galeria)->where('publico','Si')->get();
